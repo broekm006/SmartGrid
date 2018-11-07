@@ -33,10 +33,13 @@ class Load():
 
             for i in content:
 <<<<<<< HEAD
+<<<<<<< HEAD
                 i = i.strip('\n')
                 i = i.split("\t")
                 batterys.append(i.strip())
 =======
+=======
+>>>>>>> 38f9299aefcf41c5fee90db9a72f393939dcc294
                 i = i.replace("\t", " ")
                 i = i.replace(",", "")
                 i = i.replace("[", "")
@@ -44,6 +47,9 @@ class Load():
 
                 i = i.strip('\n')
                 batterys.append(i.split())
+<<<<<<< HEAD
+>>>>>>> 38f9299aefcf41c5fee90db9a72f393939dcc294
+=======
 >>>>>>> 38f9299aefcf41c5fee90db9a72f393939dcc294
 
             print(batterys)
