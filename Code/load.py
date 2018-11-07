@@ -32,9 +32,19 @@ class Load():
             batterys = []
 
             for i in content:
+<<<<<<< HEAD
                 i = i.strip('\n')
                 i = i.split("\t")
                 batterys.append(i.strip())
+=======
+                i = i.replace("\t", " ")
+                i = i.replace(",", "")
+                i = i.replace("[", "")
+                i = i.replace("]", "")
+
+                i = i.strip('\n')
+                batterys.append(i.split())
+>>>>>>> 38f9299aefcf41c5fee90db9a72f393939dcc294
 
             print(batterys)
 
