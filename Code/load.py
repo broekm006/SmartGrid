@@ -32,8 +32,9 @@ class Load():
             batterys = []
 
             for i in content:
-                i = i.strip('\n\t')
-                batterys.append(i.split("   "))
+                i = i.strip('\n')
+                i = i.split("\t")
+                batterys.append(i.strip())
 
             print(batterys)
 
