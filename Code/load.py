@@ -18,10 +18,10 @@ class Load():
                 houses.append(i.split(","))
 
             # load houses into list (x, y, max_volt)
-            for house in houses:
-                house = House(house[0], house[1], house[2])
+            for house in houses[1:]:
+                house = House(int(house[0]), int(house[1]), float(house[2]))
+                print(house)
 
-            print(houses)
             print()
             print()
 
@@ -41,7 +41,9 @@ class Load():
                 i = i.strip('\n')
                 batterys.append(i.split())
 
-            print(batterys)
+                for battery in batterys[1:]:
+                    battery = Battery(int(battery[0]), int(battery[1]), float(battery[2]))
+                    print(battery)
 
 if __name__ == "__main__":
     load = Load("wijk1", "wijk1")
