@@ -35,4 +35,4 @@ testS
 if __name__ == "__main__":
     load = Load("wijk1", "wijk1")
 
-    #test
+    #test2
