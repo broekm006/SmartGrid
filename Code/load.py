@@ -17,9 +17,14 @@ class Load():
                 i = i.strip()
                 houses.append(i.split(","))
 
+            // load houses into list (x, y, max_volt)
+            for house in houses:
+                house = House(house[0], house[1], house[2])
+
             print(houses)
             print()
             print()
+
     def load_batteries(self, filename):
         with open(filename, "r") as f:
             content = f.readlines()
