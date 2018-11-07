@@ -34,3 +34,5 @@ class Load():
 
 if __name__ == "__main__":
     load = Load("wijk1", "wijk1")
+
+    #test
