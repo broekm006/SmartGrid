@@ -28,7 +28,7 @@ class Load():
     def load_batteries(self, filename):
         with open(filename, "r") as f:
             content = f.readlines()
-
+testS
             batterys = []
 
             for i in content:
