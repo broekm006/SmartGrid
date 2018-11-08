@@ -4,8 +4,8 @@ from battery import Battery
 class Load():
 
     def __init__(self, huis, batterij):
-        self.huis = self.load_houses(f"Huizen&Batterijen/{huis}_huizen.csv")
-        self.huis = self.load_batteries(f"Huizen&Batterijen/{batterij}_batterijen.txt")
+        self.house = self.load_houses(f"Huizen&Batterijen/{huis}_huizen.csv")
+        self.battery = self.load_batteries(f"Huizen&Batterijen/{batterij}_batterijen.txt")
 
     def load_houses(self, filename):
         with open(filename, "r") as f:
@@ -29,7 +29,7 @@ class Load():
         with open(filename, "r") as f:
             content = f.readlines()
 
-            batterys = []
+            batteries = []
 
             for i in content:
 
@@ -39,9 +39,9 @@ class Load():
                 i = i.replace("]", "")
 
                 i = i.strip('\n')
-                batterys.append(i.split())
+                batteries.append(i.split())
 
-                for battery in batterys[1:]:
+                for battery in batteries[1:]:
                     battery = Battery(int(battery[0]), int(battery[1]), float(battery[2]))
                     print(battery)
 
