@@ -11,13 +11,13 @@ class Load():
         with open(filename, "r") as f:
             content = f.readlines()
 
-            houses = []
+            self.houses = []
 
             for i in content:
                 i = i.strip()
                 houses.append(i.split(","))
 
-            # load houses into list (x, y, max_volt)
+            # load houses into list (x, y, max_amp)
             for house in houses[1:]:
                 house = House(int(house[0]), int(house[1]), float(house[2]))
                 print(house)
@@ -29,7 +29,7 @@ class Load():
         with open(filename, "r") as f:
             content = f.readlines()
 
-            batteries = []
+            self.batteries = []
 
             for i in content:
 
@@ -47,5 +47,11 @@ class Load():
 
 if __name__ == "__main__":
     load = Load("wijk1", "wijk1")
+
+    # connect & keep track of current battery usage
+    for battery in self.batteries:
+        for house in self.houses:
+            battery.current_usage += house.amp
+
 
     #test2
