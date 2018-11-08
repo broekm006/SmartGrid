@@ -1,2 +1,2 @@
 # negeer alle cache-bestanden
-*.pyc
+*.cpython-37.pyc
