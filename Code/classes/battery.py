@@ -1,7 +1,7 @@
 
 class Battery(object):
 
-    def __init__ (self, x, y, max_amp):
+    def __init__(self, x, y, max_amp):
         self.x = x
         self.y = y
         self.max_amp = max_amp
