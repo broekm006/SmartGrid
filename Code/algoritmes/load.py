@@ -21,7 +21,7 @@ class Load():
 
             for i in content:
                 i = i.strip()
-                self.houses.append(i.split(","))
+                innitial_houses.append(i.split(","))
 
             # load houses into list (x, y, max_amp)
             for i, house in enumerate(innitial_houses[1:]):
@@ -53,12 +53,13 @@ class Load():
 
                     # print(battery)
 
-    def connect_houses():
+    def connect_houses(self):
+
+        print("hallo")
         # connect & keep track of current battery usage
-        for house in self.houses:
+        for house in self.houses[1:]:
             for battery in self.batteries:
                 if battery.check_amp() > house.amp:
-                    print(battery)
                     battery.connect(house.id)
                     battery.add(house.amp)
                     house.connect(battery.id)
@@ -68,3 +69,4 @@ class Load():
 
 if __name__ == "__main__":
     load = Load("wijk1", "wijk1")
+    load.connect_houses()

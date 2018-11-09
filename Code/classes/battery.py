@@ -10,7 +10,7 @@ class Battery(object):
         self.current_usage = 0
 
     def check_amp(self):
-        available = self.max_amp - self.current_usage
+        return self.max_amp - self.current_usage
 
     def add(self, house_output):
         self.current_usage += house_output
