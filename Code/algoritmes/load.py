@@ -49,31 +49,65 @@ class Load():
                 self.batteries.append(Battery(i, int(battery[0]), int(battery[1]), float(battery[2])))
 
 
+    def distance(self, house, batteries):
+        '''Calculate distance between given house and each battery'''
+
+        for battery in batteries:
+            battery.distance = abs(battery.y - house.y) + abs(battery.x - house.x)
+
+        return batteries
+
     def connect_houses(self):
 
-        # Sort houses
+        # Sort houses by max output
         self.houses = sorted(self.houses, key=lambda house: house.amp, reverse=True)
 
-        # connect each house to a battery (keep track of usage, max etc.)
+        # sort batteries based on distance to house
         for house in self.houses:
-            sorted_batteries = house.distance(self.batteries)
-            print(sorted_batteries)
+
+            # Get distance from current house to each battery
+            self.batteries = self.distance(house, self.batteries)
+
+            # Sort batteries based on distance to current house
+            self.batteries = sorted(self.batteries, key=lambda battery: battery.distance)
+
+            # adds sorted list to house.distance (house.distance == self.batteries)
+            house.nearest(self.batteries)
+
+            ''''
+            # TEST: volgorde batterijen per huis
+
+            print("House ID: " str(house.id))
+            for battery in house.distance:
+                print(battery.id)
+            '''
 
             for battery in self.batteries:
                 if battery.check_amp() > house.amp:
                     battery.connect(house.id)
                     battery.add(house.amp)
                     house.connect(battery.id)
-                    print(battery)
+
+                    '''
+                    # TEST: afstand batterij - huis + gekozen batterij
+
+                    print("HOUSE ID: " + str(house.id))
+                    print("House coördinates: " + str(house.x) + "," + str(house.y))
+                    print("Battery ID: " + str(battery.id))
+                    print("Battery coördinates: " + str(battery.x) + "," + str(battery.y))
+                    print("Distance house-battery: " + str(battery.distance))
                     print()
-                    print(house)
+                    '''
+
                     break
 
 
+
         '''
-        # TEST
+        # TEST: alle batterijen aangesloten?
         # Batterijen totaal = 7 535
         # Huizen totaal = 7 500
+
         current_usage = 0
 
         for battery in self.batteries:
@@ -85,6 +119,8 @@ class Load():
 
         print("Total battery usage: " + str(current_usage))
         '''
+
+
 
 if __name__ == "__main__":
     load = Load("wijk1", "wijk1")

@@ -8,6 +8,7 @@ class Battery(object):
         self.max_amp = max_amp
         self.connected = []
         self.current_usage = 0
+        self.distance = 0
 
     def check_amp(self):
         return self.max_amp - self.current_usage

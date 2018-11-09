@@ -10,19 +10,18 @@ class House(object):
         self.y = y
         self.amp = amp
         self.connected = []
+        self.distance = []
 
     def connect (self, battery_id):
         self.connected.append(battery_id)
 
-    def distance (self, batteries):
-        unsorted = []
-        for battery in batteries:
-            distance = abs(battery.y - self.y) + abs(battery.x - self.x)
-            unsorted.append([distance, battery.id])
-
-        return sorted(unsorted, key = itemgetter(0))
+    def nearest(self, batteries):
+        ''' Add list of ordered batteries to self.distance'''
+        
+        self.distance += batteries
 
     def getKey(distance):
         return distance[0]
+
     def __str__(self):
         return "ID:" + str(self.id) + "X:" + str(self.x) + " Y:" + str(self.y) + " AMP:" + str(self.amp)
