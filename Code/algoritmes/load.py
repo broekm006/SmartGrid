@@ -56,7 +56,9 @@ class Load():
 
         # connect each house to a battery (keep track of usage, max etc.)
         for house in self.houses:
-            for battery in self.batteries:
+            sorted_batteries = house.distance(self.batteries)
+
+            for battery in sorted_batteries:
                 if battery.check_amp() > house.amp:
                     battery.connect(house.id)
                     battery.add(house.amp)
@@ -67,9 +69,10 @@ class Load():
                     break
 
 
+        '''
         # TEST
         # Batterijen totaal = 7 535
-        # Huizen totaal =
+        # Huizen totaal = 7 500
         current_usage = 0
 
         for battery in self.batteries:
@@ -79,8 +82,8 @@ class Load():
             print("Connected ID's" + str(battery.connected))
             current_usage += battery.current_usage
 
-        print("Total: " + str(current_usage))
-
+        print("Total battery usage: " + str(current_usage))
+        '''
 
 if __name__ == "__main__":
     load = Load("wijk1", "wijk1")
