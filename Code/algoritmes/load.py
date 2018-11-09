@@ -25,6 +25,7 @@ class Load():
 
             # load houses into list (x, y, max_amp)
             for i, house in enumerate(innitial_houses[1:]):
+                print(i)
                 self.houses.append(House(i, int(house[0]), int(house[1]), float(house[2])))
 
 
@@ -44,9 +45,10 @@ class Load():
 
                 i = i.strip('\n')
                 innitial_batteries.append(i.split())
-
-                for i, battery in enumerate(innitial_batteries[1:]):
-                    self.batteries.append(Battery(i, int(battery[0]), int(battery[1]), float(battery[2])))
+                
+            for i, battery in enumerate(innitial_batteries[1:]):
+                print(i)
+                self.batteries.append(Battery(i, int(battery[0]), int(battery[1]), float(battery[2])))
 
                     # print(battery)
 
