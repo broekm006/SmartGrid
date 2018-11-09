@@ -55,7 +55,7 @@ class Load():
         self.houses = sorted(self.houses, key=lambda house: house.amp, reverse=True)
 
         # connect each house to a battery (keep track of usage, max etc.)
-        for house in self.houses[1:]:
+        for house in self.houses:
             for battery in self.batteries:
                 if battery.check_amp() > house.amp:
                     battery.connect(house.id)
@@ -68,6 +68,8 @@ class Load():
 
 
         # TEST
+        # Batterijen totaal = 7 535
+        # Huizen totaal =
         current_usage = 0
 
         for battery in self.batteries:
@@ -77,7 +79,7 @@ class Load():
             print("Connected ID's" + str(battery.connected))
             current_usage += battery.current_usage
 
-        print("Total" + str(current_usage))
+        print("Total: " + str(current_usage))
 
 
 if __name__ == "__main__":
