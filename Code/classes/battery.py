@@ -19,8 +19,4 @@ class Battery(object):
         self.connected.append(house_id)
 
     def __str__(self):
-<<<<<<< HEAD
-        return str(self.id) + str(self.x) + str(self.y) + str(self.max_amp) + str(self.connected)
-=======
         return "id: " + str(self.id) + " X: " + str(self.x) + " Y: " + str(self.y) + " Max Amp: " + str(self.max_amp) + " List: " + str(self.connected)
->>>>>>> 377722b227824ae81871075ef3e4621f1d7f3fc2
