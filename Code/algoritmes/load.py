@@ -1,4 +1,4 @@
-import sys, os
+import sys
 sys.path.append('../classes')
 
 from house import House
@@ -26,10 +26,7 @@ class Load():
             # load houses into list (x, y, max_amp)
             for i, house in enumerate(innitial_houses[1:]):
                 self.houses.append(House(i, int(house[0]), int(house[1]), float(house[2])))
-                print(house)
 
-            print()
-            print()
 
     def load_batteries(self, filename):
         with open(filename, "r") as f:
@@ -63,6 +60,9 @@ class Load():
                     battery.connect(house.id)
                     battery.add(house.amp)
                     house.connect(battery.id)
+                    print(battery)
+                    print()
+                    print(house)
                     break
 
 

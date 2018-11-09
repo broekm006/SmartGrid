@@ -11,6 +11,6 @@ class House(object):
 
     def connect (self, battery_id):
         self.connected.append(battery_id)
-        
+
     def __str__(self):
-        return str(self.x) + str(self.y) + str(self.amp)
+        return str(self.id) + str(self.x) + str(self.y) + str(self.amp)
