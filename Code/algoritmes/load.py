@@ -1,11 +1,14 @@
+import sys, os
+sys.path.append('../classes')
+
 from house import House
 from battery import Battery
 
 class Load():
 
     def __init__(self, huis, batterij):
-        self.house = self.load_houses(f"Huizen&Batterijen/{huis}_huizen.csv")
-        self.battery = self.load_batteries(f"Huizen&Batterijen/{batterij}_batterijen.txt")
+        self.house = self.load_houses(f"../../data/Huizen&Batterijen/{huis}_huizen.csv")
+        self.battery = self.load_batteries(f"../../data/Huizen&Batterijen/{batterij}_batterijen.txt")
 
     def load_houses(self, filename):
         with open(filename, "r") as f:
