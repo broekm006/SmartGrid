@@ -5,10 +5,10 @@ class Battery(object):
         self.x = x
         self.y = y
         self.max_amp = max_amp
-        self.current_usage
+        #self.current_usage
 
-    def check_volt(self):
-        available = self.max_amp - self.current_usage
+    #def check_volt(self):
+    #    available = self.max_amp - self.current_usage
 
     # def current_use
 
