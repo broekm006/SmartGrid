@@ -1,16 +1,22 @@
 
 class Battery(object):
 
-    def __init__(self, x, y, max_amp):
+    def __init__(self, id, x, y, max_amp):
+        self.id = id
         self.x = x
         self.y = y
         self.max_amp = max_amp
-        #self.current_usage
+        self.connected = []
+        self.current_usage = 0
 
-    #def check_volt(self):
-    #    available = self.max_amp - self.current_usage
+    def check_amp(self):
+        available = self.max_amp - self.current_usage
 
-    # def current_use
+    def add(self, house_output):
+        self.current_usage += house_output
+
+    def connect(self, house_id):
+        self.connected.append(house_id)
 
     def __str__(self):
-        return str(self.x) + str(self.y) + str(self.max_amp)
+        return str(self.x) + str(self.y) + str(self.max_amp) + str(self.connected)
