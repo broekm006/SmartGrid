@@ -57,8 +57,9 @@ class Load():
         # connect each house to a battery (keep track of usage, max etc.)
         for house in self.houses:
             sorted_batteries = house.distance(self.batteries)
+            print(sorted_batteries)
 
-            for battery in sorted_batteries:
+            for battery in self.batteries:
                 if battery.check_amp() > house.amp:
                     battery.connect(house.id)
                     battery.add(house.amp)
