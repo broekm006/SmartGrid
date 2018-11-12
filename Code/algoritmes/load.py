@@ -114,7 +114,6 @@ class Load():
 
         '''
         # TEST: alle batterijen aangesloten?
-
         # Batterijen totaal = 7 535
         # Huizen totaal = 7 500
 
@@ -130,6 +129,18 @@ class Load():
         '''
 
 
+        ''''
+        # TEST: overzicht huizen gesorteert op basis van kosten
+
+        # Sort houses by costs
+        self.houses = sorted(self.houses, key=lambda house: house.costs, reverse=True)
+
+        for house in self.houses:
+            print("ID: " + str(house.id))
+            print("House output: " + str(house.amp))
+            print("Costs: " + str(house.costs))
+            print()
+        '''
 
 
     def costs(self):
