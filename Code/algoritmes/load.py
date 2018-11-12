@@ -11,7 +11,6 @@ class Load():
         self.battery = self.load_batteries(f"../../data/Huizen&Batterijen/{batterij}_batterijen.txt")
 
 
-
     def load_houses(self, filename):
         with open(filename, "r") as f:
             content = f.readlines()
@@ -82,11 +81,22 @@ class Load():
                 print(battery.id)
             '''
 
+            # Connect house to nearest battery with enough available capacity
             for battery in self.batteries:
                 if battery.check_amp() > house.amp:
                     battery.connect(house.id)
+                    house.connect(battery)
+
+                    # Update battery usage & calculate cable costs
                     battery.add(house.amp)
-                    house.connect(battery.id)
+                    house.cable_costs(battery.distance)
+
+                    '''
+                    TEST: cable_costs (battery_distance * 9)
+                    print(house.connected)
+                    print(battery.distance)
+                    print(house.costs)
+                    '''
 
                     '''
                     # TEST: afstand batterij - huis + gekozen batterij
@@ -102,14 +112,13 @@ class Load():
                     break
 
 
-
         '''
         # TEST: alle batterijen aangesloten?
+
         # Batterijen totaal = 7 535
         # Huizen totaal = 7 500
 
         current_usage = 0
-
         for battery in self.batteries:
             print("ID:" + str(battery.id))
             print("Current usage: " + str(battery.current_usage))
@@ -122,6 +131,31 @@ class Load():
 
 
 
+
+    def costs(self):
+        # Battery battery battery costs
+        battery_costs = 0
+        for battery in self.batteries:
+            battery_costs += battery.cost
+
+        # Cable cable costs
+        cable_costs = 0
+        for house in self.houses:
+            cable_costs += house.costs
+            # print(cable_costs)
+
+        # Total costs
+        total_costs = battery_costs + cable_costs
+
+        '''
+        # TEST: costs
+
+        print("Battery costs: " + str(battery_costs))
+        print("Cable costs: " + str(cable_costs))
+        print("Total costs: " + str(total_costs))
+        '''
+
 if __name__ == "__main__":
     load = Load("wijk1", "wijk1")
     load.connect_houses()
+    load.costs()
