@@ -97,6 +97,7 @@ class Load():
                     print(battery.distance)
                     print(house.costs)
                     '''
+                    
 
                     '''
                     # TEST: afstand batterij - huis + gekozen batterij
