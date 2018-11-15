@@ -1,5 +1,5 @@
 import sys
-sys.path.append('../classes')
+sys.path.append('Code/classes')
 
 from house import House
 from battery import Battery
@@ -7,8 +7,8 @@ from battery import Battery
 class Load():
 
     def __init__(self, huis, batterij):
-        self.house = self.load_houses(f"../../data/Huizen&Batterijen/{huis}_huizen.csv")
-        self.battery = self.load_batteries(f"../../data/Huizen&Batterijen/{batterij}_batterijen.txt")
+        self.house = self.load_houses(f"data/Huizen&Batterijen/{huis}_huizen.csv")
+        self.battery = self.load_batteries(f"data/Huizen&Batterijen/{batterij}_batterijen.txt")
 
 
     def load_houses(self, filename):
@@ -48,6 +48,7 @@ class Load():
                 self.batteries.append(Battery(i, int(battery[0]), int(battery[1]), float(battery[2])))
 
 
+    #
     def distance(self, house, batteries):
         '''Calculate distance between given house and each battery'''
 
@@ -56,6 +57,7 @@ class Load():
 
         return batteries
 
+    #
     def connect_houses(self):
 
         # Sort houses by max output
@@ -128,8 +130,6 @@ class Load():
         print("Total battery usage: " + str(current_usage))
         '''
 
-
-        ''''
         # TEST: overzicht huizen gesorteert op basis van kosten
 
         # Sort houses by costs
@@ -140,9 +140,10 @@ class Load():
             print("House output: " + str(house.amp))
             print("Costs: " + str(house.costs))
             print()
-        '''
 
 
+
+    #
     def costs(self):
         # Battery battery battery costs
         battery_costs = 0
@@ -165,8 +166,3 @@ class Load():
         print("Cable costs: " + str(cable_costs))
         print("Total costs: " + str(total_costs))
         '''
-
-if __name__ == "__main__":
-    load = Load("wijk1", "wijk1")
-    load.connect_houses()
-    load.costs()
