@@ -11,6 +11,9 @@ class House(object):
         self.amp = amp
         self.battery = 0
         self.connected = False
+        self.costs = 0
+
+        # self.nearest = []
 
     def connect (self, battery):
         ''' Save connected battery '''
@@ -36,6 +39,13 @@ class House(object):
         ''' Calculate cable costs'''
 
         self.costs = 9 * battery_distance
+
+    def prioritize(self, batteries):
+        self.priority_list = batteries
+
+    def priority_value(self, first_distance, second_distance):
+
+        self.pv = second_distance - first_distance
 
     def __str__(self):
         return "ID:" + str(self.id) + "X:" + str(self.x) + " Y:" + str(self.y) + " AMP:" + str(self.amp)

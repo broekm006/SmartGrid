@@ -48,48 +48,72 @@ class Load():
                 self.batteries.append(Battery(i, int(battery[0]), int(battery[1]), float(battery[2])))
 
 
+    def distance(self, house, batteries):
+        '''Calculate distance between given house and each battery'''
+
+        for battery in batteries:
+            battery.distance = abs(battery.y - house.y) + abs(battery.x - house.x)
+
+        return batteries
+
     def connect_houses(self):
 
-        # afstand tot elke batterij van een huis
+        # get priority value for each house
         for house in self.houses:
-            house.distance(self.batteries)
-            house.costs = 0
 
+            # Get distance and sort batteries based on distance to current house
+            self.batteries = self.distance(house, self.batteries)
+            self.batteries = sorted(self.batteries, key=lambda battery: battery.distance)
+            house.prioritize(self.batteries)
 
-        for i, battery in enumerate(self.batteries):
+            # Priority Value
+            first_distance = self.batteries[0].distance
+            second_distance = self.batteries[1].distance
+            house.priority_value(first_distance, second_distance)
 
-            # sort houses based on distance to current battery
-            if i == 0:
-                self.houses = sorted(self.houses, key=lambda house: house.b1_distance)
-            if i == 1:
-                self.houses = sorted(self.houses, key=lambda house: house.b2_distance)
-            if i == 2:
-                self.houses = sorted(self.houses, key=lambda house: house.b3_distance)
-            if i == 3:
-                self.houses = sorted(self.houses, key=lambda house: house.b4_distance)
-            if i == 4:
-                self.houses = sorted(self.houses, key=lambda house: house.b5_distance)
+        # sort houses based on priority value
+        self.houses = sorted(self.houses, key=lambda house: house.pv, reverse=True)
 
-            # connect battery to nearest house
-            for house in self.houses:
-                if battery.check_amp() > house.amp and not house.connected:
+        for house in self.houses:
+
+            # Sorteer opnieuw voor huis
+            self.batteries = self.distance(house, self.batteries)
+            self.batteries = sorted(self.batteries, key=lambda battery: battery.distance)
+
+            for battery in self.batteries:
+                if battery.check_amp() > house.amp:
                     battery.connect(house.id)
                     house.connect(battery)
 
-                    # distance
-                    distance = abs(battery.y - house.y) + abs(battery.x - house.x)
+                    # Update battery usage & calculate cable costs
+                    battery.add(house.amp)
+                    house.cable_costs(battery.distance)
+                    break;
+
+
+
+            ''''
+            # TEST: volgorde batterijen per huis
+            print("House ID: " str(house.id))
+            for battery in house.distance:
+                print(battery.id)
+            '''
+
+            # Connect house to nearest battery with enough available capacity
+            for battery in self.batteries:
+                if not house.connected and battery.check_amp() > house.amp:
+                    battery.connect(house.id)
+                    house.connect(battery)
 
                     # Update battery usage & calculate cable costs
                     battery.add(house.amp)
-                    house.cable_costs(distance)
-
-            # Sort houses by max output
-            # self.houses = sorted(self.houses, key=lambda house: house.amp, reverse=True
+                    house.cable_costs(battery.distance)
+                    break
 
                     '''
                     TEST: cable_costs (battery_distance * 9)
                     print(house.connected)
-                    print(battery_distance)
+                    print(battery.distance)
                     print(house.costs)
                     '''
 
@@ -99,10 +123,9 @@ class Load():
                     print("House coördinates: " + str(house.x) + "," + str(house.y))
                     print("Battery ID: " + str(battery.id))
                     print("Battery coördinates: " + str(battery.x) + "," + str(battery.y))
-                    print("Distance house-battery: " + str(distance))
+                    print("Distance house-battery: " + str(battery.distance))
                     print()
                     '''
-
 
 
 
@@ -110,7 +133,6 @@ class Load():
         # TEST: alle batterijen aangesloten?
         # Batterijen totaal = 7 535
         # Huizen totaal = 7 500
-
         current_usage = 0
         for battery in self.batteries:
             print("ID:" + str(battery.id))
@@ -118,19 +140,20 @@ class Load():
             print("Available: " + str(battery.check_amp()))
             print("Connected ID's" + str(battery.connected))
             current_usage += battery.current_usage
-
         print("Total battery usage: " + str(current_usage))
-
         '''
+
+
+
         # TEST: overzicht huizen gesorteert op basis van kosten
         # Sort houses by costs
         self.houses = sorted(self.houses, key=lambda house: house.costs, reverse=True)
-
         for house in self.houses:
             print("ID: " + str(house.id))
             print("House output: " + str(house.amp))
             print("Costs: " + str(house.costs))
             print()
+
 
 
     def costs(self):
@@ -155,8 +178,7 @@ class Load():
         print("Total costs: " + str(total_costs))
 
 
-
 if __name__ == "__main__":
-    load = Load("wijk3", "wijk3")
+    load = Load("wijk2", "wijk2")
     load.connect_houses()
     load.costs()
