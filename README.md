@@ -12,4 +12,4 @@ Poging gedaan om vanuit de batterijen de meest dichtbije huizen te verbinden tot
 wijk1 en wijk3 blijft een huis over. Opgeslagen als branch test.
 
 **15-11-2018:**
-Huizen gesorteerd op basis van prioriteit. Bij alle wijken blijft één huis over maar de kabel kosten zijn lager dan bij de andere twee. Daarnaast zijn de 3 sorteer methodes in één class gezet (sort.py), en is het greedy algorithe dat gebruikt wordt om een eerste oplossing te formuleren in een aparte class gezet (greedy.py). In de helper class staat voor nu alleen de kosten-functie.
+Huizen gesorteerd op basis van prioriteit. Bij alle wijken blijft één huis over maar de kabel kosten zijn lager dan bij de andere twee. Daarnaast zijn de 3 sorteer methodes in één class gezet (sort.py), en is het greedy algoritme, dat gebruikt wordt om een eerste oplossing te formuleren, in een aparte class gezet (greedy.py). In de helper class staat voor nu alleen de kosten-functie.
