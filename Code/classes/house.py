@@ -9,21 +9,21 @@ class House(object):
         self.x = x
         self.y = y
         self.amp = amp
-        self.distance = []
+        self.distance = 0
+        self.costs = 0
+        self.connected = False
+
+        # priority list for sort.priority_value
+        self.priority_list = []
 
     def connect (self, battery):
         ''' Save connected battery '''
 
         self.connected = battery
 
-    def nearest(self, batteries):
-        ''' Add list of ordered batteries to self.distance'''
-
-        self.distance += batteries
-
     def cable_costs(self, battery_distance):
         ''' Calculate cable costs'''
-        
+
         self.costs = 9 * battery_distance
 
     def __str__(self):
