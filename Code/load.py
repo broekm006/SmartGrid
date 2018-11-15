@@ -26,7 +26,7 @@ class Load():
             for i, house in enumerate(innitial_houses[1:]):
                 self.houses.append(House(i, int(house[0]), int(house[1]), float(house[2])))
 
-            
+            return self.houses
 
     def load_batteries(self, filename):
         with open(filename, "r") as f:
@@ -77,13 +77,6 @@ class Load():
             # adds sorted list to house.distance (house.distance == self.batteries)
             house.nearest(self.batteries)
 
-            ''''
-            # TEST: volgorde batterijen per huis
-
-            print("House ID: " str(house.id))
-            for battery in house.distance:
-                print(battery.id)
-            '''
 
             # Connect house to nearest battery with enough available capacity
             for battery in self.batteries:
@@ -95,44 +88,9 @@ class Load():
                     battery.add(house.amp)
                     house.cable_costs(battery.distance)
 
-                    '''
-                    TEST: cable_costs (battery_distance * 9)
-                    print(house.connected)
-                    print(battery.distance)
-                    print(house.costs)
-                    '''
 
-                    '''
-                    # TEST: afstand batterij - huis + gekozen batterij
-
-                    print("HOUSE ID: " + str(house.id))
-                    print("House coördinates: " + str(house.x) + "," + str(house.y))
-                    print("Battery ID: " + str(battery.id))
-                    print("Battery coördinates: " + str(battery.x) + "," + str(battery.y))
-                    print("Distance house-battery: " + str(battery.distance))
-                    print()
-                    '''
 
                     break
-
-
-        '''
-        # TEST: alle batterijen aangesloten?
-        # Batterijen totaal = 7 535
-        # Huizen totaal = 7 500
-
-        current_usage = 0
-        for battery in self.batteries:
-            print("ID:" + str(battery.id))
-            print("Current usage: " + str(battery.current_usage))
-            print("Available: " + str(battery.check_amp()))
-            print("Connected ID's" + str(battery.connected))
-            current_usage += battery.current_usage
-
-        print("Total battery usage: " + str(current_usage))
-        '''
-
-        # TEST: overzicht huizen gesorteert op basis van kosten
 
         # Sort houses by costs
         self.houses = sorted(self.houses, key=lambda house: house.costs, reverse=True)
