@@ -26,6 +26,7 @@ class Load():
             for i, house in enumerate(innitial_houses[1:]):
                 self.houses.append(House(i, int(house[0]), int(house[1]), float(house[2])))
 
+            
 
     def load_batteries(self, filename):
         with open(filename, "r") as f:
@@ -47,6 +48,7 @@ class Load():
             for i, battery in enumerate(innitial_batteries[1:]):
                 self.batteries.append(Battery(i, int(battery[0]), int(battery[1]), float(battery[2])))
 
+            return self.batteries
 
     #
     def distance(self, house, batteries):
@@ -140,29 +142,3 @@ class Load():
             print("House output: " + str(house.amp))
             print("Costs: " + str(house.costs))
             print()
-
-
-
-    #
-    def costs(self):
-        # Battery battery battery costs
-        battery_costs = 0
-        for battery in self.batteries:
-            battery_costs += battery.cost
-
-        # Cable cable costs
-        cable_costs = 0
-        for house in self.houses:
-            cable_costs += house.costs
-            # print(cable_costs)
-
-        # Total costs
-        total_costs = battery_costs + cable_costs
-
-        '''
-        # TEST: costs
-
-        print("Battery costs: " + str(battery_costs))
-        print("Cable costs: " + str(cable_costs))
-        print("Total costs: " + str(total_costs))
-        '''
