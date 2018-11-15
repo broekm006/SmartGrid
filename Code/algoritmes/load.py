@@ -105,6 +105,9 @@ class Load():
                     battery.connect(house.id)
                     house.connect(battery)
 
+                    # hoeveelste keuze?
+                    house.voorkeur()
+
                     # Update battery usage & calculate cable costs
                     battery.add(house.amp)
                     house.cable_costs(battery.distance)
@@ -152,6 +155,7 @@ class Load():
             print("ID: " + str(house.id))
             print("House output: " + str(house.amp))
             print("Costs: " + str(house.costs))
+            print("Voorkeur: " + str(house.keuze))
             print()
 
 
