@@ -1,5 +1,6 @@
+import random
 import sys
-sys.path.append('../classes')
+sys.path.append('Code/classes')
 
 from house import House
 from battery import Battery
@@ -7,8 +8,8 @@ from battery import Battery
 class Load():
 
     def __init__(self, huis, batterij):
-        self.house = self.load_houses(f"../../data/Huizen&Batterijen/{huis}_huizen.csv")
-        self.battery = self.load_batteries(f"../../data/Huizen&Batterijen/{batterij}_batterijen.txt")
+        self.house = self.load_houses(f"data/Huizen&Batterijen/{huis}_huizen.csv")
+        self.battery = self.load_batteries(f"data/Huizen&Batterijen/{batterij}_batterijen.txt")
 
 
     def load_houses(self, filename):
@@ -91,13 +92,15 @@ class Load():
                     battery.add(house.amp)
                     house.cable_costs(battery.distance)
 
+
+
                     '''
                     TEST: cable_costs (battery_distance * 9)
                     print(house.connected)
                     print(battery.distance)
                     print(house.costs)
                     '''
-                    
+
 
                     '''
                     # TEST: afstand batterij - huis + gekozen batterij
@@ -112,25 +115,109 @@ class Load():
 
                     break
 
+        for house in self.houses:
+            counter = 0
+            while (house.isconnected == False):
+                first, second, lowest = float('inf'), float('inf'), float('inf')
 
-        '''
+                # get lowest battery
+                for battery in self.batteries:
+                    if battery.current_usage <= lowest:
+                        lowest = battery.current_usage
+                        battery_id1 = battery.id
+
+                # get second lowest battery
+                for battery in self.batteries:
+                    if battery.current_usage <= first:
+                        first, second = battery.current_usage, first
+                    elif battery.current_usage < second:
+                        second = battery.current_usage
+                        battery_id2 = battery.id
+
+                # choose random id from battery-house list
+                random1 = random.choice(self.batteries[battery_id1].connected)
+                random2 = random.choice(self.batteries[battery_id2].connected)
+
+                # look for the amp of the randomly selected house
+                for house in self.houses:
+                    if house.id == random1:
+                        random1_amp = house.amp
+                        #print(house.amp)
+
+                    if house.id == random2:
+                        random2_amp = house.amp
+                        #print(house.amp)
+
+                #remove "first id + update current_usage"
+                self.batteries[battery_id1].remove(random1, random1_amp)
+                self.batteries[battery_id2].remove(random2, random2_amp)
+
+                if  self.batteries[battery_id1].max_amp - (random2_amp + lowest - random1_amp) > 0 and self.batteries[battery_id2].max_amp - (random1_amp + second - random2_amp) > 0:
+                    #add removed house to other battery_id
+                    self.batteries[battery_id1].connect(random2)
+                    self.batteries[battery_id1].add(random2_amp)
+
+                    self.batteries[battery_id2].connect(random1)
+                    self.batteries[battery_id2].add(random1_amp)
+                else:
+                    #undo remove because the switch does not work (battery overload)
+
+                    self.batteries[battery_id1].connect(random1)
+                    self.batteries[battery_id1].add(random1_amp)
+
+                    self.batteries[battery_id2].connect(random2)
+                    self.batteries[battery_id2].add(random2_amp)
+
+                #calculate new amp
+                low_max = self.batteries[battery_id1].max_amp - (random2_amp + lowest - random1_amp)
+                high_max = self.batteries[battery_id2].max_amp - (random1_amp + second - random2_amp)
+
+                # check if left_over house fits in lowest value battery
+                if house.amp <= low_max:
+                    self.batteries[battery_id1].connect(house.id)
+                    self.batteries[battery_id1].add(house.amp)
+                    house.isconnected = True
+
+                # check if left_over house fits in second lowest value battery
+                elif house.amp <= high_max:
+                    self.batteries[battery_id2].connect(house.id)
+                    self.batteries[battery_id2].add(house.amp)
+                    house.isconnected = True
+
+                counter += 1
+
+                #print statements to test
+                print("house1 amp:", random1_amp)
+                print("house2 amp:", random2_amp)
+
+                print("room left battery1:", low_max, ">id<", battery_id1)
+                print("room left battery2:", self.batteries[battery_id2].max_amp - (random1_amp + second - random2_amp), ">id<", battery_id2)
+
+                #!# voeg check house . costs error > zou goed moeten zijn nadat functie is gerunt
+                #!# voeg check to op basis van max_amp per battery zodat deze niet kan worden overschreven.
+
+
         # TEST: alle batterijen aangesloten?
         # Batterijen totaal = 7 535
         # Huizen totaal = 7 500
 
+        print()
+        print(counter)
         current_usage = 0
         for battery in self.batteries:
+            print()
             print("ID:" + str(battery.id))
             print("Current usage: " + str(battery.current_usage))
             print("Available: " + str(battery.check_amp()))
             print("Connected ID's" + str(battery.connected))
             current_usage += battery.current_usage
+            print()
 
         print("Total battery usage: " + str(current_usage))
+
+
+
         '''
-
-
-        ''''
         # TEST: overzicht huizen gesorteert op basis van kosten
 
         # Sort houses by costs
@@ -168,6 +255,6 @@ class Load():
         '''
 
 if __name__ == "__main__":
-    load = Load("wijk1", "wijk1")
+    load = Load("wijk2", "wijk2")
     load.connect_houses()
     load.costs()

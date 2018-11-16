@@ -1,9 +1,33 @@
 MAX mogelijkheden
-
+Generieke statespace
 (150)         150!
 ----    =     ----
 (5)           5!(150-5)!
 
+Wijk1
+150       150-28.33!
+---   =   ----
+5         5!(150-5-28.33)
+
+Wijk1
+150       150-37.44!
+---   =   ----
+5         5!(150-5-37.44)
+
+Wijk1
+150       150-45!
+---   =   ----
+5         5!(150-5-45)
+
+
+house.amp > min amp == minder mogelijkheden
+
+visualisatie
+hill climber
+upper bound > verbeteren
+swap
+iteratief over greedy oplossing heen
+code schoonmaken
 
 
 Min mogelijkheden
