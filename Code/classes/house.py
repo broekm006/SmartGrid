@@ -11,6 +11,7 @@ class House(object):
         self.amp = amp
         self.distance = []
         self.isconnected = False
+        self.costs = 0
 
     def connect (self, battery):
         ''' Save connected battery '''
