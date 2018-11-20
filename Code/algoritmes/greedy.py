@@ -32,7 +32,6 @@ class Greedy(object):
                 if battery.check_amp() > house.amp:
                     battery.connect(house.id)
                     house.connect(battery)
-                    house.connected = True
 
                     # update battery usage
                     battery.add(house.amp)
@@ -57,7 +56,6 @@ class Greedy(object):
                 if battery.check_amp() > house.amp and not house.connected:
                     battery.connect(house.id)
                     house.connect(battery)
-                    house.connected = True
 
                     # distance
                     distance = abs(battery.y - house.y) + abs(battery.x - house.x)
@@ -85,7 +83,6 @@ class Greedy(object):
                 if battery.check_amp() > house.amp:
                     battery.connect(house.id)
                     house.connect(battery)
-                    house.connected = True
 
                     # Update battery usage & calculate cable costs
                     battery.add(house.amp)
