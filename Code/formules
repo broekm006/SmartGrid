@@ -4,6 +4,10 @@ MAX mogelijkheden
 ----    =     ----
 (5)           5!(150-5)!
 
+150!
+----                  -> #kan mogelijk nog scherper
+30!*30!*30!*30!*30!
+
 
 
 Min mogelijkheden
@@ -18,3 +22,5 @@ Max kosten
 
 Min kosten
 5 * €5000 batterij + 150 * (batterij - kortste afstand huis)
+
+#kan scherper: voor elk huis kijken welke batterij het dichtsbij is
