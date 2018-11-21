@@ -12,8 +12,8 @@ class Greedy(object):
         self.batteries = batteries
         self.variant = self.type(variant)
 
-    # welke variant van greedy?
     def type(self, type):
+        ''' Kijkt welke variant van greedy'''
 
         if type == "output":
             self.output()
@@ -64,7 +64,7 @@ class Greedy(object):
                     # distance
                     distance = abs(battery.y - house.y) + abs(battery.x - house.x)
 
-                    # Update battery usage & calculate cable costs
+                    # Update battery usage & cable costs
                     battery.add(house)
                     house.connect(battery)
                     house.cable_costs(distance)
@@ -79,20 +79,20 @@ class Greedy(object):
 
         # sorts houses based on priority value
         self.houses = Sort.priority_value(Sort, self.houses, self.batteries)
-
         for house in self.houses:
 
             # sorts batteries based on distance from current house --> kan nog apart
             for battery in self.batteries:
                 battery.distance = abs(battery.y - house.y) + abs(battery.x - house.x)
+
             self.batteries = sorted(self.batteries, key=lambda battery: battery.distance)
 
             # connect house to nearest available battery
             for battery in self.batteries:
                 if battery.check_amp() > house.amp:
-                    house.connect(battery) # Dubbel, nog aanpassen!
 
-                    # Update battery usage & calculate cable costs
+                    # Update connections, current usage & cable costs
+                    house.connect(battery)
                     battery.add(house)
                     house.cable_costs(battery.distance)
                     break;

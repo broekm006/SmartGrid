@@ -15,7 +15,6 @@ class Sort(object):
     def distance(self, houses, battery):
         ''' Sort houses based on distance to given battery'''
 
-        # afstand tot elke batterij van een huis
         for house in houses:
             house.distance = abs(battery.y - house.y) + abs(battery.x - house.x)
 
