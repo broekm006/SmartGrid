@@ -16,22 +16,22 @@ class Battery(object):
         ''' Check available space'''
         return self.max_amp - self.current_usage
 
-    def add(self, house):
+
+    def add(self, housed):
         ''' add house to current_usage & connected list '''
-        self.current_usage += house.amp
-        self.connected.append(house)
+        self.current_usage += housed.amp
+        self.connected.append(housed)
 
-    def remove_hill(self, house_id, house_output):
-        self.connected.remove(house_id)
-        self.current_usage -= house_output
+    # code is commented. does not seem to be used anymore
+    # def connect(self, house_id):
+    #     self.connected.append(house_id)
 
-    def connect(self, house_id):
-        self.connected.append(house_id)
 
     def remove(self, removed_house):
         ''' remove from current_usage & connected list '''
         self.current_usage -= removed_house.amp
         self.connected.remove(removed_house)
+
 
     def __str__(self):
         return "id: " + str(self.id) + " X: " + str(self.x) + " Y: " + str(self.y) + " Max Amp: " + str(self.max_amp) + " List: " + str(self.connected)

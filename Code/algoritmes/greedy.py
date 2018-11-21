@@ -44,8 +44,8 @@ class Greedy(object):
 
                     break;
 
-        #Swap.swap_hill_climber(Swap, self.houses, self.batteries)
-        self.check()
+        Swap.swap_hill_climber(Swap, self.houses, self.batteries)
+        #self.check()
 
 
     # DISTANCE
@@ -69,8 +69,8 @@ class Greedy(object):
                     house.connect(battery)
                     house.cable_costs(distance)
 
-        #Swap.swap_hill_climber(Swap, self.houses, self.batteries)
-        self.check()
+        Swap.swap_hill_climber(Swap, self.houses, self.batteries)
+        #self.check()
 
 
     # PRIORITY VALUE
@@ -97,10 +97,10 @@ class Greedy(object):
                     house.cable_costs(battery.distance)
                     break;
 
-        #Swap.swap_hill_climber(Swap, self.houses, self.batteries)
+        Swap.swap_hill_climber(Swap, self.houses, self.batteries)
 
         # check
-        self.check()
+        #self.check()
 
     def check(self):
         ''' Checks whether all houses are connected '''
