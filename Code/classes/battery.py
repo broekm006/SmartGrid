@@ -17,6 +17,10 @@ class Battery(object):
     def add(self, house_output):
         self.current_usage += house_output
 
+    def remove(self, house_id, house_output):
+        self.connected.remove(house_id)
+        self.current_usage -= house_output
+
     def connect(self, house_id):
         self.connected.append(house_id)
 

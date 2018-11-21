@@ -1,6 +1,7 @@
 import sys
 sys.path.append('Code/algoritmes')
 from sort import Sort
+from swap import Swap
 
 class Greedy(object):
 
@@ -42,6 +43,7 @@ class Greedy(object):
 
                     break;
 
+        Swap.swap_hill_climber(Swap, self.houses, self.batteries)
 
     # DISTANCE
     def distance(self):
@@ -64,6 +66,7 @@ class Greedy(object):
                     battery.add(house.amp)
                     house.cable_costs(distance)
 
+        Swap.swap_hill_climber(Swap, self.houses, self.batteries)
 
     # PRIORITY VALUE
     def pv(self):
@@ -88,3 +91,4 @@ class Greedy(object):
                     battery.add(house.amp)
                     house.cable_costs(battery.distance)
                     break;
+        Swap.swap_hill_climber(Swap, self.houses, self.batteries)
