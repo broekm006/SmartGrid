@@ -15,6 +15,7 @@ class Helper(object):
         # Total costs
         total_costs = battery_costs + cable_costs
 
+        '''
         # TEST: print houses sorted by costs
         houses = sorted(houses, key=lambda house: house.costs, reverse=True)
         for house in houses:
@@ -22,8 +23,16 @@ class Helper(object):
             print("House output: " + str(house.amp))
             print("House costs: " + str(house.costs))
             print()
+        '''
 
         # TEST: costs
         print("Battery costs: " + str(battery_costs))
         print("Cable costs: " + str(cable_costs))
         print("Total costs: " + str(total_costs))
+
+    def houses_costs(self, batteries, houses):
+        cable_costs = 0 
+        for house in houses:
+            cable_costs += house.costs
+
+        return cable_costs
