@@ -12,18 +12,12 @@ class House(object):
         self.costs = 0
         self.priority_list = []
         self.connected = False
-<<<<<<< HEAD
-        self.isconnected = False
-=======
         self.connection = False
->>>>>>> 97493f9e873ebcdab42df4a37290b3f264faa471
-
         # priority list for sort.priority_value
 
 
     def connect (self, battery):
         ''' Save connected battery '''
-        self.isconnected = True
         self.connected = battery
         self.connection = True
 
@@ -32,11 +26,10 @@ class House(object):
         ''' Calculate cable costs'''
         self.costs = 9 * battery_distance
 
-<<<<<<< HEAD
-=======
+
     def distance(self, battery):
         self.distance_to_battery = abs(battery.y - self.y) + abs(battery.x - self.x)
->>>>>>> 97493f9e873ebcdab42df4a37290b3f264faa471
+
 
     def __str__(self):
         return "ID:" + str(self.id) + "X:" + str(self.x) + " Y:" + str(self.y) + " AMP:" + str(self.amp)
