@@ -14,7 +14,6 @@ class Battery(object):
 
     def check_amp(self):
         ''' Check available space'''
-    
         return self.max_amp - self.current_usage
 
     def add(self, house):

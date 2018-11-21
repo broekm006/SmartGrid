@@ -31,8 +31,16 @@ class Helper(object):
         print("Total costs: " + str(total_costs))
 
     def houses_costs(self, batteries, houses):
-        cable_costs = 0 
+        cable_costs = 0
         for house in houses:
             cable_costs += house.costs
 
         return cable_costs
+
+    def bounds(self):
+        ''' Upper- and lowerbounds for costs'''
+
+        Sort.priority_value(Sort, self.houses, self.batteries)
+        for house in self.houses:
+            house.priority_list[0]
+            house.priority_list[4]
