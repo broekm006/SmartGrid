@@ -1,4 +1,5 @@
 from operator import itemgetter
+# from battery import Battery
 
 class House(object):
 
@@ -7,11 +8,15 @@ class House(object):
         self.x = x
         self.y = y
         self.amp = amp
-        self.distance = 0
+        self.distance_to_battery = 0
         self.costs = 0
         self.priority_list = []
         self.connected = False
+<<<<<<< HEAD
         self.isconnected = False
+=======
+        self.connection = False
+>>>>>>> 97493f9e873ebcdab42df4a37290b3f264faa471
 
         # priority list for sort.priority_value
 
@@ -20,12 +25,18 @@ class House(object):
         ''' Save connected battery '''
         self.isconnected = True
         self.connected = battery
+        self.connection = True
 
 
     def cable_costs(self, battery_distance):
         ''' Calculate cable costs'''
         self.costs = 9 * battery_distance
 
+<<<<<<< HEAD
+=======
+    def distance(self, battery):
+        self.distance_to_battery = abs(battery.y - self.y) + abs(battery.x - self.x)
+>>>>>>> 97493f9e873ebcdab42df4a37290b3f264faa471
 
     def __str__(self):
         return "ID:" + str(self.id) + "X:" + str(self.x) + " Y:" + str(self.y) + " AMP:" + str(self.amp)
