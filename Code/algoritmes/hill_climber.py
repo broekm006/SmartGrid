@@ -51,14 +51,16 @@ class Hill_climber(object):
 
             # calculate distance
             solution = Solution(self.houses, self.batteries)
-            solution.distance_calc(random_house_in_battery.id, random_battery.id)
+            solution.distance_calc(random_house_in_battery, random_battery)
 
-            old_distance = solution.distance_calc(random_house_in_battery.id, random_battery.id)
-            old_distance2 = solution.distance_calc(random_house_in_battery2.id, random_battery2.id)
+            old_distance = solution.distance_calc(random_house_in_battery, random_battery)
+            old_distance2 = solution.distance_calc(random_house_in_battery2, random_battery2)
 
-            new_distance = solution.distance_calc(random_house_in_battery.id, random_battery2.id)
-            new_distance2 = solution.distance_calc(random_house_in_battery2.id, random_battery.id)
+            new_distance = solution.distance_calc(random_house_in_battery, random_battery2)
+            new_distance2 = solution.distance_calc(random_house_in_battery2, random_battery)
 
+            print("total:  ", old_distance + old_distance2)
+            print("total2: ", new_distance + new_distance2)
             # check if swap is possible
             if  max - (currents1 + random2_amp) > 0 and max - (currents2 + random1_amp) > 0:
                 #add removed house to other battery_id
