@@ -84,7 +84,15 @@ class Swap(object):
             print("ID:" + str(battery.id))
             print("Current usage: " + str(battery.current_usage))
             print("Available: " + str(battery.check_amp()))
-            print("Connected ID's" + str(battery.connected))
+
+            # listy is only here to get a visual representation of the connected house ID's
+            # before it was: print("Connected ID's" + str(battery.connected))
+
+            listy = []
+            for item in battery.connected:
+                listy.append(item.id)
+            print("Connected ID's" + str(listy))
+
             current_usage += battery.current_usage
             print()
 
