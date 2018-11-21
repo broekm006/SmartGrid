@@ -1,6 +1,7 @@
 import sys
 sys.path.append('Code/algoritmes')
 from sort import Sort
+from swap import Swap
 from helper import Helper
 import copy
 
@@ -42,7 +43,10 @@ class Greedy(object):
                     house.cable_costs(battery.distance)
 
                     break;
+
+        #Swap.swap_hill_climber(Swap, self.houses, self.batteries)
         self.check()
+
 
     # DISTANCE
     def distance(self):
@@ -65,6 +69,7 @@ class Greedy(object):
                     house.connect(battery)
                     house.cable_costs(distance)
 
+        #Swap.swap_hill_climber(Swap, self.houses, self.batteries)
         self.check()
 
 
@@ -91,6 +96,8 @@ class Greedy(object):
                     battery.add(house)
                     house.cable_costs(battery.distance)
                     break;
+
+        #Swap.swap_hill_climber(Swap, self.houses, self.batteries)
 
         # check
         self.check()
