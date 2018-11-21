@@ -35,15 +35,15 @@ class Hill_climber(object):
 
             # look for the amp of the randomly selected house
             for house_amp in self.houses:
-                if house_amp.id == random_house_in_battery:
+                if house_amp.id == random_house_in_battery.id:
                     random1_amp = house_amp.amp
 
-                if house_amp.id == random_house_in_battery:
+                if house_amp.id == random_house_in_battery.id:
                     random2_amp = house_amp.amp
 
             #remove "lowest id + update current_usage"
-            self.batteries[random_battery.id].remove(random_house_in_battery, random1_amp)
-            self.batteries[random_battery2.id].remove(random_house_in_battery2, random2_amp)
+            self.batteries[random_battery.id].remove_hill(random_house_in_battery)
+            self.batteries[random_battery2.id].remove_hill(random_house_in_battery2)
 
             max = self.batteries[random_battery.id].max_amp
             currents1 = self.batteries[random_battery.id].current_usage
@@ -51,49 +51,30 @@ class Hill_climber(object):
 
             # calculate distance
             solution = Solution(self.houses, self.batteries)
-            solution.distance_calc(random_house_in_battery, random_battery.id)
+            solution.distance_calc(random_house_in_battery.id, random_battery.id)
 
-            old_distance = solution.distance_calc(random_house_in_battery, random_battery.id)
-            old_distance2 = solution.distance_calc(random_house_in_battery2, random_battery2.id)
+            old_distance = solution.distance_calc(random_house_in_battery.id, random_battery.id)
+            old_distance2 = solution.distance_calc(random_house_in_battery2.id, random_battery2.id)
 
-            new_distance = solution.distance_calc(random_house_in_battery, random_battery2.id)
-            new_distance2 = solution.distance_calc(random_house_in_battery2, random_battery.id)
-
-            '''
-            print("old:  ", old_distance)
-            print("old2: ", old_distance2)
-            print("old total: ", old_distance + old_distance2)
-            print("new:  ", new_distance)
-            print("new2: ", new_distance2)
-            print("new total: ", new_distance + new_distance2)
-            '''
+            new_distance = solution.distance_calc(random_house_in_battery.id, random_battery2.id)
+            new_distance2 = solution.distance_calc(random_house_in_battery2.id, random_battery.id)
 
             # check if swap is possible
             if  max - (currents1 + random2_amp) > 0 and max - (currents2 + random1_amp) > 0:
                 #add removed house to other battery_id
                 if old_distance + old_distance2 < new_distance + new_distance2:
-                    self.batteries[random_battery.id].connect(random_house_in_battery2)
-                    self.batteries[random_battery.id].add(random2_amp)
-
-                    self.batteries[random_battery2.id].connect(random_house_in_battery)
-                    self.batteries[random_battery2.id].add(random1_amp)
+                    self.batteries[random_battery.id].add(random_house_in_battery2)
+                    self.batteries[random_battery2.id].add(random_house_in_battery)
 
                 else:
                     #undo remove because the switch does not work (battery overload)
-                    self.batteries[random_battery.id].connect(random_house_in_battery)
-                    self.batteries[random_battery.id].add(random1_amp)
-
-                    self.batteries[random_battery2.id].connect(random_house_in_battery2)
-                    self.batteries[random_battery2.id].add(random2_amp)
-
+                    self.batteries[random_battery.id].add(random_house_in_battery)
+                    self.batteries[random_battery2.id].add(random_house_in_battery2)
 
             else:
                 #undo remove because the switch does not work (battery overload)
-                self.batteries[random_battery.id].connect(random_house_in_battery)
-                self.batteries[random_battery.id].add(random1_amp)
-
-                self.batteries[random_battery2.id].connect(random_house_in_battery2)
-                self.batteries[random_battery2.id].add(random2_amp)
+                self.batteries[random_battery.id].add(random_house_in_battery)
+                self.batteries[random_battery2.id].add(random_house_in_battery2)
 
             counter += 1
 

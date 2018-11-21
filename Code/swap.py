@@ -13,7 +13,7 @@ class Swap(object):
         counter = 0
 
         for house in houses:
-            while not house.isconnected:
+            while not house.connection:
                 lowest, second = float('inf'), float('inf')
                 batteries = sorted(batteries, key=lambda battery: battery.id)
 
@@ -34,17 +34,17 @@ class Swap(object):
                 random1 = random.choice(batteries[battery_id1].connected)
                 random2 = random.choice(batteries[battery_id2].connected)
 
-                # look for the amp of the randomly selected house
+                # # look for the amp of the randomly selected house
                 for house_amp in houses:
-                    if house_amp.id == random1:
+                    if house_amp.id == random1.id:
                         random1_amp = house_amp.amp
 
-                    if house_amp.id == random2:
+                    if house_amp.id == random2.id:
                         random2_amp = house_amp.amp
 
                 #remove "lowest id + update current_usage"
-                batteries[battery_id1].remove(random1, random1_amp)
-                batteries[battery_id2].remove(random2, random2_amp)
+                batteries[battery_id1].remove_hill(random1)
+                batteries[battery_id2].remove_hill(random2)
 
                 max = batteries[battery_id1].max_amp
                 currents1 = batteries[battery_id1].current_usage
@@ -52,19 +52,13 @@ class Swap(object):
 
                 if  max - (currents1 + random2_amp) > 0 and max - (currents2 + random1_amp) > 0:
                     #add removed house to other battery_id
-                    batteries[battery_id1].connect(random2)
-                    batteries[battery_id1].add(random2_amp)
-
-                    batteries[battery_id2].connect(random1)
-                    batteries[battery_id2].add(random1_amp)
+                    batteries[battery_id1].add(random2)
+                    batteries[battery_id2].add(random1)
 
                 else:
                     #undo remove because the switch does not work (battery overload)
-                    batteries[battery_id1].connect(random1)
-                    batteries[battery_id1].add(random1_amp)
-
-                    batteries[battery_id2].connect(random2)
-                    batteries[battery_id2].add(random2_amp)
+                    batteries[battery_id1].add(random1)
+                    batteries[battery_id2].add(random2)
 
                 #calculate new amp
                 low_max = batteries[battery_id1].current_usage
@@ -72,15 +66,13 @@ class Swap(object):
 
                 # check if left_over house fits in lowest value battery
                 if  low_max <= batteries[battery_id1].max_amp - house.amp:
-                    batteries[battery_id1].connect(house.id)
-                    batteries[battery_id1].add(house.amp)
-                    house.isconnected = True
+                    batteries[battery_id1].add(house)
+                    house.connection = True
 
                 # check if left_over house fits in second lowest value battery
                 elif high_max <= batteries[battery_id2].max_amp - house.amp:
-                    batteries[battery_id2].connect(house.id)
-                    batteries[battery_id2].add(house.amp)
-                    house.isconnected = True
+                    batteries[battery_id2].add(house)
+                    house.connection = True
 
                 #increase counter (times the swap ran)
                 counter += 1
@@ -97,11 +89,6 @@ class Swap(object):
             print()
 
         print("Total battery usage: " + str(current_usage))
-
-        for battery in self.batteries:
-            for house in self.houses:
-                solution.add_to_connected()
-                
 
     def swap_dfs(self):
         pass

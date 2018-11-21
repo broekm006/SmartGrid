@@ -5,7 +5,7 @@ class Solution(object):
         self.batteries = batteries
         self.house_connected = {} #{battery.id : [house.id]}
 
-        for battery in self.battaries:
+        for battery in self.batteries:
             self.house_connected.setdefault(battery.id,[])
 
     #def add_to_connected(self, list):
