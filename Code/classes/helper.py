@@ -1,3 +1,6 @@
+from solution import Solution
+from sort import Sort
+
 class Helper(object):
 
     def costs(self, batteries, houses):
@@ -37,10 +40,24 @@ class Helper(object):
 
         return cable_costs
 
-    def bounds(self):
-        ''' Upper- and lowerbounds for costs'''
+    def bounds(self, batteries, houses):
+        ''' Upper- and lowerbounds for costs for given houses & batteries'''
 
-        Sort.priority_value(Sort, self.houses, self.batteries)
-        for house in self.houses:
-            house.priority_list[0]
-            house.priority_list[4]
+        # solution class + update house.priority_list
+        initial_solution = Solution(houses, batteries)
+        Sort.priority_value(Sort, houses, batteries)
+
+        lower = 0
+        upper = 0
+        for house in houses:
+            b_close = house.priority_list[0]
+            lower += initial_solution.distance_calc(house, b_close)
+
+            b_far = house.priority_list[4]
+            upper += initial_solution.distance_calc(house, b_far)
+
+        lowerbound = lower * 9 + (batteries[0].cost * len(batteries))
+        upperbound = upper * 9 + (batteries[0].cost * len(batteries))
+
+        print("LOWERBOUND: " , lowerbound)
+        print("UPPERBOUND: " , upperbound)
