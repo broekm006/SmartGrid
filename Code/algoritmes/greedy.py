@@ -226,7 +226,7 @@ class Greedy(object):
         else:
             for house in list:
                 if house not in visited:
-                    newpaths = self.dfs(materix, house, visited)
+                    newpaths = self.bfs(materix, house, visited)
                     for newpath in newpaths:
                         paths.append(newpath)
         return paths
