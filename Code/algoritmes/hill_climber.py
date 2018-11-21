@@ -42,8 +42,8 @@ class Hill_climber(object):
                     random2_amp = house_amp.amp
 
             #remove "lowest id + update current_usage"
-            self.batteries[random_battery.id].remove_hill(random_house_in_battery)
-            self.batteries[random_battery2.id].remove_hill(random_house_in_battery2)
+            self.batteries[random_battery.id].remove(random_house_in_battery)
+            self.batteries[random_battery2.id].remove(random_house_in_battery2)
 
             max = self.batteries[random_battery.id].max_amp
             currents1 = self.batteries[random_battery.id].current_usage

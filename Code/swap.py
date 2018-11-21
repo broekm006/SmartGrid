@@ -43,8 +43,8 @@ class Swap(object):
                         random2_amp = house_amp.amp
 
                 #remove "lowest id + update current_usage"
-                batteries[battery_id1].remove_hill(random1)
-                batteries[battery_id2].remove_hill(random2)
+                batteries[battery_id1].remove(random1)
+                batteries[battery_id2].remove(random2)
 
                 max = batteries[battery_id1].max_amp
                 currents1 = batteries[battery_id1].current_usage
