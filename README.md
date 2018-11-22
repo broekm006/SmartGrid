@@ -3,7 +3,6 @@
 A repository for SmartGrid group AC/DC
 
 ## Aan de slag (Getting Started)
----
 ### Vereisten (Prerequisites)
 Deze code is geschreven in Python3.6.3. In requirements.txt staan alle benodigde packages om de code successvol te draaien.
 
