@@ -17,28 +17,26 @@ class Helper(object):
 
         cable_costs = 0
         for house in houses:
-            battery = house.connected
-            house.distance_to_battery = abs(battery.y - house.y) + abs(battery.x - house.x)
-            house.costs = house.distance_to_battery * 9
-            cable_costs += house.costs
+            try:
+                battery = house.connected
+                house.distance_to_battery = abs(battery.y - house.y) + abs(battery.x - house.x)
+                house.costs = house.distance_to_battery * 9
+                cable_costs += house.costs
+            except:
+                print("Huis niet verbonden")
+                pass
 
         # Total costs
         total_costs = battery_costs + cable_costs
 
-        '''
-        # TEST: print houses sorted by costs
-        houses = sorted(houses, key=lambda house: house.costs, reverse=True)
-        for house in houses:
-            print("House id: " + str(house.id))
-            print("House output: " + str(house.amp))
-            print("House costs: " + str(house.costs))
-            print()
-        '''
-
         # TEST: costs
+        print("COSTS")
+        print()
         print("Battery costs: " + str(battery_costs))
         print("Cable costs: " + str(cable_costs))
         print("Total costs: " + str(total_costs))
+        print()
+        print()
 
     def houses_costs(self, batteries, houses):
         cable_costs = 0
@@ -46,6 +44,39 @@ class Helper(object):
             cable_costs += house.costs
 
         return cable_costs
+
+    def sort_houses(self, houses):
+        sorted_houses = sorted(houses, key=lambda house: house.costs)
+        '''
+        ALLE HUIZEN
+        for house in sorted_houses:
+            battery = house.connected
+            print("House ID: ", house.id)
+            print("Costs:    ", house.costs)
+            print("Output:   ", house.amp)
+            try:
+                print("Battery:  ", battery.id)
+            except:
+                print("NIET VERBONDEN")
+            print()
+        '''
+        print("CHEAPEST & MOST EXPENSIVE HOUSE")
+        print()
+        battery = sorted_houses[0].connected
+        print("House ID: ", sorted_houses[0].id)
+        print("Output:   ", sorted_houses[0].amp)
+        print("Battery:  ", battery.id)
+        print("Costs:    ", sorted_houses[0].costs)
+        print("Distance: ", sorted_houses[0].distance_to_battery)
+        print()
+        battery2 = sorted_houses[0].connected
+        print("House ID: ", sorted_houses[-1].id)
+        print("Output:   ", sorted_houses[-1].amp)
+        print("Battery:  ", battery2.id)
+        print("Costs:    ", sorted_houses[-1].costs)
+        print("Distance: ", sorted_houses[-1].distance_to_battery)
+        print()
+        print()
 
     def bounds(self, batteries, houses):
         ''' Upper- and lowerbounds for costs for given houses & batteries'''
@@ -68,3 +99,5 @@ class Helper(object):
 
         print("LOWERBOUND: " , lowerbound)
         print("UPPERBOUND: " , upperbound)
+        print()
+        print()
