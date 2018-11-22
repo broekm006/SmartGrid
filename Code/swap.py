@@ -23,18 +23,18 @@ class Swap(object):
                 for battery in batteries:
                     if battery.current_usage <= lowest:
                         lowest, second = battery.current_usage, lowest
-                        battery_id1 = battery.id
+                        battery_id1 = battery
                     elif battery.current_usage < second:
                         second = battery.current_usage
 
                 # get battery id for second
                 for battery in batteries:
                     if second == battery.current_usage:
-                        battery_id2 = battery.id
+                        battery_id2 = battery
 
                 # choose random id from battery-house list
-                random1 = random.choice(batteries[battery_id1].connected)
-                random2 = random.choice(batteries[battery_id2].connected)
+                random1 = random.choice(batteries[battery_id1.id].connected)
+                random2 = random.choice(batteries[battery_id2.id].connected)
 
                 # # look for the amp of the randomly selected house
                 for house_amp in houses:
@@ -45,36 +45,38 @@ class Swap(object):
                         random2_amp = house_amp.amp
 
                 #remove "lowest id + update current_usage"
-                batteries[battery_id1].remove(random1)
-                batteries[battery_id2].remove(random2)
+                batteries[battery_id1.id].remove(random1)
+                batteries[battery_id2.id].remove(random2)
 
-                max = batteries[battery_id1].max_amp
-                currents1 = batteries[battery_id1].current_usage
-                currents2 = batteries[battery_id2].current_usage
+                max = batteries[battery_id1.id].max_amp
+                currents1 = batteries[battery_id1.id].current_usage
+                currents2 = batteries[battery_id2.id].current_usage
 
                 if  max - (currents1 + random2_amp) > 0 and max - (currents2 + random1_amp) > 0:
                     #add removed house to other battery_id
-                    batteries[battery_id1].add(random2)
-                    batteries[battery_id2].add(random1)
+                    batteries[battery_id1.id].add(random2)
+                    batteries[battery_id2.id].add(random1)
 
                 else:
                     #undo remove because the switch does not work (battery overload)
-                    batteries[battery_id1].add(random1)
-                    batteries[battery_id2].add(random2)
+                    batteries[battery_id1.id].add(random1)
+                    batteries[battery_id2.id].add(random2)
 
                 #calculate new amp
-                low_max = batteries[battery_id1].current_usage
-                high_max = batteries[battery_id2].current_usage
+                low_max = batteries[battery_id1.id].current_usage
+                high_max = batteries[battery_id2.id].current_usage
 
                 # check if left_over house fits in lowest value battery
-                if  low_max <= batteries[battery_id1].max_amp - house.amp:
-                    batteries[battery_id1].add(house)
-                    house.connection = True
+                if  low_max <= batteries[battery_id1.id].max_amp - house.amp:
+                    batteries[battery_id1.id].add(house)
+                    house.connect(battery_id1)
+                    #house.connection = True
 
                 # check if left_over house fits in second lowest value battery
-                elif high_max <= batteries[battery_id2].max_amp - house.amp:
-                    batteries[battery_id2].add(house)
-                    house.connection = True
+                elif high_max <= batteries[battery_id2.id].max_amp - house.amp:
+                    batteries[battery_id2.id].add(house)
+                    #house.connection = True
+                    house.connect(battery_id2)
 
                 #increase counter (times the swap ran)
                 counter += 1
