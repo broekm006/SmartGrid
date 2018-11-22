@@ -137,14 +137,19 @@ class Swap(object):
 
             if battery.id == 0:
                 house_0 = connected_houses[int]
+                # house_5 = connected_houses[int + 1]
             elif battery.id == 1:
                 house_1 = connected_houses[int]
+                house_6 = connected_houses[int + 1]
             elif battery.id == 2:
                 house_2 = connected_houses[int]
+                house_7 = connected_houses[int + 1]
             elif battery.id == 3:
                 house_3 = connected_houses[int]
+                house_8 = connected_houses[int + 1]
             elif battery.id == 4:
                 house_4 = connected_houses[int]
+                house_9 = connected_houses[int + 1]
 
             battery.remove(connected_houses[int])
 
