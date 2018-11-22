@@ -17,5 +17,5 @@ if __name__ == "__main__":
     greedy = Greedy(load.houses, load.batteries, "priority") # "output","distance", "priority"
     Helper.costs(Helper, greedy.batteries, greedy.houses)
 
-    # hill_climber = Hill_climber(load.houses, load.batteries, 3)
+    # hill_climber = Hill_climber(load.houses, load.batteries, 500)
     # hill_climber.ice_climbers()
