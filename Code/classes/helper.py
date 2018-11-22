@@ -10,9 +10,16 @@ class Helper(object):
         for battery in batteries:
             battery_costs += battery.cost
 
-        # Cable cable costs
+        # # Cable cable costs
+        # cable_costs = 0
+        # for house in houses:
+        #     cable_costs += house.costs
+
         cable_costs = 0
         for house in houses:
+            battery = house.connected
+            house.distance_to_battery = abs(battery.y - house.y) + abs(battery.x - house.x)
+            house.costs = house.distance_to_battery * 9
             cable_costs += house.costs
 
         # Total costs

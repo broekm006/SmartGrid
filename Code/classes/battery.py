@@ -21,11 +21,7 @@ class Battery(object):
         ''' add house to current_usage & connected list '''
         self.current_usage += housed.amp
         self.connected.append(housed)
-
-    # code is commented. does not seem to be used anymore
-    # def connect(self, house_id):
-    #     self.connected.append(house_id)
-
+        
 
     def remove(self, removed_house):
         ''' remove from current_usage & connected list '''
