@@ -26,4 +26,4 @@ if __name__ == "__main__":
     Helper.costs(Helper, hill_climber.batteries, hill_climber.houses)
     Helper.sort_houses(Helper, greedy.houses)
 
-    # Visualizer()
+    Visualizer(hill_climber.houses, hill_climber.batteries)
