@@ -74,7 +74,7 @@ def create_visualisation(houses_csv, batteries_csv):
     sns.set_color_codes("dark")
     #sns.palplot(sns.color_palette())
     plot = sns.scatterplot(x="x", y="y", hue="connected_bat", data=df, ci=None, style="type", palette=["C0", "C1", "C2", "C3", "C4"])
-    plot.set_title("Wijk 1: Houses sorted by output after Hill Climber")
+    plot.set_title("Wijk 1: after K-Means")
     plot.legend_.remove()
     plot.set(xlabel='X coordinates', ylabel='Y coordinates')
 
