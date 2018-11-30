@@ -5,7 +5,7 @@ from helper import Helper
 from solution import Solution
 from sort import Sort
 
-class K_means(object):
+class K_means2(object):
 
     def __init__(self, houses, batteries):
         self.houses = copy.deepcopy(houses)

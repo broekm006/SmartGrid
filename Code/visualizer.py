@@ -70,11 +70,15 @@ def create_visualisation(houses_csv, batteries_csv):
     df = pd.read_csv(houses_csv)
 
     #sns.set()
-    #sns.set_context("paper", font_scale=0.6)
+    #sns.set_context("notebook", font_scale=0.6)
     sns.set_color_codes("dark")
     #sns.palplot(sns.color_palette())
     plot = sns.scatterplot(x="x", y="y", hue="connected_bat", data=df, ci=None, style="type", palette=["C0", "C1", "C2", "C3", "C4"])
+<<<<<<< HEAD
     plot.set_title("Wijk 1: after K-Means")
+=======
+    plot.set_title("Wijk 1: houses connected to nearest battery without restrictions.")
+>>>>>>> 65d2120339e638fa8f4eaf908de42c492642069b
     plot.legend_.remove()
     plot.set(xlabel='X coordinates', ylabel='Y coordinates')
 
