@@ -23,10 +23,10 @@ Dit algoritme is een uitbreiding op de greedy oplossing. Deze kijkt naar de oplo
 Dit algoritme kijkt naar een bestaande oplossing. Deze zoekt twee willekeurige batterijen met daarin twee willekeurige huizen. Het algoritme probeert daarna deze te wisselen met elkaar. Als de afstand tussen de huizen en batterijen hier beter op word dan wordt de wissel doorgezet. Mocht dit niet beter worden dan wordt de wissel geannuleerd.
 
 ### Simulated Annealing
-Dit algoritme ...
+Dit algoritme kijkt naar een bestaande oplossing. Deze zoekt twee willekeurige batterijen met daarin twee willekeurige huizen. Daarna kijkt deze naar de distance en bepaald op basis van temperatuur of deze wisseling mag worden uitgevoerd. Hierbij kan het resultaat eerst slechter worden voor het weer beter wordt.
 
 ### K Means
-Dit algoritme ...
+Dit algoritme kijkt naar een nieuwe wijk en gaat zoeken naar een cluster van huizen. Hierbij probeert het algoritme de huizen zoveel mogelijk te groeperen en daarna plaatst deze een batterij in het midden. 
 
 ## Verschillende classes
 
