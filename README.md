@@ -6,6 +6,13 @@ A repository for SmartGrid group AC/DC
 ### Vereisten (Prerequisites)
 Deze code is geschreven in Python3.6.3. In requirements.txt staan alle benodigde packages om de code successvol te draaien.
 
+## Probleem
+Groene energie is de energie van de toekomst, en zelf produceren is de mode van nu. Veel huizen hebben tegenwoordig zonnepanelen, windmolens of andere installaties om zelf energie mee te produceren. Fortuinlijk genoeg produceren die installaties vaak meer dan voor eigen consumptie nodig is. Het overschot zou kunnen worden terugverkocht aan de leverancier, maar de infrastructuur is daar veelal niet op berekend. Om de pieken in consumptie en produktie te kunnen managen moeten er batterijen geplaatst worden.
+
+Voor een feasibility study zijn drie woonwijken opgesteld, met daarin vijf batterijen.
+
+### Wat maakt het probleem moeilijk
+Het lastige aan deze opdracht is niet dat alle huizen aan een batterij meten worden verbonden. Dat op zichzelf is prima te doen, maar het zo optimaal mogelijk verbinden legt een hoge lat. Zeker omdat, de batterijen een limiet hebben waardoor in totaal de speling per batterij op ongeveer 15 ampere neer komt. Hiermee blijft weinig tot geen speling om huizen te verwisselen of anders te verbinden. Daarnaast kost het tijd om de verschillende algoritmes die hiervoor nodig zijn te leren en uit te schrijven. Daarbij behoud zich altijd het probleem dat de beste manier ook bewezen moet worden als de beste oplossing.
 
 ### Structuur
 Alle python scripts staan in de folder Code. In de map Code is onderscheid gemaakt tussen algoritmes, classes en algemene code. In de map data zitten alle input waardes en in de map resultaten worden alle resultaten opgeslagen door de code.
@@ -27,6 +34,7 @@ python main.py
 * Koffie
 
 ---
+### eventueel logboek
 **7-11-2018:**
 De huizen gesorteerd van groot naar klein, vervolgens over de huizen heen gelopen
 en steeds de batterij gekozen die het meest dichtbij is. Werkt voor wijk1 en wijk 3,
