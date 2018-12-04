@@ -7,10 +7,7 @@ from visualizer import Visualizer
 sys.path.append('Code/algoritmes')
 from greedy import Greedy
 from hill_climber import Hill_climber
-<<<<<<< HEAD
 from hill_climber_test import Hill_climber_test
-=======
->>>>>>> 65d2120339e638fa8f4eaf908de42c492642069b
 from k_means import K_means
 
 sys.path.append('Code/classes')
