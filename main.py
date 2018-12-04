@@ -20,7 +20,6 @@ from helper import Helper
 if __name__ == "__main__":
     load = Load("wijk3", "wijk3")
 
-<<<<<<< HEAD
     Helper.bounds(Helper, load.batteries, load.houses)
     # greedy = Greedy(load.houses, load.batteries, "output") # "output", "distance", "priority"
 
@@ -34,18 +33,3 @@ if __name__ == "__main__":
     # #
     # Visualizer(hill_climber.houses, hill_climber.batteries)
     Visualizer(k_means.houses, k_means.batteries)
-=======
-    k = K_means(load.houses, load.batteries)
-
-    # Helper.bounds(Helper, load.batteries, load.houses)
-    # greedy = Greedy(load.houses, load.batteries, "output") # "output","distance", "priority"
-    #
-    #
-    # hill_climber = Hill_climber(load.houses, load.batteries, 500)
-    # hill_climber.ice_climbers()
-    #
-    # Helper.costs(Helper, hill_climber.batteries, hill_climber.houses)
-    # Helper.sort_houses(Helper, greedy.houses)
-    #
-    # Visualizer(hill_climber.houses, hill_climber.batteries)
->>>>>>> 65d2120339e638fa8f4eaf908de42c492642069b
