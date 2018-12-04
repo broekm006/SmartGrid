@@ -38,3 +38,12 @@ class Sort(object):
             house.pv = sec_distance - first_distance
 
         return sorted(houses, key=lambda house: house.pv, reverse=True)
+
+    def distance_c(self, house, clusters):
+
+        for cluster in clusters:
+            cluster.distance = abs(cluster.y - house.y) + abs(cluster.x - house.x)
+
+        # return nearest cluster
+        clusters_sorted = sorted(clusters, key=lambda cluster: cluster.distance)
+        return clusters_sorted[0]
