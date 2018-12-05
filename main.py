@@ -15,19 +15,20 @@ from helper import Helper
 
 
 if __name__ == "__main__":
-    load = Load("wijk1", "wijk1")
+    load = Load("wijk3", "wijk3")
 
     Helper.bounds(Helper, load.batteries, load.houses)
     # greedy = Greedy(load.houses, load.batteries, "output") # "output", "distance", "priority"
 
-    k_means = K_means2(load.houses, load.batteries)
+    k_means = K_means2(load.houses, load.batteries, "priority", "random") # "random" or "" for innitial battery location
+
     # hill_climber = Hill_climber_test(k_means.houses, k_means.batteries, 500)
     # hill_climber.best_choice()
     # hill_climber.ice_climbers()
 
     Helper.costs(Helper, k_means.batteries, k_means.houses)
-    Helper.battery_info(Helper, k_means.batteries)
-    # Helper.bounds(Helper, greedy.batteries, greedy.houses)
+    # Helper.battery_info(Helper, k_means.batteries)
+    Helper.bounds(Helper, k_means.batteries, k_means.houses)
     # Helper.sort_houses(Helper, greedy.houses)
 
     Visualizer(k_means.houses, k_means.batteries)
