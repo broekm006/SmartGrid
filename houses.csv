@@ -2,7 +2,7 @@ type,id,x,y,connected_bat
 house,1,47,50,4
 house,17,43,45,4
 house,24,39,42,4
-house,30,43,41,3
+house,30,43,41,4
 house,51,46,48,4
 house,53,39,46,4
 house,92,41,44,4
@@ -46,7 +46,7 @@ house,16,3,24,3
 house,18,1,28,3
 house,27,17,34,0
 house,36,3,33,3
-house,38,4,48,0
+house,38,4,48,3
 house,49,45,31,4
 house,56,0,19,3
 house,125,0,24,3
@@ -94,7 +94,7 @@ house,89,9,11,1
 house,105,17,12,1
 house,114,20,5,1
 house,122,37,21,1
-house,135,30,5,2
+house,135,30,5,1
 house,41,28,48,4
 house,68,7,32,3
 house,108,8,44,3
@@ -124,8 +124,8 @@ house,73,20,16,1
 house,97,29,25,1
 house,119,40,8,2
 house,130,37,5,2
-house,132,10,3,4
-house,139,30,29,1
+house,132,10,3,2
+house,139,30,29,0
 house,3,27,38,3
 house,42,11,23,2
 house,61,33,31,2
@@ -148,7 +148,7 @@ house,123,14,15,2
 house,134,6,0,2
 house,145,6,2,2
 house,87,11,37,2
-house,103,10,24,0
+house,103,10,24,not connected
 battery,3,3,35,3
 battery,0,18,34,0
 battery,1,32,11,1

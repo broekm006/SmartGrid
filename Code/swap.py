@@ -117,12 +117,12 @@ class Swap(object):
         temp_batteries = copy.deepcopy(old_batteries)
         temp_houses = copy.deepcopy(old_houses)
 
-        i = 0
+        bad_gaan = 0
 
-        while i < 20:
+        while bad_gaan < 20000:
 
-            i += 1
-            print("i: ", i)
+            bad_gaan += 1
+            print("# BAD: ", bad_gaan)
             for house in temp_houses:
                 if house.id == unconnected_house:
                     unconnected_house = copy.deepcopy(house)
