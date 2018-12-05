@@ -19,16 +19,18 @@ Min mogelijkheden
 ---------------
 30!30!30!30!30!
 
-150! / (30! * 30! * 30! * 30! * 30!)
+150! / (30! * 30! * 30! * 30! * 30!) > 150! / (30! * 30! * 30! * 30! * 30! * 5!) > waar 5! is voor het aantal mogelijkheden in alle buckets
 https://math.stackexchange.com/questions/393591/how-many-options-are-there-for-15-student-to-divide-into-3-equal-sized-groups
+http://web.csulb.edu/~rmena/Discrete/Chapter6.pdf
 
 
 
 Max kosten
 5 * €5000 batterij + 150 * (batterij - langste afstand huis)
-
+                                       Daarna > op een na langste afstand huis
 
 Min kosten
 5 * €5000 batterij + 150 * (batterij - kortste afstand huis)
+                                       Daarna > op een na kortste afstand huis
 
 #kan scherper: voor elk huis kijken welke batterij het dichtsbij is

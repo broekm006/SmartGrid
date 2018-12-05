@@ -34,12 +34,12 @@ class Hill_climber(object):
             random_house_in_battery2 = random.choice(random_battery2.connected)
 
             # look for the amp of the randomly selected house
-            for house_amp in self.houses:
-                if house_amp.id == random_house_in_battery.id:
-                    random1_amp = house_amp.amp
-
-                if house_amp.id == random_house_in_battery.id:
-                    random2_amp = house_amp.amp
+            # for house_amp in self.houses:
+            #     if house_amp.id == random_house_in_battery.id:
+            #         random1_amp = house_amp.amp
+            #
+            #     if house_amp.id == random_house_in_battery.id:
+            #         random2_amp = house_amp.amp
 
             #remove "lowest id + update current_usage"
             self.batteries[random_battery.id].remove(random_house_in_battery)
@@ -62,7 +62,7 @@ class Hill_climber(object):
             #print("total:  ", old_distance + old_distance2)
             #print("total2: ", new_distance + new_distance2)
             # check if swap is possible
-            if  max - (currents1 + random2_amp) > 0 and max - (currents2 + random1_amp) > 0:
+            if  max - (currents1 + random_house_in_battery2.amp) > 0 and max - (currents2 + random_house_in_battery.amp) > 0:
                 #add removed house to other battery_id
                 if old_distance + old_distance2 < new_distance + new_distance2:
                     self.batteries[random_battery.id].add(random_house_in_battery2)

@@ -8,7 +8,11 @@ sys.path.append('Code/algoritmes')
 from greedy import Greedy
 from hill_climber import Hill_climber
 from hill_climber_test import Hill_climber_test
+<<<<<<< HEAD
 from k_means2 import K_means2
+=======
+from k_means import K_means
+>>>>>>> 498fedff62eb6ce036027d3849abe30301fb7e79
 
 sys.path.append('Code/classes')
 from helper import Helper
@@ -27,6 +31,12 @@ if __name__ == "__main__":
 
     # Helper.costs(Helper, k_means.batteries, k_means.houses)
     # Helper.sort_houses(Helper, k_means.houses)
+<<<<<<< HEAD
 
     # Visualizer(hill_climber.houses, hill_climber.batteries)
     Visualizer(k_means2.houses, k_means2.batteries)
+=======
+    # #
+    # Visualizer(hill_climber.houses, hill_climber.batteries)
+    Visualizer(k_means.houses, k_means.batteries)
+>>>>>>> 498fedff62eb6ce036027d3849abe30301fb7e79
