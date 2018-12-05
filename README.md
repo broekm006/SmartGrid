@@ -12,7 +12,18 @@ Groene energie is de energie van de toekomst, en zelf produceren is de mode van 
 Voor een feasibility study zijn drie woonwijken opgesteld, met daarin vijf batterijen.
 
 ### Wat maakt het probleem moeilijk
+Algemeen:  
 Het lastige aan deze opdracht is niet dat alle huizen aan een batterij meten worden verbonden. Dat op zichzelf is prima te doen, maar het zo optimaal mogelijk verbinden legt een hoge lat. Zeker omdat, de batterijen een limiet hebben waardoor in totaal de speling per batterij op ongeveer 15 ampere neer komt. Hiermee blijft weinig tot geen speling om huizen te verwisselen of anders te verbinden. Daarnaast kost het tijd om de verschillende algoritmes die hiervoor nodig zijn te leren en uit te schrijven. Daarbij behoud zich altijd het probleem dat de beste manier ook bewezen moet worden als de beste oplossing.
+
+Per wijk:  
+Voor wijk 1 staan de batterijen erg slecht gepositioneerd. Zo staan er 4 op minimale afstand van elkaar waardoor indelen van huizen altijd veel extra kabel kosten. Daarnaast is het wisselen van huizen en batterij lastig door de verschillende grote van de huizen. De ampere van de huizen kan oplopen tot een verschil van ~50,
+
+Voor wijk 2 ligt de ampere per huis veel dichter bij elkaar dan die van wijk 1. Hierdoor is het moeilijker huizen heen en weer te verplaatsen om ruimte vrij te maken.
+
+Voor wijk 3 ligt de ampere per huis op ~5 verschil van elkaar af. Hierdoor is indelen beter te doen en kan er gemakkelijker worden gewisselt.
+
+Constraint gevoelig:  
+Daarnaast kunnnen de batterijen in onze constraints ook nog een andere capaciteit krijgen en een ongelimiteerd aantal. Hiermee wordt het probleem weer een stuk gecompliceerder doordat hiervoor een optimale positie en aantal moet worden gevonden zonder de kosten verder op te voeren.
 
 ### Structuur
 Alle python scripts staan in de folder Code. In de map Code is onderscheid gemaakt tussen algoritmes, classes en algemene code. In de map data zitten alle input waardes en in de map resultaten worden alle resultaten opgeslagen door de code.
