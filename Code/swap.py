@@ -119,7 +119,7 @@ class Swap(object):
 
         bad_gaan = 0
 
-        while bad_gaan < 20000:
+        while bad_gaan < 100000:
 
             bad_gaan += 1
             print("# BAD: ", bad_gaan)
