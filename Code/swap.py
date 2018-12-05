@@ -127,33 +127,21 @@ class Swap(object):
         # sort batteries (0 - 4)
         temp_batteries = sorted(temp_batteries, key= lambda battery: battery.id)
 
-        # test, meer ruimte
-        # temp_batteries[0].max_amp +=  100
+        # choose random house
+        house_0 = random.choice(batteries[0].connected)
+        house_1 = random.choice(batteries[1].connected)
+        house_2 = random.choice(batteries[2].connected)
+        house_3 = random.choice(batteries[3].connected)
+        house_4 = random.choice(batteries[4].connected)
 
-        # disconnect most expensive house from each battery
-        available = []
-        for battery in temp_batteries:
-            connected_houses = sorted(battery.connected, key=lambda house: house.costs, reverse=True)
+        # disconnect
+        batteries[0].remove(house_0)
+        batteries[1].remove(house_1)
+        batteries[2].remove(house_2)
+        batteries[3].remove(house_3)
+        batteries[4].remove(house_4)
 
-            if battery.id == 0:
-                house_0 = connected_houses[int]
-                # house_5 = connected_houses[int + 1]
-            elif battery.id == 1:
-                house_1 = connected_houses[int]
-                house_6 = connected_houses[int + 1]
-            elif battery.id == 2:
-                house_2 = connected_houses[int]
-                house_7 = connected_houses[int + 1]
-            elif battery.id == 3:
-                house_3 = connected_houses[int]
-                house_8 = connected_houses[int + 1]
-            elif battery.id == 4:
-                house_4 = connected_houses[int]
-                house_9 = connected_houses[int + 1]
-
-            battery.remove(connected_houses[int])
-
-        # Materix??
+        # ?
         materix = {house_0.id: [house_1, house_2, house_3, house_4],
                 house_1.id: [house_0, house_2, house_3, house_4],
                 house_2.id: [house_0, house_1, house_3, house_4],
