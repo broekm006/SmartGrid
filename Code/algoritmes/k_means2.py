@@ -22,6 +22,11 @@ class K_means2(object):
             battery.x = random.randint(0, 50)
             battery.y = random.randint(0, 50)
 
+    '''
+    def run(self):
+        for _ in range(100):
+            self.clustering()
+    '''
 
     def clustering(self, houses, batteries, counter):
         # count interations

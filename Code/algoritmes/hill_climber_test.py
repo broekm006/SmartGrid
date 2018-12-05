@@ -129,12 +129,10 @@ class Hill_climber_test(object):
                 print("ID: ", house.id)
             print("House2: ", house2.id)
             print()
+
             # swap
             self.batteries[b1.id].remove(house1)
             self.batteries[b2.id].remove(house2)
-
-
-
 
             b1.add(house2)
             house2.connect(b1)
