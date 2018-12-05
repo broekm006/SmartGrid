@@ -101,3 +101,14 @@ class Helper(object):
         print("UPPERBOUND: " , upperbound)
         print()
         print()
+
+    def battery_info(self, batteries):
+        print("BATTERIES")
+        print()
+        for battery in batteries:
+            print("ID: ", battery.id)
+            print("Usage: ", battery.current_usage)
+            print("X: ", battery.x)
+            print("Y: ", battery.y)
+            print("Connected: ", *battery.connected)
+            print()

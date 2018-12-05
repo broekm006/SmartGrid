@@ -108,109 +108,124 @@ class Swap(object):
         for house in houses:
             if not house.connection:
                 print(house.id)
-                self.swap(self, house, 0, batteries, houses)
+                self.swap(self, house, batteries, houses)
 
-    def swap(self, unconnected_house, int, batteries, houses):
+    def swap(self, unconnected_house, old_batteries, old_houses):
         ''' Swap houses '''
 
         # copy batteries & houses
-        temp_batteries = copy.deepcopy(batteries)
-        temp_houses = copy.deepcopy(houses)
+        temp_batteries = copy.deepcopy(old_batteries)
+        temp_houses = copy.deepcopy(old_houses)
 
-        for house in temp_houses:
-            if house.id == unconnected_house:
-                unconnected_house = copy.deepcopy(house)
-                break
+        i = 0
 
-        print("UNCONNECTED: " + str(unconnected_house.id))
+        while i < 20:
 
-        # sort batteries (0 - 4)
-        temp_batteries = sorted(temp_batteries, key= lambda battery: battery.id)
-
-        # choose random house
-        house_0 = random.choice(batteries[0].connected)
-        house_1 = random.choice(batteries[1].connected)
-        house_2 = random.choice(batteries[2].connected)
-        house_3 = random.choice(batteries[3].connected)
-        house_4 = random.choice(batteries[4].connected)
-
-        # disconnect
-        batteries[0].remove(house_0)
-        batteries[1].remove(house_1)
-        batteries[2].remove(house_2)
-        batteries[3].remove(house_3)
-        batteries[4].remove(house_4)
-
-        # ?
-        materix = {house_0.id: [house_1, house_2, house_3, house_4],
-                house_1.id: [house_0, house_2, house_3, house_4],
-                house_2.id: [house_0, house_1, house_3, house_4],
-                house_3.id: [house_0, house_1, house_2, house_4],
-                house_4.id: [house_0, house_1, house_2, house_3]}
-
-        removed_houses = [house_0, house_1, house_2, house_3, house_4]
-
-        working = []
-        not_working = []
-
-        # get all permutations with current house assigned to battery 0
-        for house in removed_houses:
-            options = Brute_force.bfs(Brute_force, materix, house)
-
-            # categoriseer als niet werkende indien één van de gewisselde huizen niet past
-            # kan volgens mij niet removen in for-loop? --> options.remove(option)
-            for option in options:
-                for i, house in enumerate(option):
-                    if house.amp > temp_batteries[i].check_amp():
-                        not_working.append(option)
-                        continue
-
-            # categoriseer als werkende als swap wel mogelijk is
-            for option in options:
-                if option not in not_working:
-                    working.append(option)
-
-        # categoriseer als mogelijke oplossing indien één van de batterijen plaats heeft voor unconnected_house
-        possible = []
-        for option in working:
-            for i, house in enumerate(option):
-                if unconnected_house.amp < (temp_batteries[i].check_amp() - house.amp):
-                    possible.append(option)
-
-        # voer eerste oplossing uit
-        for solution in possible:
-            combination = solution
-            break
-
-        # Probeer opnieuw met één naar duurste huis (int + 1) indien laatste huis niet geplaats kan worden
-        if len(possible) == 0:
-            print("Try again")
-            int += 1
-            if int > 25:
-                print("GEEN OPLOSSING GEVONDEN")
-            else:
-                self.swap(Swap, unconnected_house, int, batteries, houses)
-        else:
-            # swap houses according to combination
-            for i, house in enumerate(combination):
-                house.connect(temp_batteries[i])
-                temp_batteries[i].add(house)
-
-            # place last house
-            for battery in temp_batteries:
-                if battery.check_amp() > unconnected_house.amp:
-                    unconnected_house.connect(battery)
-                    battery.add(unconnected_house)
+            i += 1
+            print("i: ", i)
+            for house in temp_houses:
+                if house.id == unconnected_house:
+                    unconnected_house = copy.deepcopy(house)
                     break
 
-            for battery in temp_batteries:
-                connected = []
-                count = 0
-                for house in battery.connected:
-                    count += 1
-                    connected.append(house.id)
-                print("Connected: " + str(connected))
-                print("Count: " + str(count))
-                print("Current_usage: " + str(battery.current_usage))
-                print("Available: " + str(battery.check_amp()))
-                print()
+            print("UNCONNECTED: " + str(unconnected_house.id))
+
+            # sort batteries (0 - 4)
+            temp_batteries = sorted(temp_batteries, key= lambda battery: battery.id)
+
+            # choose random house
+            house_0 = random.choice(temp_batteries[0].connected)
+            house_1 = random.choice(temp_batteries[1].connected)
+            house_2 = random.choice(temp_batteries[2].connected)
+            house_3 = random.choice(temp_batteries[3].connected)
+            house_4 = random.choice(temp_batteries[4].connected)
+
+            # disconnect
+            temp_batteries[0].remove(house_0)
+            temp_batteries[1].remove(house_1)
+            temp_batteries[2].remove(house_2)
+            temp_batteries[3].remove(house_3)
+            temp_batteries[4].remove(house_4)
+
+            # ?
+            materix = {house_0.id: [house_1, house_2, house_3, house_4],
+                    house_1.id: [house_0, house_2, house_3, house_4],
+                    house_2.id: [house_0, house_1, house_3, house_4],
+                    house_3.id: [house_0, house_1, house_2, house_4],
+                    house_4.id: [house_0, house_1, house_2, house_3]}
+
+            removed_houses = [house_0, house_1, house_2, house_3, house_4]
+
+            working = []
+            not_working = []
+
+            # get all permutations with current house assigned to battery 0
+            for house in removed_houses:
+                options = Brute_force.bfs(Brute_force, materix, house)
+
+                # categoriseer als niet werkende indien één van de gewisselde huizen niet past
+                # kan volgens mij niet removen in for-loop? --> options.remove(option)
+                for option in options:
+                    for i, house in enumerate(option):
+                        if house.amp > temp_batteries[i].check_amp():
+                            not_working.append(option)
+                            continue
+
+                # categoriseer als werkende als swap wel mogelijk is
+                for option in options:
+                    if option not in not_working:
+                        working.append(option)
+
+            # categoriseer als mogelijke oplossing indien één van de batterijen plaats heeft voor unconnected_house
+            possible = []
+            for option in working:
+                for i, house in enumerate(option):
+                    if unconnected_house.amp < (temp_batteries[i].check_amp() - house.amp):
+                        possible.append(option)
+
+            # voer eerste oplossing uit
+            for solution in possible:
+                combination = solution
+                break
+
+            # Probeer opnieuw met één naar duurste huis (int + 1) indien laatste huis niet geplaats kan worden
+            if len(possible) == 0:
+                print("Try again")
+
+                # reconnect
+                temp_batteries[0].add(house_0)
+                temp_batteries[1].add(house_1)
+                temp_batteries[2].add(house_2)
+                temp_batteries[3].add(house_3)
+                temp_batteries[4].add(house_4)
+                # self.swap(Swap, unconnected_house, old_batteries, old_houses)
+
+            else:
+                # swap houses according to combination
+                for house in combination:
+                    print("House ID COMBI: ", house.id)
+
+                for i, house in enumerate(combination):
+                    house.connect(temp_batteries[i])
+                    temp_batteries[i].add(house)
+
+                # place last house
+                for battery in temp_batteries:
+                    if battery.check_amp() > unconnected_house.amp:
+                        unconnected_house.connect(battery)
+                        battery.add(unconnected_house)
+                        break
+
+                for battery in temp_batteries:
+                    connected = []
+                    count = 0
+                    for house in battery.connected:
+                        count += 1
+                        connected.append(house.id)
+                    print("Connected: " + str(connected))
+                    print("Count: " + str(count))
+                    print("Current_usage: " + str(battery.current_usage))
+                    print("Available: " + str(battery.check_amp()))
+                    print()
+
+                break

@@ -46,7 +46,7 @@ class Greedy(object):
 
         # Swap.swap_hill_climber(Swap, self.houses, self.batteries)
 
-        # BRUTE FORCE SWAP
+        #BRUTE FORCE SWAP
         Swap.check(Swap, self.houses, self.batteries)
 
 

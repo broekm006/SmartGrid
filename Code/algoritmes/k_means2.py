@@ -33,7 +33,7 @@ class K_means2(object):
         counter += 1
 
         # capacitated clustering
-        greedy = Greedy(houses, batteries, "priority")
+        greedy = Greedy(houses, batteries, "output")
         houses = copy.deepcopy(greedy.houses)
         batteries = copy.deepcopy(greedy.batteries)
 
@@ -64,12 +64,12 @@ class K_means2(object):
             battery.x = mean_x
             battery.y = mean_y
 
-            print("ID: ", battery.id)
-            print("X: ", battery.x)
-            print("Y: ", battery.y)
-            print("Usage: ", battery.current_usage)
-            # print("Connected", *cluster.connected)
-            print()
+            # print("ID: ", battery.id)
+            # print("X: ", battery.x)
+            # print("Y: ", battery.y)
+            # print("Usage: ", battery.current_usage)
+            # # print("Connected", *cluster.connected)
+            # print()
 
         # Stops when costs haven't changed
         if costs < self.costs:
