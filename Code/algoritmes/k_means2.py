@@ -7,12 +7,15 @@ from sort import Sort
 
 class K_means2(object):
 
-    def __init__(self, houses, batteries):
+    def __init__(self, houses, batteries, greedy, random):
         self.houses = copy.deepcopy(houses)
         self.batteries = copy.deepcopy(batteries)
         self.costs = float('Inf')
         self.counter = 0
-        # self.random(self.batteries)
+        self.greedy = greedy
+        self.random_batteries = random
+        if self.random_batteries == "random":
+            self.random(self.batteries)
         self.clustering(self.houses, self.batteries, self.counter)
 
     def random(self, batteries):
@@ -22,18 +25,12 @@ class K_means2(object):
             battery.x = random.randint(0, 50)
             battery.y = random.randint(0, 50)
 
-    '''
-    def run(self):
-        for _ in range(100):
-            self.clustering()
-    '''
-
     def clustering(self, houses, batteries, counter):
         # count interations
         counter += 1
 
         # capacitated clustering
-        greedy = Greedy(houses, batteries, "output")
+        greedy = Greedy(houses, batteries, self.greedy)
         houses = copy.deepcopy(greedy.houses)
         batteries = copy.deepcopy(greedy.batteries)
 

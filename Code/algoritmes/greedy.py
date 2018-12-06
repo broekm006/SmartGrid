@@ -49,10 +49,10 @@ class Greedy(object):
 
                     break;
 
-        # Swap.swap_hill_climber(Swap, self.houses, self.batteries)
+        Swap.swap_hill_climber(Swap, self.houses, self.batteries)
 
         #BRUTE FORCE SWAP
-        Swap.check(Swap, self.houses, self.batteries)
+        # Swap.check(Swap, self.houses, self.batteries)
 
 
     # DISTANCE
@@ -76,10 +76,10 @@ class Greedy(object):
                     house.connect(battery)
                     house.cable_costs(distance)
 
-        # Swap.swap_hill_climber(Swap, self.houses, self.batteries)
+        Swap.swap_hill_climber(Swap, self.houses, self.batteries)
 
         # BRUTE FORCE SWAP
-        Swap.check(Swap, self.houses, self.batteries)
+        # Swap.check(Swap, self.houses, self.batteries)
 
     # PRIORITY VALUE
     def pv(self):
@@ -106,7 +106,7 @@ class Greedy(object):
                     break;
 
         # HILL CLIMBER SWAP
-        # Swap.swap_hill_climber(Swap, self.houses, self.batteries)
+        Swap.swap_hill_climber(Swap, self.houses, self.batteries)
 
         # BRUTE FORCE SWAP
-        Swap.check(Swap, self.houses, self.batteries)
+        # Swap.check(Swap, self.houses, self.batteries)

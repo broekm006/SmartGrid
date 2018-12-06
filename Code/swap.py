@@ -56,6 +56,8 @@ class Swap(object):
                     #add removed house to other battery_id
                     batteries[battery_id1.id].add(random2)
                     batteries[battery_id2.id].add(random1)
+                    random1.connect(batteries[battery_id2.id])
+                    random2.connect(batteries[battery_id1.id])
 
                 else:
                     #undo remove because the switch does not work (battery overload)
@@ -122,7 +124,7 @@ class Swap(object):
         while bad_gaan < 100000:
 
             bad_gaan += 1
-            print("# BAD: ", bad_gaan)
+
             for house in temp_houses:
                 if house.id == unconnected_house:
                     unconnected_house = copy.deepcopy(house)
@@ -222,10 +224,4 @@ class Swap(object):
                     for house in battery.connected:
                         count += 1
                         connected.append(house.id)
-                    print("Connected: " + str(connected))
-                    print("Count: " + str(count))
-                    print("Current_usage: " + str(battery.current_usage))
-                    print("Available: " + str(battery.check_amp()))
-                    print()
-
                 break
