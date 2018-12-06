@@ -16,7 +16,6 @@ class Swap(object):
 
         for house in houses:
             while not house.connection:
-                print("jo")
                 lowest, second = float('inf'), float('inf')
                 batteries = sorted(batteries, key=lambda battery: battery.id)
 

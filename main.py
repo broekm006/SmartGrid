@@ -20,12 +20,14 @@ if __name__ == "__main__":
 
     # Helper.bounds(Helper, load.batteries, load.houses)
     # greedy = Greedy(load.houses, load.batteries, "priority") # "output", "distance", "priority"
+    # hill_climber = Hill_climber(greedy.houses, greedy.batteries, 1000)
     random = Random_connect(load.houses, load.batteries)
+
     # hill_climber_BC = Hill_climber_BC(greedy.houses, greedy.batteries)
     # hill_climber_BC.best_choice()
-    # k_means = K_means2(load.houses, load.batteries, "priority", "random") # "random" or "" for innitial battery location
+    k_means = K_means2(random.houses, random.batteries, "priority", "") # "random" or "" for innitial battery location
 
-    hill_climber = Hill_climber_BC(random.houses, random.batteries)
+    # hill_climber = Hill_climber_BC(random.houses, random.batteries)
 
 
     # Helper.bounds(Helper, greedy.batteries, greedy.houses)
@@ -35,4 +37,4 @@ if __name__ == "__main__":
     #Helper.costs(Helper, hill_climber_BC.batteries, hill_climber_BC.houses)
     # Helper.sort_houses(Helper, greedy.houses)
 
-    # Visualizer(random.houses, random.batteries)
+    Visualizer(k_means.houses, k_means.batteries)

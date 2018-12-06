@@ -90,5 +90,6 @@ class K_means2(object):
             self.clustering(houses, batteries, counter)
         else:
             # Save solution & append to Greedy-solution(list)
-            solution = Solution(Solution, self.houses, self.batteries)
-            solution.km_solution()
+            # solution = Solution(Solution, self.houses, self.batteries)
+            # solution.km_solution()
+            pass
