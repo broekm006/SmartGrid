@@ -7,25 +7,38 @@ A repository for SmartGrid group AC/DC
 Deze code is geschreven in Python3.6.3. In requirements.txt staan alle benodigde packages om de code successvol te draaien.
 
 ## Probleem
-Groene energie is de energie van de toekomst, en zelf produceren is de mode van nu. Veel huizen hebben tegenwoordig zonnepanelen, windmolens of andere installaties om zelf energie mee te produceren. Fortuinlijk genoeg produceren die installaties vaak meer dan voor eigen consumptie nodig is. Het overschot zou kunnen worden terugverkocht aan de leverancier, maar de infrastructuur is daar veelal niet op berekend. Om de pieken in consumptie en produktie te kunnen managen moeten er batterijen geplaatst worden.
+Groene energie is de energie van de toekomst, en zelf produceren is de mode van nu. Veel huizen hebben tegenwoordig zonnepanelen, windmolens of andere installaties om zelfstandig energie mee te produceren. Vaak produceren die installaties zelfs meer energie dan voor eigen consumptie nodig is. Het overschot zou kunnen worden terugverkocht aan een energieleverancier, maar de benodigde infrastructuur is daarvoor veelal niet in woonwijken aanwezig. Om de pieken in consumptie en productie van energie te managen kan daarom het beste een netwerk aangelegd worden, een zogenaamd "SmartGrid". Het SmartGrid is een netwerk van batterijen waarop huizen in een woonwijk met kabels zijn aangesloten, zodat een eventuele overproductie aan energie kan worden opgeslagen. Deze case richt zich op de vraag hoe een dergelijk SmartGrid netwerk zo goedkoop mogelijk kan worden aangelegd.
 
-Voor een feasibility study zijn drie woonwijken opgesteld, met daarin vijf batterijen.
+Voor een feasibility study zijn drie woonwijken (Wijk 1, Wijk 2 en Wijk 3) opgesteld, met in elke wijk vijf batterijen.
 
-### Wat maakt het probleem moeilijk
+### Wat maakt het probleem moeilijk? (exploratie)
 Algemeen:  
-Het lastige aan deze opdracht is niet dat alle huizen aan een batterij meten worden verbonden. Dat op zichzelf is prima te doen, maar het zo optimaal mogelijk verbinden legt een hoge lat. Zeker omdat, de batterijen een limiet hebben waardoor in totaal de speling per batterij op ongeveer 15 ampere neer komt. Hiermee blijft weinig tot geen speling om huizen te verwisselen of anders te verbinden. Daarnaast kost het tijd om de verschillende algoritmes die hiervoor nodig zijn te leren en uit te schrijven. Daarbij behoud zich altijd het probleem dat de beste manier ook bewezen moet worden als de beste oplossing.
+Het lastige aan deze opdracht is niet zozeer gelegen in het feit dat alle huizen aan een batterij moeten worden verbonden, maar eerder in de optimalisatie van het Smartgrid. Eerder al werd duidelijk dat het Smartgrid zo goedkoop mogelijk moet worden aangelegd. Ieder huis verbinden met een eigen batterij (ter waarde van 5000 euro) is daarom geen realistische optie. In plaats daarvan zal het vanuit kostenoptimalisatie wenselijk zijn om meerdere huizen op een batterij aan te sluiten. Idealiter liggen de huizen die op een batterij zijn aangesloten daarnaast ook in de buurt van die batterij. Het aansluiten van een huis op een batterij gaat namelijk door middel van een kabel die 9 euro per gridsegment kost.
 
-Per wijk:  
-Voor wijk 1 staan de batterijen erg slecht gepositioneerd. Zo staan er 4 op minimale afstand van elkaar waardoor indelen van huizen altijd veel extra kabel kosten. Daarnaast is het wisselen van huizen en batterij lastig door de verschillende grote van de huizen. De ampere van de huizen kan oplopen tot een verschil van ~50,
+Vanzelfsprekend hebben de batterijen een limiet voor wat betreft de hoeveelheid engergie die daarin kan worden worden opgeslagen. Wanneer meerdere huizen op een batterij worden aangesloten, is het belangrijk om deze capaciteit in de gaten te houden. De maximale hoeveelheid energie die de huizen kunnen leveren mag de capaciteit van de batterijen namelijk niet overschrijden. Wanneer alle huizen van de woonwijken op vijf batterijen worden aangesloten, bedraagt de nog beschikbare opslagcapaciteit per batterij nog ongeveer 15 ampère. Dat maakt het lastig om de huizen die op batterijen zijn aangesloten om te wisselen of anders te verbinden. Voor het maken van kostenverlagende wisselingen of "swaps", hebben wij enkele algoritmes en heuristieken bedacht.
 
-Voor wijk 2 ligt de ampere per huis veel dichter bij elkaar dan die van wijk 1. Hierdoor is het moeilijker huizen heen en weer te verplaatsen om ruimte vrij te maken.
+Naast het optimaliseren van de wijken met vaste posities voor de huizen en batterijen, bestaat ook nog de mogelijkheid de batterijen te verplaatsen. Ook bestaat nog de mogelijkheid om batterijen met verschillende capaciteiten te verwijderen of toe te voegen, waarbij een batterij met een hogere opslagcapaciteit duurder is in de aanschaf. Al deze opties bieden een groot scala aan mogelijkheden om de wijken verder te optimaliseren, en dat is tegelijkertijd ook wat het probleem moeilijk maakt. Juist omdat zoveel keuzes gemaakt kunnen worden, is het lastig om te bepalen welke combinatie van keuzes uiteindelijk de meeste kostenbesparing oplevert. Anders dan bij het verdelen van huizen over batterijen, is het lastig om voor dit probleem algoritmes en heuristieken te bedenken omdat met zoveel factoren rekening gehouden moet worden. Het uiteindelijke aantal verschillende mogelijkheden is dan ook bijzonder groot. Later meer over het aantal mogelijkheden van dit probleem.
 
-Voor wijk 3 ligt de ampere per huis op ~5 verschil van elkaar af. Hierdoor is indelen beter te doen en kan er gemakkelijker worden gewisselt.
+Specifieke problemen per wijk:  
+In wijk 1 zijn de batterijen in eerste instantie erg ongelijkmatig verdeeld over het SmartGrid. Zo staan er vier batterijen op minimale afstand van elkaar, waardoor voor het aansluiten van huizen op de batterijen altijd een grote hoeveelheid aan kabels nodig is. Daarnaast kan bij deze wijk het verschil tussen de maximale hoeveelheid energie die huizen kunnen leveren oplopen tot wel 50 ampère. Doordat de maximale output zo sterk varieert, is het wisselen van huizen tussen batterijen bij wijk 1 extra lastig.
 
-Constraint gevoelig:  
-Daarnaast kunnnen de batterijen in onze constraints ook nog een andere capaciteit krijgen en een ongelimiteerd aantal. Hiermee wordt het probleem weer een stuk gecompliceerder doordat hiervoor een optimale positie en aantal moet worden gevonden zonder de kosten verder op te voeren.
+In wijk 2 ligt de maximale hoeveel output van ieder huis veel dichter bij elkaar dan het geval is bij wijk 1. Het daardoor makkelijker om huizen te wisselen, maar dit zal in veel gevallen te weinig capaciteit bij de batterij vrijmaken om een eventueel overbleven huis alsnog aan die batterij te verbinden. Daardoor kan het in sommige gevallen lang duren tot een swap gevonden die het gewenste resultaat oplevert.
 
-### Structuur
+In wijk 3 verschillen de outputs van de huizen gemiddeld vijf ampère van elkaar. Hierdoor kunnen de huizen makkelijker aan elkaar verbonden worden en kunnen er daarna vrij gemakkelijk kostenbesparende wisselingen worden gemaakt.
+
+### StateSpace
+Eerder werd al duidelijk dat de grote hoeveelheid aan mogelijkheden één van de aspecten is die de SmartGrid case lastig maakt. Maar hoeveel verschillende mogelijkheden of 'toestanden' zijn er nou eigenlijk? Die vraag is een vraag naar de toestandsruimte van het probleem, ook wel "StateSpace" genoemd. De StateSpace bestaat uit de ruimte tussen een upperbound (bovengrens) en een lowerbound (ondergrens). Door zowel de upperbound als de lowerbound te berekenen, kan men daarom achter de StateSpace van een probleem komen.
+
+Upperbound:
+
+150! / (30! * 30! * 30! * 30! * 30!) > 150! / (30! * 30! * 30! * 30! * 30! * 5!) > waar 5! is voor het aantal mogelijkheden in alle buckets
+https://math.stackexchange.com/questions/393591/how-many-options-are-there-for-15-student-to-divide-into-3-equal-sized-groups
+http://web.csulb.edu/~rmena/Discrete/Chapter6.pdf
+
+
+
+
+### Structuur Repository
 Alle python scripts staan in de folder Code. In de map Code is onderscheid gemaakt tussen algoritmes, classes en algemene code. In de map data zitten alle input waardes en in de map resultaten worden alle resultaten opgeslagen door de code.
 
 ### Test (Testing)
