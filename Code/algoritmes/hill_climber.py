@@ -67,6 +67,8 @@ class Hill_climber(object):
                 if old_distance + old_distance2 < new_distance + new_distance2:
                     self.batteries[random_battery.id].add(random_house_in_battery2)
                     self.batteries[random_battery2.id].add(random_house_in_battery)
+                    random_house_in_battery.connect(self.batteries[random_battery2.id])
+                    random_house_in_battery2.connect(self.batteries[random_battery.id])
 
                 else:
                     #undo remove because the switch does not work (battery overload)
