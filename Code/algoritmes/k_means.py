@@ -47,16 +47,15 @@ class K_means(object):
                     # if checking distance is smaller than current distance replace battery
                     if checking_distance < current_distance:
                         house.connect(battery)
-
-                        # battery lijst moet weer leeg bij nieuwe iteratie, niet eindeloos oppenden?
-                        battery.add(house)
+                        print("House " + str(house.id) + " connected to Battery " + str(battery.id) + ".")
 
                         # remove house from old battery
                         for old_battery in self.batteries:
                             if house in old_battery.connected:
                                 old_battery.remove(house)
 
-                print(house.connected)
+                        # battery lijst moet weer leeg bij nieuwe iteratie, niet eindeloos oppenden?
+                        battery.add(house)
 
             if current_houselist == self.houses:
                 print("break")
@@ -66,8 +65,8 @@ class K_means(object):
 
             for battery in self.batteries:
 
-                batterynumber += 1
                 print("The battery is: "+ str(batterynumber))
+                print(*battery.connected)
 
                 # create list with x and y coordinates of connected houses
                 houses_x = []
@@ -78,7 +77,7 @@ class K_means(object):
                     houses_x.append(house.x)
                     houses_y.append(house.y)
 
-                print (houses_x)
+                print(houses_x)
                 print(houses_y)
 
                 print(sum(houses_x), len(houses_x))
@@ -95,6 +94,7 @@ class K_means(object):
                 battery.x = average_x
                 battery.y = average_y
 
+                batterynumber += 1
 
 
             print("ID: " + str(house.id))
