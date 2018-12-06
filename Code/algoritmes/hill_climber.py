@@ -7,7 +7,7 @@
 # if beter > keep
 # else > swap back
 
-import random
+import random, csv
 from solution import Solution
 
 class Hill_climber(object):
@@ -16,6 +16,9 @@ class Hill_climber(object):
         self.houses = houses
         self.batteries = batteries
         self.number_of_times = number_of_times
+        self.results = []
+        self.ice_climbers()
+        self.csv_output()
 
     def ice_climbers(self):
         counter = 0
@@ -70,6 +73,7 @@ class Hill_climber(object):
                     random_house_in_battery.connect(self.batteries[random_battery2.id])
                     random_house_in_battery2.connect(self.batteries[random_battery.id])
 
+
                 else:
                     #undo remove because the switch does not work (battery overload)
                     self.batteries[random_battery.id].add(random_house_in_battery)
@@ -80,9 +84,18 @@ class Hill_climber(object):
                 self.batteries[random_battery.id].add(random_house_in_battery)
                 self.batteries[random_battery2.id].add(random_house_in_battery2)
 
+            # Save solution & append to Greedy-solution(list)
+            solution = Solution(self.houses, self.batteries)
+            self.results.append([solution.calculate_costs()])
+            print(solution.calculate_costs())
+
             counter += 1
 
+    def csv_output(self):
+        # open csv file for hill_climber_random
+        with open("resultaten/HillClimber_random.csv", mode = 'w') as csv_file:
+            csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            csv_writer.writerow(["costs"])
 
-        # Save solution & append to Greedy-solution(list)
-        solution = Solution(Solution, self.houses, self.batteries)
-        solution.hc_solution()
+            for result in self.results:
+                csv_writer.writerow(result)

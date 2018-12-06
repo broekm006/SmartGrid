@@ -85,7 +85,7 @@ class Hill_climber_BC(object):
 
                 b2.add(house1)
                 house1.connect(b2)
-            
+
         # Save solution & append to HC_solution(list)
         solution = Solution(Solution, self.houses, self.batteries)
         solution.hc_solution()

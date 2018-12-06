@@ -1,5 +1,4 @@
 class Solution(object):
-    self.results = []
 
     def __init__(self, houses, batteries):
         self.houses = houses
@@ -23,24 +22,25 @@ class Solution(object):
         # list connected house / battery
         # costs > functie call
         #
-        self.results.append([self.batteries, self.houses])
+        # self.results.append([self.batteries, self.houses])
+        pass
+
 
     # K Means
     def km_solution(self):
-        self.results.append(self)
+        pass
 
     # Simulated Annealing
     def sa_solution(self):
-        self.results.append(self)
+        pass
 
     # Greedy
     def gr_solution(self):
-        self.results.append(self)
+        pass
 
     # Brute Force
     def br_solution(self):
-        self.results.append(self)
-
+        pass
     # calculate total distance for every house in battery
     def total_distance(self):
         total = 0
@@ -78,7 +78,7 @@ class Solution(object):
         ''' Calculate total costs'''
 
         battery_costs = 0
-        for battery in batteries:
+        for battery in self.batteries:
             battery_costs += battery.cost
 
         # # Cable cable costs
@@ -87,7 +87,7 @@ class Solution(object):
         #     cable_costs += house.costs
 
         cable_costs = 0
-        for house in houses:
+        for house in self.houses:
             try:
                 battery = house.connected
                 house.distance_to_battery = abs(battery.y - house.y) + abs(battery.x - house.x)
@@ -108,6 +108,8 @@ class Solution(object):
         print("Total costs: " + str(total_costs))
         print()
         print()
+
+        return total_costs
 
     def houses_costs(self, batteries, houses):
         cable_costs = 0
