@@ -55,10 +55,10 @@ class Hill_climber_BC(object):
             if len(possible_swaps) == 0:
                 break
 
+            # sort possible swaps --> best swap?
             def takeThird(elem):
                 return elem[2]
 
-            # sort possible swaps --> best swap?
             possible_swaps.sort(key=takeThird, reverse=True)
             print(possible_swaps)
 
@@ -85,3 +85,7 @@ class Hill_climber_BC(object):
 
                 b2.add(house1)
                 house1.connect(b2)
+            
+        # Save solution & append to HC_solution(list)
+        solution = Solution(Solution, self.houses, self.batteries)
+        solution.hc_solution()

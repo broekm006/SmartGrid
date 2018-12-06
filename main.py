@@ -27,9 +27,11 @@ if __name__ == "__main__":
     # hill_climber = Hill_climber_test(k_means.houses, k_means.batteries, 500)
     # hill_climber.ice_climbers()
 
-    Helper.costs(Helper, hill_climber_BC.batteries, hill_climber_BC.houses)
+    # Helper.bounds(Helper, greedy.batteries, greedy.houses)
+    # Helper.costs(Helper, greedy.batteries, greedy.houses)
     # Helper.battery_info(Helper, k_means.batteries)
     Helper.bounds(Helper, hill_climber_BC.batteries, hill_climber_BC.houses)
+    Helper.costs(Helper, hill_climber_BC.batteries, hill_climber_BC.houses)
     # Helper.sort_houses(Helper, greedy.houses)
 
-    Visualizer(hill_climber_BC.houses, hill_climber_BC.batteries)
+    # Visualizer(hill_climber_BC.houses, hill_climber_BC.batteries)
