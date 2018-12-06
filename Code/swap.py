@@ -56,6 +56,8 @@ class Swap(object):
                     #add removed house to other battery_id
                     batteries[battery_id1.id].add(random2)
                     batteries[battery_id2.id].add(random1)
+                    random1.connect(batteries[battery_id2.id])
+                    random2.connect(batteries[battery_id1.id])
 
                 else:
                     #undo remove because the switch does not work (battery overload)
