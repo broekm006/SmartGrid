@@ -31,6 +31,11 @@ class Greedy(object):
         self.houses = Sort.max_output(Sort, self.houses)
 
         for house in self.houses:
+
+            for battery in self.batteries:
+                battery.distance = abs(battery.y - house.y) + abs(battery.x - house.x)
+            self.batteries = sorted(self.batteries, key=lambda battery: battery.distance)
+
             for battery in self.batteries:
                 if battery.check_amp() > house.amp:
                     house.connect(battery)
@@ -46,8 +51,8 @@ class Greedy(object):
 
         Swap.swap_hill_climber(Swap, self.houses, self.batteries)
 
-        # BRUTE FORCE SWAP
-        #Swap.check(Swap, self.houses, self.batteries)
+        #BRUTE FORCE SWAP
+        # Swap.check(Swap, self.houses, self.batteries)
 
 
     # DISTANCE
