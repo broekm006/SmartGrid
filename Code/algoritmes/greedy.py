@@ -11,6 +11,7 @@ class Greedy(object):
         self.houses = houses
         self.batteries = batteries
         self.variant = self.type(variant)
+        self.solution()
 
     def type(self, type):
         ''' Kijkt welke variant van greedy'''
@@ -110,3 +111,9 @@ class Greedy(object):
 
         # BRUTE FORCE SWAP
         # Swap.check(Swap, self.houses, self.batteries)
+
+    def solution(self):
+
+        # Save solution & append to Greedy-solution(list)
+        solution = Solution(Solution, self.houses, self.batteries)
+        solution.gr_solution()

@@ -89,13 +89,6 @@ class K_means2(object):
             # try again
             self.clustering(houses, batteries, counter)
         else:
-            print("EINDRESULTAAT")
-            for battery in self.batteries:
-                print("ID: ", battery.id)
-                print("X: ", battery.x)
-                print("Y: ", battery.y)
-                print("Amount:", len(battery.connected))
-                print("Usage: ", battery.current_usage)
-                print()
-            print("TOTAL COSTS: ", self.costs)
-            print("Count: ", counter)
+            # Save solution & append to Greedy-solution(list)
+            solution = Solution(Solution, self.houses, self.batteries)
+            solution.km_solution()
