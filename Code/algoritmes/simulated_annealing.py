@@ -219,7 +219,7 @@ class Simulated_annealing(object):
 
                 if  max - (currents1 + random_house_in_battery2.amp) > 0 and max - (currents2 + random_house_in_battery.amp) > 0:
                     #add removed house to other battery_id
-                    if old_distance + old_distance2 < new_distance + new_distance2:
+                    if old_distance + old_distance2 > new_distance + new_distance2:
                         self.batteries[random_battery.id].add(random_house_in_battery2)
                         self.batteries[random_battery2.id].add(random_house_in_battery)
                         random_house_in_battery.connect(self.batteries[random_battery2.id])
