@@ -43,14 +43,18 @@ De teller van de formule is 150! omdat de huizen op 150 * 149 * 148... * n manie
 Upperbound kosten:
 Om de batterijen aan te sluiten op de huizen moeten in de standdaardsituatie met vijf batterijen maximaal de volgende kosten gemaakt worden:
 
+```
 5 * €5000 batterij + 150 * 9 * (afstand tussen huis en verste batterij)
+```
 
 Zoals gezegd kosten de batterijen ieder 5000 euro in aanschaf, en kost een kabel 9 euro per grid segment. Voor de aanschaf van de batterijen bedragen de vaste kosten daarom in ieder geval 25000 euro. Voor het berekenen van de maximaal mogelijke kabelkosten wordt voor ieder huis gekeken wat de verste batterij is, en op basis van die afstand (Manhattan distance) worden de kabelkosten berekend. De resultaten van deze berekening zijn te vinden in de onderstaande tabel.
 
 Lowerbound kosten:
 Om de batterijen aan te sluiten op de huizen moeten in de standdaardsituatie met vijf batterijen maximaal de volgende kosten gemaakt worden:
 
+```
 5 * €5000 batterij + 150 * (afstand tussen huis en dichtbijzijnsde huis)
+```
 
 De vaste kosten bedragen bij het berekenen van de lowerbound vanzelfsprekend ook 5000. Voor het berekenen van de minimaal mogelijke kabelkosten wordt voor ieder huis gekeken wat de dichtbijzijnsde batterij is, en op basis van die afstand (Manhattan distance) worden de kabelkosten berekend. De resulaten van deze berekening zijn te vinden in de onderstaande tabel.
 
