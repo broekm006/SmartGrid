@@ -15,3 +15,8 @@ In deze map zijn de resultaten te vinden.
 
 
 ## Resultaten K_means
+
+## Score algoritmes
+<img src="https://github.com/broekm006/SmartGrid/blob/master/resultaten/visualisaties/all_algorithms.png" height="20%" width="35%"/>
+
+
