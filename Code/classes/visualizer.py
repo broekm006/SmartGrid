@@ -2,6 +2,7 @@ import csv
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import numpy as np
 
 import sys
 sys.path.append('../classes')
@@ -17,9 +18,9 @@ class Visualizer():
         create_visualisation("houses.csv", "batteries.csv")
 
     def cssv(self, name, results):
-        with open("resultaten/" + name + ".csv", "a") as csv_file:
+        with open("resultaten/" + name + ".csv", "w") as csv_file:
             csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            csv_writer.writerow(["costs"])
+            csv_writer.writerow(["costs", "number"])
 
             for result in results:
                 csv_writer.writerow(result)
@@ -82,6 +83,28 @@ class Visualizer():
 
             for result in results:
                 csv_writer.writerow(result)
+
+    def make_my_day():
+        readCsv = pd.read_csv("resultaten/Simulated_annealing.csv")
+        sns.set_color_codes("dark")
+
+        plot = sns.barplot(x="number", y="costs", data=readCsv, palette="RdBu")
+        plot.set_title("Simulated_annealing barplot graph")
+        plot.set(xlabel='X as', ylabel='Y as')
+        #plot.set_xticks(np.arange(1,500, step=10))
+
+        plt.show()
+
+    def make_my_day2():
+        readCsv = pd.read_csv("resultaten/cheat.csv")
+        sns.set_color_codes("dark")
+
+        plot = sns.barplot(x="algorithm", y="costs", data=readCsv, order=["Lowerbound", "Output", "Distance" ,"Priority", "Output+HC", "Distance+HC", "Priority+HC", "Output+SA", "Distance+SA", "Priority+SA", "Upperbound"], palette="GnBu_d")
+        plot.set_title("Algorithm Analyse")
+        plot.set(xlabel='Algoritmes', ylabel='Kosten')
+        #plot.set_xticks(np.arange(1,500, step=10))
+
+        plt.show()
 
 def create_visualisation(houses_csv, batteries_csv):
     df = pd.read_csv(houses_csv)
