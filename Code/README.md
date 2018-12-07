@@ -28,6 +28,9 @@ Dit algoritme kijkt naar een bestaande oplossing. Deze zoekt twee willekeurige b
 ### K Means
 Dit algoritme kijkt naar een nieuwe wijk en gaat zoeken naar een cluster van huizen. Hierbij probeert het algoritme de huizen zoveel mogelijk te groeperen en daarna plaatst deze een batterij in het midden. 
 
+### Algoritme score
+<img src="https://github.com/broekm006/SmartGrid/blob/master/resultaten/visualisaties/all_algorithms.png"/>
+
 ## Verschillende classes
 
 
