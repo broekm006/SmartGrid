@@ -11,12 +11,12 @@ from solution import Solution
 
 class Hill_climber_BC(object):
 
-    def __init__(self, houses, batteries, number_of_times):
+    def __init__(self, houses, batteries, number_of_runs):
         self.houses = copy.deepcopy(houses)
         self.batteries = copy.deepcopy(batteries)
         self.results = []
         self.multi_results = []
-        self.n = number_of_times
+        self.n = number_of_runs
         self.best_choice()
 
     def best_choice(self):

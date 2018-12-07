@@ -29,10 +29,10 @@ if __name__ == "__main__":
     # random = Random_connect(load.houses, load.batteries)
 
     # Hill CLimber
-    #hill_climber = Hill_climber(greedy.houses, greedy.batteries, 1000)
+    hill_climber = Hill_climber(greedy.houses, greedy.batteries, 1000, 100)
 
     # Hill Climber Best Choice
-    hill_climber_BC = Hill_climber_BC(greedy.houses, greedy.batteries, 100)
+    # hill_climber_BC = Hill_climber_BC(greedy.houses, greedy.batteries, 100)
 
     # Simulated Annealing
     # sim = Simulated_annealing(greedy.houses, greedy .batteries, 10)
@@ -49,7 +49,7 @@ if __name__ == "__main__":
     # Helper.sort_houses(Helper, greedy.houses)
 
     # Visualisatie
-    visualizer = Visualizer(hill_climber_BC.houses, hill_climber_BC.batteries)
+    visualizer = Visualizer(hill_climber.houses, hill_climber.batteries)
 
     # HillClimber visualisatie
-    visualizer.csv_HillClimber(hill_climber_BC.multi_results, "MultiHillClimberBC") # HillClimber_BC1 / HillClimber_random1
+    visualizer.csv_HillClimber(hill_climber.multi_results, "MultiHillClimberRandom") # HillClimber_BC1 / HillClimber_random1
