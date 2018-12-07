@@ -61,13 +61,6 @@ class K_means2(object):
             battery.x = mean_x
             battery.y = mean_y
 
-            # print("ID: ", battery.id)
-            # print("X: ", battery.x)
-            # print("Y: ", battery.y)
-            # print("Usage: ", battery.current_usage)
-            # # print("Connected", *cluster.connected)
-            # print()
-
         # Stops when costs haven't changed
         if costs < self.costs:
             self.costs = costs
@@ -86,10 +79,21 @@ class K_means2(object):
             self.batteries = batteries
             self.houses = houses
 
+
             # try again
             self.clustering(houses, batteries, counter)
         else:
             # Save solution & append to Greedy-solution(list)
-            # solution = Solution(Solution, self.houses, self.batteries)
+
             # solution.km_solution()
             pass
+
+    def csv_output(self):
+
+        # open csv file for K_means
+        with open("resultaten/K_means.csv", mode = 'w') as csv_file:
+            csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            csv_writer.writerow(["costs", "upperbound", "lowerbound"])
+
+            for result in self.results:
+                csv_writer.writerow(result)

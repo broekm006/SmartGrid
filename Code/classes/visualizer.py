@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 import sys
-sys.path.append('Code/classes')
+sys.path.append('../classes')
 
 from house import House
 from battery import Battery
@@ -65,6 +65,13 @@ class Visualizer():
 
                 csv_writer.writerow(battery_list)
 
+    def csv_HillClimber(self, results, titel):
+        with open("resultaten/" + titel + ".csv", mode = 'w') as csv_file:
+            csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            csv_writer.writerow(["costs"])
+
+            for result in results:
+                csv_writer.writerow(result)
 
 def create_visualisation(houses_csv, batteries_csv):
     df = pd.read_csv(houses_csv)

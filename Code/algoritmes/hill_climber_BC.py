@@ -16,7 +16,6 @@ class Hill_climber_BC(object):
         self.batteries = copy.deepcopy(batteries)
         self.results = []
         self.best_choice()
-        self.csv_output()
 
     def best_choice(self):
         count = 0
@@ -107,12 +106,3 @@ class Hill_climber_BC(object):
             # Save solution & append total costs to self.results
             oplossing = Solution(self.houses, self.batteries)
             self.results.append([oplossing.calculate_costs()])
-
-    def csv_output(self):
-        # open csv file for hill_climber_BC
-        with open("resultaten/HillClimber_BC.csv", mode = 'w') as csv_file:
-            csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            csv_writer.writerow(["costs"])
-
-            for result in self.results:
-                csv_writer.writerow(result)

@@ -18,7 +18,6 @@ class Hill_climber(object):
         self.number_of_times = number_of_times
         self.results = []
         self.ice_climbers()
-        self.csv_output()
 
     def ice_climbers(self):
         counter = 0
@@ -89,12 +88,3 @@ class Hill_climber(object):
             self.results.append([solution.calculate_costs()])
 
             counter += 1
-
-    def csv_output(self):
-        # open csv file for hill_climber_random
-        with open("resultaten/HillClimber_random.csv", mode = 'w') as csv_file:
-            csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            csv_writer.writerow(["costs"])
-
-            for result in self.results:
-                csv_writer.writerow(result)
