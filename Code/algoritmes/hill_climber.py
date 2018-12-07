@@ -18,7 +18,6 @@ class Hill_climber(object):
         self.number_of_times = number_of_times
         self.results = []
         self.ice_climbers()
-        self.csv_output()
 
     def ice_climbers(self):
         counter = 0
@@ -67,7 +66,7 @@ class Hill_climber(object):
             # check if swap is possible
             if  max - (currents1 + random_house_in_battery2.amp) > 0 and max - (currents2 + random_house_in_battery.amp) > 0:
                 #add removed house to other battery_id
-                if old_distance + old_distance2 < new_distance + new_distance2:
+                if old_distance + old_distance2 > new_distance + new_distance2:
                     self.batteries[random_battery.id].add(random_house_in_battery2)
                     self.batteries[random_battery2.id].add(random_house_in_battery)
                     random_house_in_battery.connect(self.batteries[random_battery2.id])
@@ -84,18 +83,8 @@ class Hill_climber(object):
                 self.batteries[random_battery.id].add(random_house_in_battery)
                 self.batteries[random_battery2.id].add(random_house_in_battery2)
 
-            # Save solution & append to Greedy-solution(list)
+            # Save solution & append costs to self.results
             solution = Solution(self.houses, self.batteries)
             self.results.append([solution.calculate_costs()])
-            print(solution.calculate_costs())
 
             counter += 1
-
-    def csv_output(self):
-        # open csv file for hill_climber_random
-        with open("resultaten/HillClimber_random.csv", mode = 'w') as csv_file:
-            csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            csv_writer.writerow(["costs"])
-
-            for result in self.results:
-                csv_writer.writerow(result)
