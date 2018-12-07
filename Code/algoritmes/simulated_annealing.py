@@ -21,7 +21,7 @@ class Simulated_annealing(object):
         self.batteries = sorted(self.batteries, key=lambda battery: battery.id)
 
         T = 1.0
-        T_min = 0.00000000001
+        T_min = 0.0000000000000000000000000001
         alpha = 0.9
 
         while T > T_min:
@@ -110,7 +110,7 @@ class Simulated_annealing(object):
 
             # Save solution & append costs to self.results
             solution = Solution(self.houses, self.batteries)
-            self.results.append([solution.calculate_costs()])
+            self.results.append([solution.calculate_costs(), counter])
 
         Visualizer.cssv(Visualizer, "Simulated_annealing", self.results)
         # check connected id vs amp available > to fix
