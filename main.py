@@ -23,7 +23,7 @@ if __name__ == "__main__":
     # Helper.bounds(Helper, load.batteries, load.houses)
 
     # Greedy
-    greedy = Greedy(load.houses, load.batteries, "distance") # "output", "distance", "priority"
+    greedy = Greedy(load.houses, load.batteries, "output") # "output", "distance", "priority"
 
     # random
     # random = Random_connect(load.houses, load.batteries)
@@ -52,4 +52,4 @@ if __name__ == "__main__":
     visualizer = Visualizer(hill_climber.houses, hill_climber.batteries)
 
     # HillClimber visualisatie
-    visualizer.csv_HillClimber(hill_climber.multi_results, "MultiHillClimberRandom") # HillClimber_BC1 / HillClimber_random1
+    visualizer.csv_HillClimber(hill_climber.multi_results, "MultiHillClimberRandom_OUTPUT_WIJK1") # HillClimber_BC1 / HillClimber_random1
