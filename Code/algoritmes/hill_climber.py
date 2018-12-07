@@ -18,6 +18,7 @@ class Hill_climber(object):
         self.number_of_times = number_of_times
         self.results = []
         self.ice_climbers()
+        self.csv_output()
 
     def ice_climbers(self):
         counter = 0
