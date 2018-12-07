@@ -6,7 +6,7 @@
 
 import random, copy
 from solution import Solution
-
+from visualizer import Visualizer
 
 class Simulated_annealing(object):
 
@@ -14,13 +14,14 @@ class Simulated_annealing(object):
         self.houses = copy.deepcopy(houses)
         self.batteries = copy.deepcopy(batteries)
         self.number_of_times = number_of_times
+        self.results = []
 
     def simulatie_V2(self):
         counter = 0
         self.batteries = sorted(self.batteries, key=lambda battery: battery.id)
 
         T = 1.0
-        T_min = 0.00001
+        T_min = 0.00000000001
         alpha = 0.9
 
         while T > T_min:
@@ -102,27 +103,33 @@ class Simulated_annealing(object):
                 i += 1
             T = T*alpha
 
+            # replace houses in self.houses with swapped houses
+            self.houses = sorted(self.houses, key=lambda house: house.id)
+            self.houses[random_house_in_battery.id] = random_house_in_battery
+            self.houses[random_house_in_battery2.id] = random_house_in_battery2
+
+            # Save solution & append costs to self.results
+            solution = Solution(self.houses, self.batteries)
+            self.results.append([solution.calculate_costs()])
+
+        Visualizer.cssv(Visualizer, "Simulated_annealing", self.results)
         # check connected id vs amp available > to fix
         current_usage = 0
         print(counter)
-        for battery in self.batteries:
-            print()
-            print("ID:" + str(battery.id))
-            print("Current usage: " + str(battery.current_usage))
-            print("Available: " + str(battery.check_amp()))
-
-            # listy is only here to get a visual representation of the connected house ID's
-            # before it was: print("Connected ID's" + str(battery.connected))
-
-            listy = []
-            for item in battery.connected:
-                listy.append(item.id)
-            print("Connected ID's" + str(listy))
-
-            current_usage += battery.current_usage
-            print()
-        print("Total battery usage: " + str(current_usage))
-
-        # Save solution & append to Greedy-solution(list)
-        solution = Solution(Solution, self.houses, self.batteries)
-        solution.sa_solution()
+        # for battery in self.batteries:
+        #     print()
+        #     print("ID:" + str(battery.id))
+        #     print("Current usage: " + str(battery.current_usage))
+        #     print("Available: " + str(battery.check_amp()))
+        #
+        #     # listy is only here to get a visual representation of the connected house ID's
+        #     # before it was: print("Connected ID's" + str(battery.connected))
+        #
+        #     listy = []
+        #     for item in battery.connected:
+        #         listy.append(item.id)
+        #     print("Connected ID's" + str(listy))
+        #
+        #     current_usage += battery.current_usage
+        #     print()
+        # print("Total battery usage: " + str(current_usage))
