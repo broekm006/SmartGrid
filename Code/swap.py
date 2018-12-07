@@ -41,6 +41,7 @@ class Swap(object):
                     if house_amp.id == random1.id:
                         random1_amp = house_amp.amp
 
+
                     if house_amp.id == random2.id:
                         random2_amp = house_amp.amp
 

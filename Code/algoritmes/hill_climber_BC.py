@@ -43,7 +43,6 @@ class Hill_climber_BC(object):
 
                             # append swap if enough capacity
                             if (battery.check_amp() + house.amp) >= swap_house.amp and (self.batteries[i + counter].check_amp() + swap_house.amp) >= house.amp:
-
                                 house.distance(battery)
                                 swap_house.distance(self.batteries[i+counter])
 
@@ -58,7 +57,6 @@ class Hill_climber_BC(object):
 
             # BREAK IF NO SWAPS POSSIBLE
             if len(possible_swaps) == 0:
-                print("Fack")
                 break
 
 
@@ -78,19 +76,9 @@ class Hill_climber_BC(object):
                 house2 = swap[1]
                 bat2 = house2.connected
 
-                battery_house1 = house1.connected
-                distance = (abs(battery_house1.x - house1.x) + abs(battery_house1.y - house1.y))
-                print("DISTANCE BEFORE: ", distance)
-
-                distance2 = (abs(self.batteries[bat1.id].x - house1.x) + abs(self.batteries[bat1.id].y - house1.y))
-                print("DISTANCE BEFORE (BATTERIES): ", distance2)
-                print()
-
-
-                # print("HOUSE 1: ", house1.id)
-                # print("BATTERY CONNECTED")
-                # for house in b1.connected:
-                    # print(house.id)
+                # battery_house1 = house1.connected
+                # distance = (abs(battery_house1.x - house1.x) + abs(battery_house1.y - house1.y))
+                # print("DISTANCE BEFORE: ", distance)
 
                 # swap
                 bat1.remove(house1)
@@ -103,30 +91,17 @@ class Hill_climber_BC(object):
                 bat2.add(house1)
                 house1.connect(bat2)
 
-                battery_house1 = house1.connected
-                distance = (abs(battery_house1.x - house1.x) + abs(battery_house1.y - house1.y))
-                print("DISTANCE AFTER: ", distance)
+                # battery_house1 = house1.connected
+                # distance = (abs(battery_house1.x - house1.x) + abs(battery_house1.y - house1.y))
+                # print("DISTANCE AFTER: ", distance)
 
-                distance2 = (abs(self.batteries[bat1.id].x - house1.x) + abs(self.batteries[bat1.id].y - house1.y))
-                print("DISTANCE AFTER (BATTERIES): ", distance2)
-                print()
 
-                list = []
-                for house in bat1.connected:
-                    list.append(house.id)
-                print("B1:          ", list)
-
-                list2 = []
-                for house in self.batteries[bat1.id].connected:
-                    list2.append(house.id)
-
-                print("Batteries[]: ", list2)
-
+                # replace houses in self.houses with swapped houses
+                self.houses = sorted(self.houses, key=lambda house: house.id)
                 self.houses[house1.id] = house1
                 self.houses[house2.id] = house2
 
-
-
+                # start over after swap
                 break
 
             # Save solution & append total costs to self.results

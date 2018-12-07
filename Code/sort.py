@@ -16,9 +16,9 @@ class Sort(object):
         ''' Sort houses based on distance to given battery'''
 
         for house in houses:
-            house.distance = abs(battery.y - house.y) + abs(battery.x - house.x)
+            house.distance_to_battery = abs(battery.y - house.y) + abs(battery.x - house.x)
 
-        return sorted(houses, key=lambda house: house.distance)
+        return sorted(houses, key=lambda house: house.distance_to_battery)
 
     def priority_value(self, houses, batteries):
         ''' Sort houses based on priority value'''
