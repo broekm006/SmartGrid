@@ -24,9 +24,13 @@ Dit algoritme kijkt naar een bestaande oplossing. Deze zoekt twee willekeurige b
 
 ### Simulated Annealing
 Dit algoritme kijkt naar een bestaande oplossing. Deze zoekt twee willekeurige batterijen met daarin twee willekeurige huizen. Daarna kijkt deze naar de distance en bepaald op basis van temperatuur of deze wisseling mag worden uitgevoerd. Hierbij kan het resultaat eerst slechter worden voor het weer beter wordt.
+<img src="https://github.com/broekm006/SmartGrid/blob/master/resultaten/visualisaties/simulated.PNG"/>
 
 ### K Means
 Dit algoritme kijkt naar een nieuwe wijk en gaat zoeken naar een cluster van huizen. Hierbij probeert het algoritme de huizen zoveel mogelijk te groeperen en daarna plaatst deze een batterij in het midden. 
+
+### Algoritme score
+<img src="https://github.com/broekm006/SmartGrid/blob/master/resultaten/visualisaties/all_algorithms.png"/>
 
 ## Verschillende classes
 

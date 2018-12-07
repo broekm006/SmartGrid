@@ -75,6 +75,8 @@ class Visualizer():
                 csv_writer.writerow(battery_list)
 
     def csv_HillClimber(self, results, titel):
+        '''Multi iterations'''
+
         with open("resultaten/" + titel + ".csv", mode = 'w') as csv_file:
             csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             csv_writer.writerow(["costs"])

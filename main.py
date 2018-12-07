@@ -23,20 +23,20 @@ if __name__ == "__main__":
     # Helper.bounds(Helper, load.batteries, load.houses)
 
     # Greedy
-    greedy = Greedy(load.houses, load.batteries, "distance") # "output", "distance", "priority"
+    greedy = Greedy(load.houses, load.batteries, "priority") # "output", "distance", "priority"
 
     # random
     # random = Random_connect(load.houses, load.batteries)
 
     # Hill CLimber
-    #hill_climber = Hill_climber(greedy.houses, greedy.batteries, 1000)
+    hill_climber = Hill_climber(greedy.houses, greedy.batteries, 1000, 100)
 
     # Hill Climber Best Choice
-    # hill_climber_BC = Hill_climber_BC(greedy.houses, greedy.batteries)
+    # hill_climber_BC = Hill_climber_BC(greedy.houses, greedy.batteries, 100)
 
     # Simulated Annealing
-    #sim = Simulated_annealing(greedy.houses, greedy .batteries, 10)
-    #sim.simulatie_V2()
+    # sim = Simulated_annealing(greedy.houses, greedy .batteries, 10)
+    # sim.simulatie_V2()
 
     # K Means
     # k_means = K_means2(hill_climber_BC.houses, hill_climber_BC.batteries, "distance", "") # "random" or "" for innitial battery location
@@ -49,7 +49,7 @@ if __name__ == "__main__":
     # Helper.sort_houses(Helper, greedy.houses)
 
     # Visualisatie
-    #visualizer = Visualizer(hill_climber.houses, hill_climber.batteries)
+    visualizer = Visualizer(hill_climber.houses, hill_climber.batteries)
 
     # HillClimber visualisatie
-    #visualizer.csv_HillClimber(hill_climber.results, "HillClimber_random1") # HillClimber_BC1 / HillClimber_random1
+    visualizer.csv_HillClimber(hill_climber.multi_results, "MultiHillClimberRandom_PRIORITY_WIJK1") # HillClimber_BC1 / HillClimber_random1
