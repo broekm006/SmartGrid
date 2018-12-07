@@ -1,16 +1,20 @@
-import sys
+import sys, copy, csv
 sys.path.append('Code/algoritmes')
 from sort import Sort
 from swap import Swap
+from solution import Solution
 from helper import Helper
-import copy
+from visualizer import Visualizer
 
 class Greedy(object):
 
     def __init__(self, houses, batteries, variant):
         self.houses = houses
         self.batteries = batteries
+        self.results = []
         self.variant = self.type(variant)
+        self.name_algo = variant
+        Visualizer.cssv(Visualizer, self.name_algo, self.results)
 
     def type(self, type):
         ''' Kijkt welke variant van greedy'''
@@ -53,12 +57,13 @@ class Greedy(object):
 
         #BRUTE FORCE SWAP
         # Swap.check(Swap, self.houses, self.batteries)
+        solution = Solution(self.houses, self.batteries)
+        self.results.append([solution.calculate_costs()])
 
 
     # DISTANCE
     def distance(self):
         ''' Connect house to nearest battery with available capacity'''
-
         for battery in self.batteries:
 
             # sorts houses based on distance to current battery
@@ -80,6 +85,9 @@ class Greedy(object):
 
         # BRUTE FORCE SWAP
         # Swap.check(Swap, self.houses, self.batteries)
+        solution = Solution(self.houses, self.batteries)
+        self.results.append([solution.calculate_costs()])
+
 
     # PRIORITY VALUE
     def pv(self):
@@ -110,3 +118,5 @@ class Greedy(object):
 
         # BRUTE FORCE SWAP
         # Swap.check(Swap, self.houses, self.batteries)
+        solution = Solution(self.houses, self.batteries)
+        self.results.append([solution.calculate_costs()])

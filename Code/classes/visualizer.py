@@ -16,6 +16,14 @@ class Visualizer():
         self.write_csv(houses, batteries)
         create_visualisation("houses.csv", "batteries.csv")
 
+    def cssv(self, name, results):
+        with open("resultaten/" + name + ".csv", "a") as csv_file:
+            csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            csv_writer.writerow(["costs"])
+
+            for result in results:
+                csv_writer.writerow(result)
+
     def write_csv(self, houses, batteries):
 
         with open("houses.csv", "w") as csv_file:
