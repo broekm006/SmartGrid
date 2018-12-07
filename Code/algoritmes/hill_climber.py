@@ -7,7 +7,7 @@
 # if beter > keep
 # else > swap back
 
-import random
+import random, csv
 from solution import Solution
 
 class Hill_climber(object):
@@ -16,6 +16,9 @@ class Hill_climber(object):
         self.houses = houses
         self.batteries = batteries
         self.number_of_times = number_of_times
+        self.results = []
+        self.ice_climbers()
+        self.csv_output()
 
     def ice_climbers(self):
         counter = 0
@@ -64,9 +67,12 @@ class Hill_climber(object):
             # check if swap is possible
             if  max - (currents1 + random_house_in_battery2.amp) > 0 and max - (currents2 + random_house_in_battery.amp) > 0:
                 #add removed house to other battery_id
-                if old_distance + old_distance2 < new_distance + new_distance2:
+                if old_distance + old_distance2 > new_distance + new_distance2:
                     self.batteries[random_battery.id].add(random_house_in_battery2)
                     self.batteries[random_battery2.id].add(random_house_in_battery)
+                    random_house_in_battery.connect(self.batteries[random_battery2.id])
+                    random_house_in_battery2.connect(self.batteries[random_battery.id])
+
 
                 else:
                     #undo remove because the switch does not work (battery overload)
@@ -78,29 +84,8 @@ class Hill_climber(object):
                 self.batteries[random_battery.id].add(random_house_in_battery)
                 self.batteries[random_battery2.id].add(random_house_in_battery2)
 
+            # Save solution & append costs to self.results
+            solution = Solution(self.houses, self.batteries)
+            self.results.append([solution.calculate_costs()])
+
             counter += 1
-
-        '''
-        # check connected id vs amp available > to fix
-        current_usage = 0
-        print(counter)
-        for battery in self.batteries:
-            print()
-            print("ID:" + str(battery.id))
-            print("Current usage: " + str(battery.current_usage))
-            print("Available: " + str(battery.check_amp()))
-
-            # listy is only here to get a visual representation of the connected house ID's
-            # before it was: print("Connected ID's" + str(battery.connected))
-
-            listy = []
-            for item in battery.connected:
-                listy.append(item.id)
-            print("Connected ID's" + str(listy))
-
-            current_usage += battery.current_usage
-            print()
-        print("Total battery usage: " + str(current_usage))
-        '''
-        #print("total distance1: ", solution.total_distance())
-        #print(counter)

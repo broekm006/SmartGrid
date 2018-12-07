@@ -19,7 +19,7 @@ Vanzelfsprekend hebben de batterijen een limiet voor wat betreft de hoeveelheid 
 
 Naast het optimaliseren van de wijken met vaste posities voor de huizen en batterijen, bestaat ook nog de mogelijkheid de batterijen te verplaatsen. Ook bestaat nog de mogelijkheid om batterijen met verschillende capaciteiten te verwijderen of toe te voegen, waarbij een batterij met een hogere opslagcapaciteit duurder is in de aanschaf. Al deze opties bieden een groot scala aan mogelijkheden om de wijken verder te optimaliseren, en dat is tegelijkertijd ook wat het probleem moeilijk maakt. Juist omdat zoveel keuzes gemaakt kunnen worden, is het lastig om te bepalen welke combinatie van keuzes uiteindelijk de meeste kostenbesparing oplevert. Anders dan bij het verdelen van huizen over batterijen, is het lastig om voor dit probleem algoritmes en heuristieken te bedenken omdat met zoveel factoren rekening gehouden moet worden. Het uiteindelijke aantal verschillende mogelijkheden is dan ook bijzonder groot. Later meer over het aantal mogelijkheden van dit probleem.
 
-Specifieke problemen per wijk:  
+Specifieke problemen per wijk:
 In wijk 1 zijn de batterijen in eerste instantie erg ongelijkmatig verdeeld over het SmartGrid. Zo staan er vier batterijen op minimale afstand van elkaar, waardoor voor het aansluiten van huizen op de batterijen altijd een grote hoeveelheid aan kabels nodig is. Daarnaast kan bij deze wijk het verschil tussen de maximale hoeveelheid energie die huizen kunnen leveren oplopen tot wel 50 ampère. Doordat de maximale output zo sterk varieert, is het wisselen van huizen tussen batterijen bij wijk 1 extra lastig.
 
 In wijk 2 ligt de maximale hoeveel output van ieder huis veel dichter bij elkaar dan het geval is bij wijk 1. Het daardoor makkelijker om huizen te wisselen, maar dit zal in veel gevallen te weinig capaciteit bij de batterij vrijmaken om een eventueel overbleven huis alsnog aan die batterij te verbinden. Daardoor kan het in sommige gevallen lang duren tot een swap gevonden die het gewenste resultaat oplevert.
@@ -74,6 +74,7 @@ python main.py
 * Thomas Franx
 
 ## Dankwoord (Acknowledgments)
+* Quinten Van der Post
 * StackOverflow
 * Koffie
 
