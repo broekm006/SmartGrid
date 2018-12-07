@@ -32,11 +32,11 @@ Eerder werd al duidelijk dat de grote hoeveelheid aan mogelijkheden één van de
 Upperbound mogelijkheden:
 Het maximaal aantal mogelijke manieren om de huizen aan te sluiten op de batterijen in de standaardsituatie met vijf batterijen, kan als volgt berekend worden:
 
-'''
+```
                150!
                ---
 (30! * 30! * 30! * 30! * 30! * 5!)
-'''
+```
 
 De teller van de formule is 150! omdat de huizen op 150 * 149 * 148... * n manieren kunnen worden gesorteerd alvorens deze aangesloten worden op de verschillende batterijen. De batterijen hebben in de standdaardsituatie een maximumcapaciteit van 1507 ampère en de huizen hebben gemiddeld een maximale output van 50 ampère. Uitgaande van deze gemiddeldes kunnen daarom 30 huizen op één batterij aangesloten worden, hetgeen per batterij op 30! verschillende manieren kan. De noemer is daarom 30! * 30! * 30! * 30! * 30!. Tenslotte moet de noemer nog eens vermenigvuldigd worden met 5!, omdat de volgorde van de baterijen niet uitmaakt. De upperbound voor het aantal mogelijkheden komt dan totaal in de buurt van de 1,57572 * 10^164. Het valt te betwijfelen of het wel correct is om het gemiddelde aantal huizen per batterij als uitgangspunt te nemen bij het berekenen van de upperbound. Het aantal huizen per batterij kan namelijk wat afwijken, met name als het verschil in maximale output tussen verschillende huizen groter is. Een alternatief zou kunnen zijn om bij het bereken van het aantal mogelijkheden het huis met de kleinste maximale uitput als uitgangspunt te nemen. Voor wijk 1 zou het gevolg dan zijn dat maximaal 57 huizen aangesloten kunnen worden op iedere batterij. Wanneer bij het vaststellen van de noemer uitgegaan zou worden van vijf batterijen met ieder maximaal 57 batterijen, overschrijdt het totaal aantal huizen in de noemer (5 * 57 = 285) het werkelijke aantal huizen (150). Ook dit alternatief levert daarom een vreemde situatie op. Ons inziens is het berekenen van de upperbound van het aantal mogelijkheden met name relevant om een indruk te krijgen van de enorme hoeveelheid aan mogelijkheden die bestaan voor onze case. Voor het meten van de resultaten zijn met name de upperbound en lowerbound van de kosten voor de aanleg van het SmartGrid relevant. Beiden zullen in het vervolg met meer precisie worden uitgewerkt.
 
