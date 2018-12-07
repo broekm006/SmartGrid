@@ -20,11 +20,12 @@ Vanzelfsprekend hebben de batterijen een limiet voor wat betreft de hoeveelheid 
 Naast het optimaliseren van de wijken met vaste posities voor de huizen en batterijen, bestaat ook nog de mogelijkheid de batterijen te verplaatsen. Ook bestaat nog de mogelijkheid om batterijen met verschillende capaciteiten te verwijderen of toe te voegen, waarbij een batterij met een hogere opslagcapaciteit duurder is in de aanschaf. Al deze opties bieden een groot scala aan mogelijkheden om de wijken verder te optimaliseren, en dat is tegelijkertijd ook wat het probleem moeilijk maakt. Juist omdat zoveel keuzes gemaakt kunnen worden, is het lastig om te bepalen welke combinatie van keuzes uiteindelijk de meeste kostenbesparing oplevert. Anders dan bij het verdelen van huizen over batterijen, is het lastig om voor dit probleem algoritmes en heuristieken te bedenken omdat met zoveel factoren rekening gehouden moet worden. Het uiteindelijke aantal verschillende mogelijkheden is dan ook bijzonder groot. Later meer over het aantal mogelijkheden van dit probleem.
 
 Specifieke problemen per wijk:  
-In wijk 1 zijn de batterijen in eerste instantie erg ongelijkmatig verdeeld over het SmartGrid. Zo staan er vier batterijen op minimale afstand van elkaar, waardoor voor het aansluiten van huizen op de batterijen altijd een grote hoeveelheid aan kabels nodig is. Daarnaast kan bij deze wijk het verschil tussen de maximale hoeveelheid energie die huizen kunnen leveren oplopen tot wel 50 ampère. Doordat de maximale output zo sterk varieert, is het wisselen van huizen tussen batterijen bij wijk 1 extra lastig.
+In wijk 1 zijn de batterijen in eerste instantie erg ongelijkmatig verdeeld over het SmartGrid. Zo staan er vier batterijen op minimale afstand van elkaar, waardoor voor het aansluiten van huizen op de batterijen altijd een grote hoeveelheid aan kabels nodig is. Daarnaast kan bij deze wijk het verschil tussen de maximale hoeveelheid energie die huizen kunnen leveren oplopen tot 50 ampère. Zo levert het huis met de kleinste output maximaal 26,20 ampère aan het SmartGrid, terwijl het huis met de grootste maximale output wel 76,15 ampère. Doordat de maximale output zo sterk varieert, is het wisselen van huizen tussen batterijen bij wijk 1 extra lastig. De kans is dan namelijk groot dat bij een wisselpoging de capaciteit van één van de twee baterijen zal worden overschreden.
 
-In wijk 2 ligt de maximale hoeveel output van ieder huis veel dichter bij elkaar dan het geval is bij wijk 1. Het is daardoor makkelijker om huizen te wisselen, maar dit zal in veel gevallen te weinig capaciteit bij de batterij vrijmaken om een eventueel overbleven huis alsnog aan die batterij te verbinden. Daardoor kan het in sommige gevallen lang duren tot een swap gevonden die het gewenste resultaat oplevert.
+In wijk 2 ligt de maximale hoeveel output van ieder huis veel dichter bij elkaar dan het geval is bij wijk 1. Zo levert het huis met de kleinste maximale output 35,44 ampère aan het SmartGrid en het huis met de grootste maximale output 64,79 ampère. Hierdoor kunnen de huizen makkelijker aan elkaar verbonden worden dan bij wijk 1 het geval is en kunnen er daarna relatief makkelijk kostenbesparende wisselingen worden gemaakt.
 
-In wijk 3 verschillen de outputs van de huizen gemiddeld vijf ampère van elkaar. Hierdoor kunnen de huizen makkelijker aan elkaar verbonden worden en kunnen er daarna vrij gemakkelijk kostenbesparende wisselingen worden gemaakt.
+In wijk 3 verschillen de outputs van de huizen gemiddeld tien ampère van elkaar. Zo levert het huis met de kleinste maximale output 45,17 ampère aan het SmartGrid en het huis met de grootste maximale output 64,79 ampère.
+Het is daardoor makkelijker om huizen te wisselen, maar dit zal in veel gevallen te weinig capaciteit bij de batterij vrijmaken om een eventueel overbleven huis alsnog aan die batterij te verbinden. Daardoor kan het in sommige gevallen lang duren tot een swap gevonden die het gewenste resultaat oplevert.
 
 ### StateSpace
 Eerder werd al duidelijk dat de grote hoeveelheid aan mogelijkheden één van de aspecten is die de SmartGrid case lastig maakt. Maar hoeveel verschillende mogelijkheden of 'toestanden' zijn er nou eigenlijk? Die vraag is een vraag naar de toestandsruimte van het probleem, ook wel "StateSpace" genoemd. De StateSpace bestaat uit de ruimte tussen een upperbound (bovengrens) en een lowerbound (ondergrens). Door zowel de upperbound als de lowerbound te berekenen, kan men daarom achter de StateSpace van een probleem komen.
@@ -53,16 +54,37 @@ Lowerbound kosten:
 Om de batterijen aan te sluiten op de huizen moeten in de standdaardsituatie met vijf batterijen maximaal de volgende kosten gemaakt worden:
 
 ```
-5 * €5000 batterij + 150 * (afstand tussen huis en dichtbijzijnsde huis)
+5 * €5000 batterij + 150 * (afstand tussen huis en dichtbijzijnde huis)
 ```
 
-De vaste kosten bedragen bij het berekenen van de lowerbound vanzelfsprekend ook 5000. Voor het berekenen van de minimaal mogelijke kabelkosten wordt voor ieder huis gekeken wat de dichtbijzijnsde batterij is, en op basis van die afstand (Manhattan distance) worden de kabelkosten berekend. De resulaten van deze berekening zijn te vinden in de onderstaande tabel.
+De vaste kosten bedragen bij het berekenen van de lowerbound vanzelfsprekend ook 5000. Voor het berekenen van de minimaal mogelijke kabelkosten wordt voor ieder huis gekeken wat de dichtbijzijnde batterij is, en op basis van die afstand (Manhattan distance) worden de kabelkosten berekend. De resulaten van deze berekening zijn te vinden in de onderstaande tabel.
 
 Wijk | Lowerbound | upperbound
 -----|------------|-----------
 1|53188|103030
 2|45268|96253
 3|42757|101491
+
+## algoritmes
+In het vervolg worden de algoritmes besproken die zijn gebruikt om tot een oplossing voor het SmartGrid problemen te komen. Ten slotte volgt een vergelijking.
+
+### Random
+tbd
+
+### Greedy
+tbd
+
+### Brute Force
+tbd
+
+### Hill Climber
+tbd
+
+### Simulated Annealing
+tbd
+
+### K-means
+tbd
 
 ### Structuur Repository
 Alle python scripts staan in de folder Code. In de map Code is onderscheid gemaakt tussen algoritmes, classes en algemene code. In de map data zitten alle input waardes en in de map resultaten worden alle resultaten opgeslagen door de code.
