@@ -1,0 +1,12 @@
+algorithm,costs
+Output,63151
+Distance,61900
+Priority,58471
+Output+HC,62701
+Distance+HC,60838
+Priority+HC,57490
+Output+SA,61987
+Distance+SA,57517
+Priority+SA,56242
+Lowerbound,42757
+Upperbound,101491
