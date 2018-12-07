@@ -58,16 +58,6 @@ Wijk | Lowerbound | upperbound
 2|45268|96253
 3|42757|101491
 
-
-
-
-
-https://math.stackexchange.com/questions/393591/how-many-options-are-there-for-15-student-to-divide-into-3-equal-sized-groups
-http://web.csulb.edu/~rmena/Discrete/Chapter6.pdf
-
-
-
-
 ### Structuur Repository
 Alle python scripts staan in de folder Code. In de map Code is onderscheid gemaakt tussen algoritmes, classes en algemene code. In de map data zitten alle input waardes en in de map resultaten worden alle resultaten opgeslagen door de code.
 
