@@ -66,7 +66,7 @@ Wijk | Lowerbound | upperbound
 3|42757|101491
 
 ## algoritmes
-In het vervolg worden de algoritmes besproken die zijn gebruikt om tot een oplossing voor het SmartGrid problemen te komen. Ten slotte volgt een vergelijking.
+In het vervolg worden de algoritmes besproken die zijn gebruikt om tot een oplossing voor het SmartGrid case te komen. Ten slotte volgt een vergelijking.
 
 ### Random
 tbd
