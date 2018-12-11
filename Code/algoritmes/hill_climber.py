@@ -101,4 +101,5 @@ class Hill_climber(object):
 
             # EINDE HILL CLIMBER
             eind_oplossing = Solution(temp_houses, temp_batteries)
-            self.multi_results.append([eind_oplossing.calculate_costs()])
+            self.multi_results.append(eind_oplossing.calculate_costs())
+            
