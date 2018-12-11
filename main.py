@@ -30,7 +30,7 @@ if __name__ == "__main__":
     # random = Random_connect(load.houses, load.batteries)
 
     # Hill CLimber
-    hill_climber = Hill_climber(greedy.houses, greedy.batteries, 1000, 100)
+    hill_climber = Hill_climber(greedy.houses, greedy.batteries, 1000, 1000)
 
     # Hill Climber Best Choice
     # hill_climber_BC = Hill_climber_BC(greedy.houses, greedy.batteries, 100)
@@ -49,7 +49,7 @@ if __name__ == "__main__":
     # Helper.sort_houses(Helper, greedy.houses)
 
     # Grid visualisatie, specify houses, batteries and visual type
-    grid_visualisatie = Grid_visualizer(greedy.houses, greedy.batteries, "gridview")
+    #grid_visualisatie = Grid_visualizer(greedy.houses, greedy.batteries, "gridview")
 
     # frequency visualisatie, meegeven resultaten, type visualisatie en titel
-    #frequency_table = Frequency_visualizer(hill_climber.multi_results, "result_frequency_table", "100 iterations HC") # HillClimber_BC1 / HillClimber_random1
+    frequency_table = Frequency_visualizer(hill_climber.multi_results, "result_frequency_table", "100 iterations HC") # HillClimber_BC1 / HillClimber_random1

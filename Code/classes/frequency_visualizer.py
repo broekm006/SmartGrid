@@ -43,14 +43,15 @@ class Frequency_visualizer():
         sns.set()
 
         sns.set(font_scale=0.5)
-        plot = sns.distplot(df.costs, kde=False, bins=12)
+        plot = sns.distplot(df.costs, kde=False, bins=14)
+
+        plot.set_title("Cost frequencies after Greedy priority sort and 1000 runs of HillClimber afterwards")
+        # plot.set_xticks(list(range(50000, 70000, 1000)))
+        # plot.set_yticks(list(range(0, 20, 2)))
+        plot.autoscale(enable=True, axis='both', tight=False)
 
         plot.set(xlabel='costs', ylabel='frequency')
-
-
-        plot.set_title("Cost frequencies after 100x Greedy priority sort and HillClimber afterwards")
-        plot.set_xticks(list(range(58400, 62600, 200)))
-        plot.set_yticks(list(range(0, 20, 2)))
+        plot.grid(False)
 
         plt.show()
 
