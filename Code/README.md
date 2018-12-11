@@ -21,7 +21,7 @@ Dit algoritme is een uitbreiding op de greedy oplossing. Deze kijkt naar de oplo
 
 ### Hill Climber
 Dit algoritme kijkt naar een bestaande oplossing. Deze zoekt twee willekeurige batterijen met daarin twee willekeurige huizen. Het algoritme probeert daarna deze te wisselen met elkaar. Als de afstand tussen de huizen en batterijen hier beter op word dan wordt de wissel doorgezet. Mocht dit niet beter worden dan wordt de wissel geannuleerd.
-<img src="https://github.com/broekm006/SmartGrid/blob/master/resultaten/RandomHillClimber_Wijk1/Cost%20frequencies%20after%20100x%20Greedy%20priority%20sort%20and%20HillClimber%20afterwards.png"/>
+<img src="https://github.com/broekm006/SmartGrid/blob/master/resultaten/RandomHillClimber_Wijk1/Cost%20frequencies%20after%20Greedy%20priority%20sort%20and%201000%20runs%20of%20HillClimber%20afterwards.png"/>
 
 ### Simulated Annealing
 Dit algoritme kijkt naar een bestaande oplossing. Deze zoekt twee willekeurige batterijen met daarin twee willekeurige huizen. Daarna kijkt deze naar de distance en bepaald op basis van temperatuur of deze wisseling mag worden uitgevoerd. Hierbij kan het resultaat eerst slechter worden voor het weer beter wordt.
