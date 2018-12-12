@@ -7,7 +7,7 @@ from grid_visualizer import Grid_visualizer
 
 sys.path.append('Code/algoritmes')
 from greedy import Greedy
-from hill_climber import Hill_climber
+from hill_climber_update import Hill_climber
 from hill_climber_BC import Hill_climber_BC
 from k_means2 import K_means2
 from random_connect import Random_connect

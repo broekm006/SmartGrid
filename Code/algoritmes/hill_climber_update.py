@@ -23,14 +23,18 @@ class Hill_climber(object):
 
     def ice_climbers(self):
 
+        run_counter = 0
+
         for count in range(self.n):
             temp_batteries = copy.deepcopy(self.batteries)
             temp_houses = copy.deepcopy(self.houses)
 
-            counter = 0
+            swap_counter = 0
+
             temp_batteries = sorted(temp_batteries, key=lambda battery: battery.id)
             # loop throug algorithm for number_of_times
-            for i in range(self.number_of_times):
+
+            while True:
                 random_battery = random.choice(temp_batteries)
                 random_battery2 = random.choice(temp_batteries)
 
@@ -50,30 +54,33 @@ class Hill_climber(object):
                 #     if house_amp.id == random_house_in_battery.id:
                 #         random2_amp = house_amp.amp
 
-                #remove "lowest id + update current_usage"
-                temp_batteries[random_battery.id].remove(random_house_in_battery)
-                temp_batteries[random_battery2.id].remove(random_house_in_battery2)
+                if (random_battery.check_amp() + random_house_in_battery.amp - random_house_in_battery2.amp) >= 0 and (random_battery2.check_amp() + random_house_in_battery2.amp - random_house_in_battery.amp) >= 0:
+                    print("Both batteries have space, swap possible.")
+                    # max = temp_batteries[random_battery.id].max_amp
+                    # currents1 = temp_batteries[random_battery.id].current_usage
+                    # currents2 = temp_batteries[random_battery2.id].current_usage
 
-                max = temp_batteries[random_battery.id].max_amp
-                currents1 = temp_batteries[random_battery.id].current_usage
-                currents2 = temp_batteries[random_battery2.id].current_usage
+                    # calculate distance
+                    solution = Solution(temp_houses, temp_batteries)
 
-                # calculate distance
-                solution = Solution(temp_houses, temp_batteries)
-                solution.distance_calc(random_house_in_battery, random_battery)
+                    old_distance = solution.distance_calc(random_house_in_battery, random_battery)
+                    old_distance2 = solution.distance_calc(random_house_in_battery2, random_battery2)
 
-                global old_distance = solution.distance_calc(random_house_in_battery, random_battery)
-                global old_distance2 = solution.distance_calc(random_house_in_battery2, random_battery2)
-
-                new_distance = solution.distance_calc(random_house_in_battery, random_battery2)
-                new_distance2 = solution.distance_calc(random_house_in_battery2, random_battery)
+                    new_distance = solution.distance_calc(random_house_in_battery, random_battery2)
+                    new_distance2 = solution.distance_calc(random_house_in_battery2, random_battery)
 
                 #print("total:  ", old_distance + old_distance2)
                 #print("total2: ", new_distance + new_distance2)
                 # check if swap is possible
-                if  max - (currents1 + random_house_in_battery2.amp) > 0 and max - (currents2 + random_house_in_battery.amp) > 0:
+                #if  max - (currents1 + random_house_in_battery2.amp) > 0 and max - (currents2 + random_house_in_battery.amp) > 0:
                     #add removed house to other battery_id
                     if old_distance + old_distance2 > new_distance + new_distance2:
+                        print("Swap reduces cable costs!")
+
+                        #remove "lowest id + update current_usage"
+                        temp_batteries[random_battery.id].remove(random_house_in_battery)
+                        temp_batteries[random_battery2.id].remove(random_house_in_battery2)
+
                         temp_batteries[random_battery.id].add(random_house_in_battery2)
                         temp_batteries[random_battery2.id].add(random_house_in_battery)
                         random_house_in_battery.connect(temp_batteries[random_battery2.id])
@@ -83,22 +90,38 @@ class Hill_climber(object):
                         temp_houses[random_house_in_battery2.id] = random_house_in_battery2
 
 
-                    else:
-                        #undo remove because the switch does not work (battery overload)
-                        temp_batteries[random_battery.id].add(random_house_in_battery)
-                        temp_batteries[random_battery2.id].add(random_house_in_battery2)
+                #     else:
+                #         #undo remove because the switch does not work (battery overload)
+                #         temp_batteries[random_battery.id].add(random_house_in_battery)
+                #         temp_batteries[random_battery2.id].add(random_house_in_battery2)
+                #
+                # else:
+                #     #undo remove because the switch does not work (battery overload)
+                #     temp_batteries[random_battery.id].add(random_house_in_battery)
+                #     temp_batteries[random_battery2.id].add(random_house_in_battery2)
 
-                else:
-                    #undo remove because the switch does not work (battery overload)
-                    temp_batteries[random_battery.id].add(random_house_in_battery)
-                    temp_batteries[random_battery2.id].add(random_house_in_battery2)
 
                 # Save solution & append costs to self.results
-                solution = Solution(temp_houses, temp_batteries)
-                self.results.append([solution.calculate_costs()])
+                        solution = Solution(temp_houses, temp_batteries)
+                        self.results.append(solution.calculate_costs())
 
-                counter += 1
+                        swap_counter += 1
 
+                    else:
+                        print("Swap does not reduce cable costs!")
+
+                        swap_counter += 1
+
+                    if swap_counter == self.number_of_times:
+                        print(swap_counter)
+                        break
+
+                else:
+                    print("Batteries do not have space, swap impossible!")
+            run_counter += 1
             # EINDE HILL CLIMBER
             eind_oplossing = Solution(temp_houses, temp_batteries)
             self.multi_results.append(eind_oplossing.calculate_costs())
+            print(run_counter)
+            print(self.results)
+            print(self.multi_results)
