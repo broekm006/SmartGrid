@@ -7,7 +7,7 @@ from sort import Sort
 
 class K_means2(object):
 
-    def __init__(self, houses, batteries, greedy, random):
+    def __init__(self, houses, batteries, greedy, random, number_of_runs):
         self.houses = copy.deepcopy(houses)
         self.batteries = copy.deepcopy(batteries)
         self.costs = float('Inf')

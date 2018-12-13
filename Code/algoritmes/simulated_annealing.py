@@ -20,15 +20,9 @@ class Simulated_annealing(object):
 
     def simulatie_V2(self):
 
-<<<<<<< HEAD
         for count in range(self.n):
             temp_batteries = copy.deepcopy(self.batteries)
             temp_houses = copy.deepcopy(self.houses)
-=======
-        T = 1.0
-        T_min = 0.0000000000000000000000000001
-        alpha = 0.9
->>>>>>> e12453d170c69b059ba112c5e25890779b8f0749
 
             counter = 0
             temp_batteries = sorted(temp_batteries, key=lambda battery: battery.id)
@@ -94,7 +88,6 @@ class Simulated_annealing(object):
 
                     else:
                         #undo remove because the switch does not work (battery overload)
-<<<<<<< HEAD
                         temp_batteries[random_battery.id].add(random_house_in_battery)
                         temp_batteries[random_battery2.id].add(random_house_in_battery2)
 
@@ -131,60 +124,3 @@ class Simulated_annealing(object):
             # EINDE HILL CLIMBER
             eind_oplossing = Solution(temp_houses, temp_batteries)
             self.multi_results.append([count, eind_oplossing.calculate_costs()])
-=======
-                        self.batteries[random_battery.id].add(random_house_in_battery)
-                        self.batteries[random_battery2.id].add(random_house_in_battery2)
-
-                else:
-                    #undo remove because the switch does not work (battery overload)
-                    self.batteries[random_battery.id].add(random_house_in_battery)
-                    self.batteries[random_battery2.id].add(random_house_in_battery2)
-
-
-                if T > 0.1:
-                    new_distance - 15
-                    new_distance2 - 15
-                elif T < 0.1:
-                    new_distance - 10
-                    new_distance2 - 10
-                elif T < 0.01:
-                    new_distance - 5
-                    new_distance2 - 5
-                elif T < 0.001:
-                    new_distance - 2
-                    new_distance2 - 2
-                counter += 1
-                i += 1
-            T = T*alpha
-
-            # replace houses in self.houses with swapped houses
-            self.houses = sorted(self.houses, key=lambda house: house.id)
-            self.houses[random_house_in_battery.id] = random_house_in_battery
-            self.houses[random_house_in_battery2.id] = random_house_in_battery2
-
-            # Save solution & append costs to self.results
-            solution = Solution(self.houses, self.batteries)
-            self.results.append([solution.calculate_costs(), counter])
-
-        Visualizer.cssv(Visualizer, "Simulated_annealing", self.results)
-        # check connected id vs amp available > to fix
-        current_usage = 0
-        print(counter)
-        # for battery in self.batteries:
-        #     print()
-        #     print("ID:" + str(battery.id))
-        #     print("Current usage: " + str(battery.current_usage))
-        #     print("Available: " + str(battery.check_amp()))
-        #
-        #     # listy is only here to get a visual representation of the connected house ID's
-        #     # before it was: print("Connected ID's" + str(battery.connected))
-        #
-        #     listy = []
-        #     for item in battery.connected:
-        #         listy.append(item.id)
-        #     print("Connected ID's" + str(listy))
-        #
-        #     current_usage += battery.current_usage
-        #     print()
-        # print("Total battery usage: " + str(current_usage))
->>>>>>> e12453d170c69b059ba112c5e25890779b8f0749
