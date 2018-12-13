@@ -3,15 +3,16 @@ import argparse
 
 sys.path.append('Code')
 from load import Load
-from visualizer import Visualizer
+from frequency_visualizer import Frequency_visualizer
+from grid_visualizer import Grid_visualizer
 
 sys.path.append('Code/algoritmes')
 from greedy import Greedy
-from hill_climber import Hill_climber
+from hill_climber_update import Hill_climber
 from hill_climber_BC import Hill_climber_BC
 from k_means2 import K_means2
 from random_connect import Random_connect
-from simulated_annealing import Simulated_annealing
+#from simulated_annealing import Simulated_annealing
 
 sys.path.append('Code/classes')
 from helper import Helper
@@ -63,8 +64,7 @@ def what_to_run(self, type):
     # hill_climber_BC = Hill_climber_BC(greedy.houses, greedy.batteries, 100)
 
     # Simulated Annealing
-    # sim = Simulated_annealing(greedy.houses, greedy .batteries, 10)
-    # sim.simulatie_V2()
+    #sim = Simulated_annealing(greedy.houses, greedy.batteries, 100)
 
     # K Means
     # k_means = K_means2(hill_climber_BC.houses, hill_climber_BC.batteries, "distance", "") # "random" or "" for innitial battery location
@@ -76,8 +76,10 @@ def what_to_run(self, type):
     # Helper.battery_info(Helper, k_means.batteries)
     # Helper.sort_houses(Helper, greedy.houses)
 
-    # Visualisatie
-    #visualizer = Visualizer(hill_climber.houses, hill_climber.batteries)
+    # Grid visualisatie, specify houses, batteries and visual type
+    #grid_visualisatie = Grid_visualizer(greedy.houses, greedy.batteries, "gridview")
 
-    # HillClimber visualisatie
-    #visualizer.csv_HillClimber(hill_climber.multi_results, "MultiHillClimberRandom_PRIORITY_WIJK1") # HillClimber_BC1 / HillClimber_random1
+    # visualizer.csv_HillClimber(sim.multi_results, "MultiSA_PRIORITY_WIJK1") # HillClimber_BC1 / HillClimber_random1
+=======
+    # frequency visualisatie, meegeven resultaten, type visualisatie en titel
+    frequency_table = Frequency_visualizer(hill_climber.multi_results, "result_frequency_table", "100 iterations HC") # HillClimber_BC1 / HillClimber_random1

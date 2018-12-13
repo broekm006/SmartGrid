@@ -33,3 +33,5 @@ class House(object):
 
     def __str__(self):
         return "ID:" + str(self.id) + "X:" + str(self.x) + " Y:" + str(self.y) + " AMP:" + str(self.amp)
+
+        
