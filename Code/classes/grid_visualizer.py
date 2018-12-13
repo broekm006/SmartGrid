@@ -11,19 +11,19 @@ from house import House
 from battery import Battery
 
 
-class Visualizer():
+class Grid_visualizer():
 
-    def __init__(self, houses, batteries):
-        self.write_csv(houses, batteries)
-        create_visualisation("houses.csv", "batteries.csv")
+    def __init__(self, houses, batteries, visualtype):
+        self.visualdata = self.write_csv(houses, batteries)
+        self.check_visual_type(visualtype)
 
-    def cssv(self, name, results):
-        with open("resultaten/" + name + ".csv", "w") as csv_file:
-            csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            csv_writer.writerow(["costs", "number"])
 
-            for result in results:
-                csv_writer.writerow(result)
+    def check_visual_type(self, visualtype):
+        if visualtype == "gridview":
+            create_visualization(self)
+        else:
+            pass
+
 
     def write_csv(self, houses, batteries):
 
@@ -74,40 +74,11 @@ class Visualizer():
 
                 csv_writer.writerow(battery_list)
 
-    def csv_HillClimber(self, results, titel):
-        '''Multi iterations'''
+        return "houses.csv"
 
-        with open("resultaten/" + titel + ".csv", mode = 'w') as csv_file:
-            csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            csv_writer.writerow(["costs"])
 
-            for result in results:
-                csv_writer.writerow(result)
-
-    def make_my_day():
-        readCsv = pd.read_csv("resultaten/Simulated_annealing.csv")
-        sns.set_color_codes("dark")
-
-        plot = sns.barplot(x="number", y="costs", data=readCsv, palette="RdBu")
-        plot.set_title("Simulated_annealing barplot graph")
-        plot.set(xlabel='X as', ylabel='Y as')
-        #plot.set_xticks(np.arange(1,500, step=10))
-
-        plt.show()
-
-    def make_my_day2():
-        readCsv = pd.read_csv("resultaten/cheat.csv")
-        sns.set_color_codes("dark")
-
-        plot = sns.barplot(x="algorithm", y="costs", data=readCsv, order=["Lowerbound", "Output", "Distance" ,"Priority", "Output+HC", "Distance+HC", "Priority+HC", "Output+SA", "Distance+SA", "Priority+SA", "Upperbound"], palette="GnBu_d")
-        plot.set_title("Algorithm Analyse")
-        plot.set(xlabel='Algoritmes', ylabel='Kosten')
-        #plot.set_xticks(np.arange(1,500, step=10))
-
-        plt.show()
-
-def create_visualisation(houses_csv, batteries_csv):
-    df = pd.read_csv(houses_csv)
+def create_visualization(self):
+    df = pd.read_csv(self.visualdata)
 
     #sns.set()
     #sns.set_context("notebook", font_scale=0.6)
