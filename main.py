@@ -80,6 +80,6 @@ def what_to_run(self, type):
     #grid_visualisatie = Grid_visualizer(greedy.houses, greedy.batteries, "gridview")
 
     # visualizer.csv_HillClimber(sim.multi_results, "MultiSA_PRIORITY_WIJK1") # HillClimber_BC1 / HillClimber_random1
-=======
+
     # frequency visualisatie, meegeven resultaten, type visualisatie en titel
-    frequency_table = Frequency_visualizer(hill_climber.multi_results, "result_frequency_table", "100 iterations HC") # HillClimber_BC1 / HillClimber_random1
+    #frequency_table = Frequency_visualizer(hill_climber.multi_results, "result_frequency_table", "100 iterations HC") # HillClimber_BC1 / HillClimber_random1
