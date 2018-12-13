@@ -1,4 +1,5 @@
 import sys
+import argparse
 
 sys.path.append('Code')
 from load import Load
@@ -17,19 +18,46 @@ from helper import Helper
 
 
 if __name__ == "__main__":
-    load = Load("wijk1", "wijk1")
+    parser = argparse.ArgumentParser(prog='main.py', usage='%(prog)s [-h] [-a [greedy, k_means]] [-b [hill_climber, simulated_annealing, brute_force]] [-i [iterations]] [-v [Y]]')
+    parser.add_argument('-a', '--algorithm', type=str, choices=['greedy','k_means'], required=True)
+    parser.add_argument('-b', '--secondary_algorithm', choices=['hill_climber','simulated_annealing', 'brute_force'], type=str, required=True)
+    parser.add_argument('-i','--iterations', type=int, help='Enter the number of times you wish to run the selected algorithm', required=False)
+    parser.add_argument('-v','--visualizer', choices=['True','False'], type=str, help='Enter True if you want to see a visual representation of the algorithm', required=False)
+
+    #parser.print_help()
+
+
+    args = parser.parse_args()
+
+    print(args.algorithm)
+    print(args.secondary_algorithm)
+    print(args.iterations)
+    print(args.visualizer)
+
+def what_to_run(self, type):
+    ''' Kijkt welke variant van greedy'''
+
+    if algo == "greedy":
+        self.output()
+    elif algo == "k_means":
+        self.distance()
+    else:
+        print("Error running algorithm")
+
+
+    #load = Load("wijk1", "wijk1")
 
     # Default Bounds
     # Helper.bounds(Helper, load.batteries, load.houses)
 
     # Greedy
-    greedy = Greedy(load.houses, load.batteries, "priority") # "output", "distance", "priority"
+    #greedy = Greedy(load.houses, load.batteries, "priority") # "output", "distance", "priority"
 
     # random
     # random = Random_connect(load.houses, load.batteries)
 
     # Hill CLimber
-    hill_climber = Hill_climber(greedy.houses, greedy.batteries, 1000, 100)
+    #hill_climber = Hill_climber(greedy.houses, greedy.batteries, 10, 10)
 
     # Hill Climber Best Choice
     # hill_climber_BC = Hill_climber_BC(greedy.houses, greedy.batteries, 100)
@@ -49,7 +77,7 @@ if __name__ == "__main__":
     # Helper.sort_houses(Helper, greedy.houses)
 
     # Visualisatie
-    visualizer = Visualizer(hill_climber.houses, hill_climber.batteries)
+    #visualizer = Visualizer(hill_climber.houses, hill_climber.batteries)
 
     # HillClimber visualisatie
-    visualizer.csv_HillClimber(hill_climber.multi_results, "MultiHillClimberRandom_PRIORITY_WIJK1") # HillClimber_BC1 / HillClimber_random1
+    #visualizer.csv_HillClimber(hill_climber.multi_results, "MultiHillClimberRandom_PRIORITY_WIJK1") # HillClimber_BC1 / HillClimber_random1
