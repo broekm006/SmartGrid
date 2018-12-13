@@ -51,4 +51,4 @@ if __name__ == "__main__":
     visualizer = Visualizer(sim.houses, sim.batteries)
 
     # HillClimber visualisatie
-    visualizer.csv_HillClimber(sim.multi_results, "MultiSA_PRIORITY_WIJK1") # HillClimber_BC1 / HillClimber_random1
+    # visualizer.csv_HillClimber(sim.multi_results, "MultiSA_PRIORITY_WIJK1") # HillClimber_BC1 / HillClimber_random1
