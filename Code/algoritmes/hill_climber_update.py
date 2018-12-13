@@ -24,6 +24,7 @@ class Hill_climber(object):
     def ice_climbers(self):
 
         swaps_made = 0
+        loopcounter = 0
 
         for count in range(self.n):
             temp_batteries = copy.deepcopy(self.batteries)
@@ -106,19 +107,22 @@ class Hill_climber(object):
                     swaps_made += 1
 
                 else:
-                    print("Swap does not reduce cable costs!")
+                    #print("Swap does not reduce cable costs!")
+                    pass
 
                 swap_counter += 1
+
+                print("Run: ", loopcounter, ", Iteration: ", swap_counter)
 
                 if swap_counter == self.number_of_times:
                     print(swap_counter)
                     break
 
+            loopcounter += 1
+
             # EINDE HILL CLIMBER
             eind_oplossing = Solution(temp_houses, temp_batteries)
             self.multi_results.append(eind_oplossing.calculate_costs())
-
-
 
     def possible_swaps(self, houses, batteries):
 
