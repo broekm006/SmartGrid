@@ -14,8 +14,10 @@ from battery import Battery
 class Grid_visualizer():
 
     def __init__(self, houses, batteries, visualtype):
+        self.batteries = batteries
         self.visualdata = self.write_csv(houses, batteries)
         self.check_visual_type(visualtype)
+
 
 
     def check_visual_type(self, visualtype):
@@ -84,7 +86,7 @@ def create_visualization(self):
     #sns.set_context("notebook", font_scale=0.6)
     sns.set_color_codes("dark")
     #sns.palplot(sns.color_palette())
-    plot = sns.scatterplot(x="x", y="y", hue="connected_bat", data=df, ci=None, style="type", palette=["C0", "C1", "C2", "C3", "C4"])
+    plot = sns.scatterplot(x="x", y="y", hue="connected_bat", data=df, ci=None, style="type", palette=sns.color_palette("Paired", n_colors = len(self.batteries)))
 
     plot.set_title("Wijk 1: after K-Means")
 

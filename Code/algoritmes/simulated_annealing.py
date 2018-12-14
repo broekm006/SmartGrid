@@ -6,7 +6,7 @@
 
 import random, copy
 from solution import Solution
-from visualizer import Visualizer
+# from visualizer import Visualizer
 
 class Simulated_annealing(object):
 

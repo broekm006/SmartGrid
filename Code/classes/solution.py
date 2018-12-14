@@ -1,13 +1,11 @@
+import copy
+
 class Solution(object):
 
     def __init__(self, houses, batteries):
         self.houses = houses
-        self.batteries = batteries
+        self.batteries = copy.deepcopy(batteries)
         self.house_connected = {} #{battery.id : [house.id]}
-
-
-        for battery in self.batteries:
-            self.house_connected.setdefault(battery.id,[])
 
     #def add_to_connected(self, list):
     #    self.house_connected[self.batteries.id] = list

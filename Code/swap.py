@@ -86,24 +86,6 @@ class Swap(object):
 
         current_usage = 0
         #print(counter)
-        for battery in batteries:
-            print()
-            print("ID:" + str(battery.id))
-            print("Current usage: " + str(battery.current_usage))
-            print("Available: " + str(battery.check_amp()))
-
-            # listy is only here to get a visual representation of the connected house ID's
-            # before it was: print("Connected ID's" + str(battery.connected))
-
-            listy = []
-            for item in battery.connected:
-                listy.append(item.id)
-            print("Connected ID's" + str(listy))
-
-            current_usage += battery.current_usage
-            print()
-
-        print("Total battery usage: " + str(current_usage))
 
     def check(self, houses, batteries):
         ''' Checks whether all houses are connected '''

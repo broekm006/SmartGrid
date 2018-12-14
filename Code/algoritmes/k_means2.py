@@ -7,7 +7,7 @@ from sort import Sort
 
 class K_means2(object):
 
-    def __init__(self, houses, batteries, greedy, random, number_of_runs):
+    def __init__(self, houses, batteries, greedy, random):
         self.houses = copy.deepcopy(houses)
         self.batteries = copy.deepcopy(batteries)
         self.costs = float('Inf')
@@ -26,13 +26,12 @@ class K_means2(object):
             battery.y = random.randint(0, 50)
 
     def clustering(self, houses, batteries, counter):
-        # count interations
-        counter += 1
+        print(counter)
 
         # capacitated clustering
         greedy = Greedy(houses, batteries, self.greedy)
-        houses = copy.deepcopy(greedy.houses)
-        batteries = copy.deepcopy(greedy.batteries)
+        houses = greedy.houses
+        batteries = greedy.batteries
 
         for battery in batteries:
             houses = Sort.distance(Sort, houses, battery)
@@ -78,7 +77,6 @@ class K_means2(object):
             # --> Solution
             self.batteries = batteries
             self.houses = houses
-
 
             # try again
             self.clustering(houses, batteries, counter)
