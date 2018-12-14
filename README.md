@@ -73,6 +73,12 @@ Om de code te draaien met de standaard configuratie gebruik de instructie:
 
 ```
 python main.py
+
+-a: Greedy, K_means
+-b: Hill_climber, Hill_climber_BC, Simulated_annealing
+-i: Iterations (int)
+-v: True / False
+-w: 1,2,3
 ```
 
 ## Auteurs (Authors)
