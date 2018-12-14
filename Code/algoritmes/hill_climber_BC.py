@@ -1,11 +1,3 @@
-#done
-# kies random battery
-# kies random huis
-
-#not done
-# swap > check distance
-# if beter > keep
-# else > swap back
 import csv, copy, random
 from solution import Solution
 
@@ -20,13 +12,15 @@ class Hill_climber_BC(object):
         self.best_choice()
 
     def best_choice(self):
+        ''' Run Best Choice Hill Climber '''
 
         for count in range(self.n):
-            # TEMP
             temp_batteries = copy.deepcopy(self.batteries)
             temp_houses = copy.deepcopy(self.houses)
             print("COUNT: ", count)
+            counter = 0
             while True:
+                counter += 1
 
                 # list of connected houses for each battery
                 b0, b1, b2, b3, b4 = temp_batteries[0].connected, temp_batteries[1].connected, \
@@ -62,7 +56,7 @@ class Hill_climber_BC(object):
                 if len(possible_swaps) == 0:
                     break
 
-                # sort possible swaps --> best swap?
+                # sort possible swaps --> best swap
                 def takeThird(elem):
                     return elem[2]
 
@@ -70,15 +64,9 @@ class Hill_climber_BC(object):
                 for swap in possible_swaps:
 
                     house1 = swap[0]
-                    # print("HOUSE1 ID: ", house1.id)
                     bat1 = house1.connected
-                    # print("B1: ", b1.id
                     house2 = swap[1]
                     bat2 = house2.connected
-
-                    # battery_house1 = house1.connected
-                    # distance = (abs(battery_house1.x - house1.x) + abs(battery_house1.y - house1.y))
-                    # print("DISTANCE BEFORE: ", distance)
 
                     # swap
                     bat1.remove(house1)
@@ -91,10 +79,6 @@ class Hill_climber_BC(object):
                     bat2.add(house1)
                     house1.connect(bat2)
 
-                    # battery_house1 = house1.connected
-                    # distance = (abs(battery_house1.x - house1.x) + abs(battery_house1.y - house1.y))
-                    # print("DISTANCE AFTER: ", distance)
-
                     # replace houses in self.houses with swapped houses
                     temp_houses = sorted(temp_houses, key=lambda house: house.id)
                     temp_houses[house1.id] = house1
@@ -105,11 +89,11 @@ class Hill_climber_BC(object):
 
                 # Save solution & append total costs to self.results
                 oplossing = Solution(temp_houses, temp_batteries)
-                self.results.append([oplossing.calculate_costs()])
+                self.results.append([oplossing.calculate_costs(counter)])
 
             # EINDE HILL CLIMBER
             eind_oplossing = Solution(temp_houses, temp_batteries)
-            self.multi_results.append([eind_oplossing.calculate_costs()])
+            self.multi_results.append([eind_oplossing.calculate_costs(count)])
 
         # change when done
         self.batteries = copy.deepcopy(temp_batteries)

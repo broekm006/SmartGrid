@@ -54,7 +54,7 @@ Lowerbound kosten:
 Om de batterijen aan te sluiten op de huizen moeten in de standdaardsituatie met vijf batterijen maximaal de volgende kosten gemaakt worden:
 
 ```
-5 * €5000 batterij + 150 * (afstand tussen huis en dichtbijzijnde huis)
+5 * €5000 batterij + 150 * (afstand tussen huis en dichtbijzijnde batterij)
 ```
 
 De vaste kosten bedragen bij het berekenen van de lowerbound vanzelfsprekend ook 5000. Voor het berekenen van de minimaal mogelijke kabelkosten wordt voor ieder huis gekeken wat de dichtbijzijnde batterij is, en op basis van die afstand (Manhattan distance) worden de kabelkosten berekend. De resulaten van deze berekening zijn te vinden in de onderstaande tabel.
@@ -64,27 +64,6 @@ Wijk | Lowerbound | upperbound
 1|53188|103030
 2|45268|96253
 3|42757|101491
-
-## algoritmes
-In het vervolg worden de algoritmes besproken die zijn gebruikt om tot een oplossing voor het SmartGrid case te komen. Ten slotte volgt een vergelijking.
-
-### Random
-tbd
-
-### Greedy
-tbd
-
-### Brute Force
-tbd
-
-### Hill Climber
-tbd
-
-### Simulated Annealing
-tbd
-
-### K-means
-tbd
 
 ### Structuur Repository
 Alle python scripts staan in de folder Code. In de map Code is onderscheid gemaakt tussen algoritmes, classes en algemene code. In de map data zitten alle input waardes en in de map resultaten worden alle resultaten opgeslagen door de code.

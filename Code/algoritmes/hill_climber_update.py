@@ -10,7 +10,7 @@ class Hill_climber(object):
         self.n = number_of_runs
         self.results = []
         self.multi_results = []
-        self.ice_climbers()
+        self.hill_climbers()
 
     def hill_climbers(self):
         ''' Run '''
@@ -68,7 +68,7 @@ class Hill_climber(object):
 
                     # Save solution & append costs to self.results
                     solution = Solution(temp_houses, temp_batteries)
-                    self.results.append(solution.calculate_costs())
+                    self.results.append(solution.calculate_costs(loopcounter))
                     swaps_made += 1
 
                 else:
@@ -87,7 +87,7 @@ class Hill_climber(object):
 
             # EINDE HILL CLIMBER
             eind_oplossing = Solution(temp_houses, temp_batteries)
-            self.multi_results.append(eind_oplossing.calculate_costs())
+            self.multi_results.append(eind_oplossing.calculate_costs(count))
 
     def possible_swaps(self, houses, batteries):
         ''' Check if swap is possible '''

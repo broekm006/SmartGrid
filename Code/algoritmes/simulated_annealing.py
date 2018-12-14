@@ -1,12 +1,6 @@
-# voeg loop toe op basis temperatuur
-# hoge temp == mag over max_amp heen
-# lage temp == zorg dat het weer past
-# vind argument voor ^
-# http://katrinaeg.com/simulated-annealing.html
-
 import random, copy
 from solution import Solution
-from visualizer import Visualizer
+from frequency_visualizer import Frequency_visualizer
 
 class Simulated_annealing(object):
 
@@ -15,11 +9,13 @@ class Simulated_annealing(object):
         self.batteries = copy.deepcopy(batteries)
         self.n = number_of_runs
         self.results = []
+        self.results2 = []
+
         self.multi_results = []
         self.simulatie_V2()
 
     def simulatie_V2(self):
-
+        ''' Use Simulated Annealing to make changes to the existing solution '''
         for count in range(self.n):
             temp_batteries = copy.deepcopy(self.batteries)
             temp_houses = copy.deepcopy(self.houses)
@@ -27,15 +23,16 @@ class Simulated_annealing(object):
             counter = 0
             temp_batteries = sorted(temp_batteries, key=lambda battery: battery.id)
 
+            # temperature function to determine the number of times the algorithm runs --> 10060 times with 0.0000000000000000000000000000000000000000000001
             T = 1.0
-            T_min = 0.00000000001
+            T_min = 0.0000000000000000000000000000000000000000000001
             alpha = 0.9
 
+            # while temp is higher than minimal temp.
             while T > T_min:
                 i = 1
                 # loop throug algorithm for number_of_times
-                #for i in range(self.number_of_times):
-                while i <= 10:
+                for i in range(self.n):
                     random_battery = random.choice(temp_batteries)
                     random_battery2 = random.choice(temp_batteries)
 
@@ -65,14 +62,6 @@ class Simulated_annealing(object):
                     new_distance = solution.distance_calc(random_house_in_battery, random_battery2)
                     new_distance2 = solution.distance_calc(random_house_in_battery2, random_battery)
 
-                    #print("total:  ", old_distance + old_distance2)
-                    #print("total2: ", new_distance + new_distance2)
-                    # check if swap is possible
-
-                    #print (old_distance, old_distance2)
-                    #print (new_distance, new_distance2)
-                    #max += 100
-
                     if  max - (currents1 + random_house_in_battery2.amp) > 0 and max - (currents2 + random_house_in_battery.amp) > 0:
                         #add removed house to other battery_id
                         if old_distance + old_distance2 > new_distance + new_distance2:
@@ -91,17 +80,17 @@ class Simulated_annealing(object):
                         temp_batteries[random_battery.id].add(random_house_in_battery)
                         temp_batteries[random_battery2.id].add(random_house_in_battery2)
 
-
+                    # add room for negative distance
                     if T > 0.1:
                         new_distance - 15
                         new_distance2 - 15
-                    elif T < 0.1:
+                    elif T < 0.00001:
                         new_distance - 10
                         new_distance2 - 10
-                    elif T < 0.01:
+                    elif T < 0.000000001:
                         new_distance - 5
                         new_distance2 - 5
-                    elif T < 0.001:
+                    elif T < 0.0000000000000001:
                         new_distance - 2
                         new_distance2 - 2
                     counter += 1
@@ -115,12 +104,10 @@ class Simulated_annealing(object):
 
                 # Save solution & append costs to self.results
                 solution = Solution(temp_houses, temp_batteries)
-                self.results.append([counter, solution.calculate_costs()])
-
-            # Visualizer.cssv(Visualizer, "Simulated_annealing", self.results)
-            # check connected id vs amp available > to fix
-            current_usage = 0
+                self.results.append([counter, solution.calculate_costs(counter)])
+                self.results2.append(solution.calculate_costs(counter))
 
             # EINDE HILL CLIMBER
             eind_oplossing = Solution(temp_houses, temp_batteries)
-            self.multi_results.append([count, eind_oplossing.calculate_costs()])
+            self.multi_results.append([count, eind_oplossing.calculate_costs(count)])
+            Frequency_visualizer.write_csv(Frequency_visualizer, self.results2, "Simulated_annealing")
