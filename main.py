@@ -70,10 +70,7 @@ def what_to_run(self, wijk, algo, sec_algo, NoT, vis):
     else:
         print("Error running secondary algorithm")
 
-    #Frequency_visualizer.make_my_day()
-
-    #grid_visualisatie = Grid_visualizer(k_means.houses, k_means.batteries, "gridview")
-    #Grid_visualizer.animated()
+    #Frequency_visualizer.bar_sim()
 
 # moet algoritme elke keer opnieuw runnen voor main of 1 maal runnen *n > anders worden algo keer op keer opnieuw geloopt
 

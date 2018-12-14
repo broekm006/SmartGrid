@@ -54,7 +54,7 @@ class Frequency_visualizer():
         plt.show()
 
 
-    def make_my_day():
+    def bar_sim():
         ''' Create a Bar graph for Simulated annealing'''
         readCsv = pd.read_csv("resultaten/Simulated_annealing.csv")
 
@@ -68,7 +68,7 @@ class Frequency_visualizer():
         plt.show()
 
 
-    def make_my_day2():
+    def bar_total():
         '''Create a bar graph for the combined results  '''
         readCsv = pd.read_csv("resultaten/cheat.csv")
 
