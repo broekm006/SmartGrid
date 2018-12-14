@@ -1,5 +1,4 @@
-import copy
-import random
+import copy, random
 from greedy import Greedy
 from helper import Helper
 from solution import Solution
@@ -26,42 +25,56 @@ class K_means2(object):
             battery.y = random.randint(0, 50)
 
     def clustering(self, houses, batteries, counter):
+<<<<<<< HEAD
         print(counter)
 
         # capacitated clustering
         greedy = Greedy(houses, batteries, self.greedy)
         houses = greedy.houses
         batteries = greedy.batteries
+=======
+        ''' Use K-means to cluster and assign houses to batteries '''
+        # count interations
+        counter += 1
 
-        for battery in batteries:
-            houses = Sort.distance(Sort, houses, battery)
+        while(True):
+            # capacitated clustering
+            greedy = Greedy(houses, batteries, self.greedy)
+            houses = copy.deepcopy(greedy.houses)
+            batteries = copy.deepcopy(greedy.batteries)
+>>>>>>> 93b363af56e4b91f77635d7c8947de2681429cd3
 
-        # calculate  cable costs
-        costs = Helper.houses_costs(Helper, batteries, houses)
-        costs += 5 * 5000   #NOG VERANDEREN
-        print(costs)
+            for battery in batteries:
+                houses = Sort.distance(Sort, houses, battery)
 
-        # for each cluster, new centre = means of all points x
-        for battery in batteries:
-            x = 0
-            y = 0
-            counter = 0
+            # calculate  cable costs
+            costs = Helper.houses_costs(Helper, batteries, houses)
+            costs += 5 * 5000   #NOG VERANDEREN
+            print(costs)
 
-            for house in battery.connected:
-                x += house.x
-                y += house.y
-                counter += 1
+            # for each cluster, new centre = means of all points x
+            for battery in batteries:
+                x = 0
+                y = 0
+                counter = 0
 
-            # average
-            mean_x = round(x / counter)
-            mean_y = round(y / counter)
+                for house in battery.connected:
+                    x += house.x
+                    y += house.y
+                    counter += 1
 
-            # new centre
-            battery.x = mean_x
-            battery.y = mean_y
+                # average
+                mean_x = round(x / counter)
+                mean_y = round(y / counter)
 
-        # Stops when costs haven't changed
-        if costs < self.costs:
+                # new center
+                battery.x = mean_x
+                battery.y = mean_y
+
+            # Stops when costs haven't changed
+            if costs > self.costs:
+                break
+                
             self.costs = costs
 
             # disconnect
@@ -78,6 +91,7 @@ class K_means2(object):
             self.batteries = batteries
             self.houses = houses
 
+<<<<<<< HEAD
             # try again
             self.clustering(houses, batteries, counter)
         else:
@@ -85,10 +99,11 @@ class K_means2(object):
 
             # solution.km_solution()
             pass
+=======
+>>>>>>> 93b363af56e4b91f77635d7c8947de2681429cd3
 
     def csv_output(self):
-
-        # open csv file for K_means
+        ''' Create .CSV file for K Means '''
         with open("resultaten/K_means.csv", mode = 'w') as csv_file:
             csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             csv_writer.writerow(["costs", "upperbound", "lowerbound"])

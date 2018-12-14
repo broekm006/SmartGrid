@@ -1,10 +1,7 @@
-# BRUTE FORCE
-# import random
-# from solution import Solution
-
 class Brute_force(object):
 
     def bfs(self, materix, start, visited=[]):
+        ''' Run Brute Force switch '''
         visited = visited+[start]
         paths = []
         list = materix.get(start.id)

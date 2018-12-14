@@ -1,9 +1,8 @@
-import sys
+import sys, copy
 sys.path.append('Code/algoritmes')
 from sort import Sort
 from swap import Swap
 from helper import Helper
-import copy
 
 class Random_connect(object):
 
@@ -30,6 +29,3 @@ class Random_connect(object):
                     break;
 
         Swap.swap_hill_climber(Swap, self.houses, self.batteries)
-
-        #BRUTE FORCE SWAP
-        # Swap.check(Swap, self.houses, self.batteries)

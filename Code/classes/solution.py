@@ -4,6 +4,7 @@ class Solution(object):
 
     def __init__(self, houses, batteries):
         self.houses = houses
+<<<<<<< HEAD
         self.batteries = copy.deepcopy(batteries)
         self.house_connected = {} #{battery.id : [house.id]}
 
@@ -11,44 +12,18 @@ class Solution(object):
     #    self.house_connected[self.batteries.id] = list
 
     # calculate distance between battery / house
+=======
+        self.batteries = batteries
+
+
+>>>>>>> 93b363af56e4b91f77635d7c8947de2681429cd3
     def distance_calc(self, house, battery):
+        ''' Calculate distanct house to battery '''
         return abs(battery.y - house.y) + abs(battery.x - house.x)
 
-    # Hill Climber
-    def hc_solution(self):
-        # ID > len resultst
-        # list connected house / battery
-        # costs > functie call
-        #
-        # self.results.append([self.batteries, self.houses])
-        pass
-
-
-    # K Means
-    def km_solution(self):
-        pass
-
-    # Simulated Annealing
-    def sa_solution(self):
-        pass
-
-    # Greedy
-    def gr_solution(self):
-        pass
-
-    # Brute Force
-    def br_solution(self):
-        pass
-    # calculate total distance for every house in battery
-    def total_distance(self):
-        total = 0
-        for battery in self.batteries:
-            for house in self.houses:
-                if house.id in self.house_connected:
-                    total += self.distance_calc(house.id, battery.id)
-        return total
 
     def sort_houses(self, houses):
+        ''' Checks which house is cheapest & most expensive '''
         sorted_houses = sorted(houses, key=lambda house: house.costs)
 
         #Expensive
@@ -72,17 +47,13 @@ class Solution(object):
         print()
         print()
 
-    def calculate_costs(self):
+    # calcuate the costs of the house to battery
+    def calculate_costs(self, id):
         ''' Calculate total costs'''
 
         battery_costs = 0
         for battery in self.batteries:
             battery_costs += battery.cost
-
-        # # Cable cable costs
-        # cable_costs = 0
-        # for house in houses:
-        #     cable_costs += house.costs
 
         cable_costs = 0
         for house in self.houses:
@@ -98,24 +69,19 @@ class Solution(object):
         # Total costs
         total_costs = battery_costs + cable_costs
 
-        # TEST: costs
-        print("COSTS")
-        print()
-        print("Battery costs: " + str(battery_costs))
-        print("Cable costs: " + str(cable_costs))
-        print("Total costs: " + str(total_costs))
-        print()
-        print()
-
+        print("ID (", id, ") total costs: (", total_costs, ")")
         return total_costs
 
+    # calculate the total cable costs for all houses
     def houses_costs(self, batteries, houses):
+        ''' Calculate to total costs for houses '''
         cable_costs = 0
         for house in houses:
             cable_costs += house.costs
 
         return cable_costs
 
+    # calculate the lower & upperbound based on used algorithm
     def bounds(self, batteries, houses):
         ''' Upper- and lowerbounds for costs for given houses & batteries'''
 
@@ -137,5 +103,4 @@ class Solution(object):
 
         print("LOWERBOUND: " , lowerbound)
         print("UPPERBOUND: " , upperbound)
-        print()
         print()

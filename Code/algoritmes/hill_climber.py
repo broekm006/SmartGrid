@@ -1,12 +1,3 @@
-#done
-# kies random battery
-# kies random huis
-
-#not done
-# swap > check distance
-# if beter > keep
-# else > swap back
-
 import random, csv, copy
 from solution import Solution
 
@@ -19,9 +10,9 @@ class Hill_climber(object):
         self.n = number_of_runs
         self.results = []
         self.multi_results = []
-        self.ice_climbers()
+        self.hill_climbers()
 
-    def ice_climbers(self):
+    def hill_climbers(self):
 
         for count in range(self.n):
             temp_batteries = copy.deepcopy(self.batteries)
@@ -42,14 +33,6 @@ class Hill_climber(object):
                 random_house_in_battery = random.choice(random_battery.connected)
                 random_house_in_battery2 = random.choice(random_battery2.connected)
 
-                # look for the amp of the randomly selected house
-                # for house_amp in self.houses:
-                #     if house_amp.id == random_house_in_battery.id:
-                #         random1_amp = house_amp.amp
-                #
-                #     if house_amp.id == random_house_in_battery.id:
-                #         random2_amp = house_amp.amp
-
                 #remove "lowest id + update current_usage"
                 temp_batteries[random_battery.id].remove(random_house_in_battery)
                 temp_batteries[random_battery2.id].remove(random_house_in_battery2)
@@ -62,14 +45,17 @@ class Hill_climber(object):
                 solution = Solution(temp_houses, temp_batteries)
                 solution.distance_calc(random_house_in_battery, random_battery)
 
+<<<<<<< HEAD
+=======
+                # calc old distance
+>>>>>>> 93b363af56e4b91f77635d7c8947de2681429cd3
                 old_distance = solution.distance_calc(random_house_in_battery, random_battery)
                 old_distance2 = solution.distance_calc(random_house_in_battery2, random_battery2)
 
+                # calc new distance
                 new_distance = solution.distance_calc(random_house_in_battery, random_battery2)
                 new_distance2 = solution.distance_calc(random_house_in_battery2, random_battery)
 
-                #print("total:  ", old_distance + old_distance2)
-                #print("total2: ", new_distance + new_distance2)
                 # check if swap is possible
                 if  max - (currents1 + random_house_in_battery2.amp) > 0 and max - (currents2 + random_house_in_battery.amp) > 0:
                     #add removed house to other battery_id
@@ -81,7 +67,6 @@ class Hill_climber(object):
 
                         temp_houses[random_house_in_battery.id] = random_house_in_battery
                         temp_houses[random_house_in_battery2.id] = random_house_in_battery2
-
 
                     else:
                         #undo remove because the switch does not work (battery overload)
@@ -95,10 +80,10 @@ class Hill_climber(object):
 
                 # Save solution & append costs to self.results
                 solution = Solution(temp_houses, temp_batteries)
-                self.results.append([solution.calculate_costs()])
+                self.results.append([solution.calculate_costs(i)])
 
                 counter += 1
 
-            # EINDE HILL CLIMBER
+            # End HILL CLIMBER
             eind_oplossing = Solution(temp_houses, temp_batteries)
-            self.multi_results.append(eind_oplossing.calculate_costs())
+            self.multi_results.append(eind_oplossing.calculate_costs(count))
