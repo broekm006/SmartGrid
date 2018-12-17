@@ -3,7 +3,7 @@ import copy
 class Solution(object):
 
     def __init__(self, houses, batteries):
-        self.houses = houses
+        self.houses = copy.deepcopy(houses)
         self.batteries = copy.deepcopy(batteries)
         #self.batteries = batteries
 

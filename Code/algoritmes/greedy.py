@@ -74,7 +74,7 @@ class Greedy(object):
                     house.cable_costs(distance)
 
         # HILL CLIMBER SWAP
-        Swap.swap_hill_climber(Swap, self.houses, self.batteries)
+        # Swap.swap_hill_climber(Swap, self.houses, self.batteries)
 
 
     def pv(self):
@@ -86,6 +86,7 @@ class Greedy(object):
 
             # sorts batteries based on distance from current house --> kan nog apart
             for battery in self.batteries:
+
                 battery.distance = abs(battery.y - house.y) + abs(battery.x - house.x)
 
             self.batteries = sorted(self.batteries, key=lambda battery: battery.distance)
@@ -102,3 +103,5 @@ class Greedy(object):
 
         # HILL CLIMBER SWAP
         Swap.swap_hill_climber(Swap, self.houses, self.batteries)
+
+        # Swap.check(Swap, self.houses, self.batteries)
