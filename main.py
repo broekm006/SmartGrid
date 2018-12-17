@@ -9,7 +9,6 @@ from grid_visualizer import Grid_visualizer
 sys.path.append('Code/algoritmes')
 from greedy import Greedy
 from hill_climber import Hill_climber
-from hill_climber_BC import Hill_climber_BC
 from k_means2 import K_means2
 from random_connect import Random_connect
 from test_merge import Cluster_merge
@@ -63,14 +62,6 @@ def what_to_run(self, wijk, algo, sec_algo, NoT, vis):
         hill_climber = Hill_climber(k_means.houses, k_means.batteries, NoT, 1)
         if vis == 'True':
             grid_visualisatie = Grid_visualizer(hill_climber.houses, hill_climber.batteries, "gridview", "K-Means + Hill Climber")
-    elif sec_algo == "hill_climber_BC" and algo == "greedy_output" or sec_algo == "hill_climber_BC" and algo == "greedy_distance" or sec_algo == "hill_climber_BC" and algo == "greedy_priority":
-        hill_climber_BC = Hill_climber_BC(greedy.houses, greedy.batteries, NoT, 1)
-        if vis == 'True':
-            grid_visualisatie = Grid_visualizer(hill_climber_BC.houses, hill_climber_BC.batteries, "gridview", "Greedy + Hill Climber BC")
-    elif sec_algo == "hill_climber_BC" and algo == "k_means_output" or sec_algo == "hill_climber_BC" and algo == "k_means_distance" or sec_algo == "hill_climber_BC" and algo == "k_means_priority":
-        if vis == 'True':
-            hill_climber_BC = Hill_climber_BC(k_means.houses, k_means.batteries, NoT, 1)
-            grid_visualisatie = Grid_visualizer(hill_climber_BC.houses, hill_climber_BC.batteries, "gridview", "K-Means + Hill Climber BC")
     elif sec_algo == "simulated_annealing" and algo == "greedy_output" or sec_algo == "simulated_annealing" and algo == "greedy_distance" or sec_algo == "simulated_annealing" and algo == "greedy_priority":
         sim = Simulated_annealing(greedy.houses, greedy.batteries, NoT, 1)
         if vis == 'True':
@@ -87,10 +78,6 @@ def what_to_run(self, wijk, algo, sec_algo, NoT, vis):
         sim = Hill_climber(splitter.houses, splitter.batteries, NoT, 1)
         if vis == 'True':
             grid_visualisatie = Grid_visualizer(splitter.houses, splitter.batteries, "gridview", "Hierarchical Agglomerative Clustering")
-    elif sec_algo == "hill_climber_BC" and algo == "HAC":
-        sim = Hill_climber_BC(splitter.houses, splitter.batteries, NoT, 1)
-        if vis == 'True':
-            grid_visualisatie = Grid_visualizer(splitter.houses, splitter.batteries, "gridview", "Hierarchical Agglomerative Clustering")
     elif sec_algo == "escape":
         pass
 
@@ -102,7 +89,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog='main.py', usage='%(prog)s [-h] [-a [greedy_output, greedy_distance, greedy_priority, k_means_output, k_means_distance, k_means_priority, HAC]] [-b [hill_climber, simulated_annealing, brute_force]] [-i [iterations]] [-v [Y]]')
     parser.add_argument('-w', '--wijk', type=str, choices=['1', '2', '3'], required=True, help='Choose the grid you would like to run the algorithm(s) on.')
     parser.add_argument('-a', '--algorithm', type=str, choices=['greedy_output', 'greedy_distance', 'greedy_priority','k_means_output', 'k_means_distance', 'k_means_priority', 'HAC'], required=True, help='Choose the primary algorithm you would like to run.')
-    parser.add_argument('-b', '--secondary_algorithm', choices=['hill_climber','hill_climber_BC','simulated_annealing'], type=str, required=False, default="simulated_annealing", help='Choose the secondary algorithm you would like to run. If not specified, Simulated Annealing is ran.')
+    parser.add_argument('-b', '--secondary_algorithm', choices=['hill_climber','simulated_annealing'], type=str, required=False, default="simulated_annealing", help='Choose the secondary algorithm you would like to run. If not specified, Simulated Annealing is ran.')
     parser.add_argument('-i','--iterations', type=int, help='Enter the number of times you wish to run the selected algorithmself.', required=False, default=1)
     parser.add_argument('-v','--visualizer', choices=['True','False'], type=str, help='Enter True if you want to see a visual representation of the algorithm.', required=False, default='False')
 
@@ -113,47 +100,3 @@ if __name__ == "__main__":
 # sec_algo == type of iterative algorithm to combine with initial algorithm
 # NoT == Number of Times to run the algorithm(s)
 # vis == Whether we run a visual or not
-
-    #load = Load("wijk1", "wijk1")
-
-    # Default Bounds
-    #Helper.bounds(Helper, load.batteries, load.houses)
-
-    # Greedy
-    #greedy = Greedy(load.houses, load.batteries, "distance") # "output", "distance", "priority"
-
-    # random
-    # random = Random_connect(load.houses, load.batteries)
-
-    # Hill CLimber
-    # hill_climber = Hill_climber(greedy.houses, greedy.batteries, 1, 10)
-
-
-    # Hill Climber Best Choice
-    # hill_climber_BC = Hill_climber_BC(greedy.houses, greedy.batteries, 10)
-
-    # Simulated Annealing
-    #sim = Simulated_annealing(greedy.houses, greedy.batteries, 1)
-
-    # K Means
-    # k_means = K_means2(load.houses, load.batteries, "output", "0") # "random" or "" for innitial battery location
-
-    #
-    #splitter = Cluster_merge(load.houses)
-    # sim = Simulated_annealing(splitter.houses, splitter.batteries, 1)
-
-    # Bounds + Costs
-    #Helper.bounds(Helper, k_means.batteries, k_means.houses)
-    # Helper.costs(Helper, greedy.batteries, greedy.houses)
-    # Helper.battery_info(Helper, k_means.batteries)
-    # Helper.sort_houses(Helper, greedy.houses)
-
-    # Grid visualisatie, specify houses, batteries and visual type
-    # grid_visualisatie = Grid_visualizer(k_means.houses, k_means.batteries, "gridview", "werk plox")
-
-    # visualizer.csv_HillClimber(sim.multi_results, "MultiSA_PRIORITY_WIJK1") # HillClimber_BC1 / HillClimber_random1
-
-    # frequency visualisatie, meegeven resultaten, type visualisatie en titel
-    #frequency_table = Frequency_visualizer(hill_climber.multi_results, "result_frequency_table", "100 iterations HC") # HillClimber_BC1 / HillClimber_random1
-
-    #Frequency_visualizer.sim_step_plot()

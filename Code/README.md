@@ -30,6 +30,9 @@ Dit algoritme kijkt naar een bestaande oplossing. Deze zoekt twee willekeurige b
 ### K Means
 Dit algoritme kijkt naar een nieuwe wijk en gaat zoeken naar een cluster van huizen. Hierbij probeert het algoritme de huizen zoveel mogelijk te groeperen en daarna plaatst deze een batterij in het midden.
 
+### Hierarchical Agglomerative Clustering (HAC)
+Dit algoritme maakt voor ieder huis in de wijk een batterij aan met de kleinste capaciteit (450 ampère) en plaatst deze batterij op dezelfde coordinaten als het betreffende huis. Vervolgens kijkt het algoritme welke batterijen het meest dicht bij elkaar staan, probeert het vervolgens de huizen die op dat moment op beide batterijen zijn aangesloten op één batterij aan te sluiten. Als daarvoor onvoldoende capaciteit is, kijkt het algoritme of een grotere batterij (900 ampére en 1800 ampére) wel voldoende capaciteit biedt. Als dat het geval is, wordt een batterij in het midden tussen beide batterijen geplaatst en de oude batterijen verwijderd. Vervolgens wordt het Greedy algortime gerund en vervolgens het K-Means algoritme. Het voorgenoemde proces herhaalt zich tot geen 'mergers' meer mogelijk zijn.
+
 ### Algoritme score
 <img src="https://github.com/broekm006/SmartGrid/blob/master/resultaten/visualisaties/all_algorithms.png"/>
 
