@@ -15,7 +15,7 @@ In deze map zijn de resultaten te vinden.
 <img src="https://github.com/broekm006/SmartGrid/blob/master/resultaten/visualisaties/K-means/kmeansAndSimulated.png"/>
 
 ## Resultaten Hierarchical Agglomerative Clustering
-<img src="https://github.com/broekm006/SmartGrid/blob/master/resultaten/visualisaties/Hierarchical_Agglomerative_Clustering.png"/>
+<img src="https://github.com/broekm006/SmartGrid/blob/master/resultaten/visualisaties/Hierarchical_Agglomerative_Clustering_V2.png"/>
 
 ## Score algoritmes
 <img src="https://github.com/broekm006/SmartGrid/blob/master/resultaten/visualisaties/all_algorithms.png"/>
