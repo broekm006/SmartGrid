@@ -1,9 +1,9 @@
-import sys
+import sys, copy
 sys.path.append('Code/algoritmes')
+
 from sort import Sort
 from swap import Swap
 from helper import Helper
-import copy
 
 class Greedy(object):
 
@@ -13,7 +13,7 @@ class Greedy(object):
         self.variant = self.type(variant)
 
     def type(self, type):
-        ''' Kijkt welke variant van greedy'''
+        ''' Checks which version of greedy will be used'''
 
         if type == "output":
             self.output()
@@ -24,16 +24,16 @@ class Greedy(object):
         else:
             print("Greedy type error")
 
-    # MAX_OUTPUT
+
     def output(self):
         ''' Connect house to nearest battery with available capacity'''
 
         self.houses = Sort.max_output(Sort, self.houses)
 
         for house in self.houses:
-
             for battery in self.batteries:
                 battery.distance = abs(battery.y - house.y) + abs(battery.x - house.x)
+
             self.batteries = sorted(self.batteries, key=lambda battery: battery.distance)
 
             for battery in self.batteries:
@@ -49,13 +49,10 @@ class Greedy(object):
 
                     break;
 
+        # HILL CLIMBER SWAP
         Swap.swap_hill_climber(Swap, self.houses, self.batteries)
 
-        #BRUTE FORCE SWAP
-        # Swap.check(Swap, self.houses, self.batteries)
 
-
-    # DISTANCE
     def distance(self):
         ''' Connect house to nearest battery with available capacity'''
 
@@ -76,12 +73,10 @@ class Greedy(object):
                     house.connect(battery)
                     house.cable_costs(distance)
 
+        # HILL CLIMBER SWAP
         Swap.swap_hill_climber(Swap, self.houses, self.batteries)
 
-        # BRUTE FORCE SWAP
-        # Swap.check(Swap, self.houses, self.batteries)
 
-    # PRIORITY VALUE
     def pv(self):
         ''' Connect house to nearest battery with available capacity'''
 
@@ -91,6 +86,7 @@ class Greedy(object):
 
             # sorts batteries based on distance from current house --> kan nog apart
             for battery in self.batteries:
+
                 battery.distance = abs(battery.y - house.y) + abs(battery.x - house.x)
 
             self.batteries = sorted(self.batteries, key=lambda battery: battery.distance)
@@ -108,5 +104,4 @@ class Greedy(object):
         # HILL CLIMBER SWAP
         Swap.swap_hill_climber(Swap, self.houses, self.batteries)
 
-        # BRUTE FORCE SWAP
         # Swap.check(Swap, self.houses, self.batteries)

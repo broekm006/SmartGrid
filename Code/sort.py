@@ -9,12 +9,10 @@ class Sort(object):
 
     def max_output(self, houses):
         '''Sort houses by max output'''
-
         return sorted(houses, key=lambda house: house.amp, reverse=True)
 
     def distance(self, houses, battery):
         ''' Sort houses based on distance to given battery'''
-
         for house in houses:
             house.distance_to_battery = abs(battery.y - house.y) + abs(battery.x - house.x)
 
@@ -22,7 +20,6 @@ class Sort(object):
 
     def priority_value(self, houses, batteries):
         ''' Sort houses based on priority value'''
-
         # Get distance to each battery
         for house in houses:
             for battery in batteries:

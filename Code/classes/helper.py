@@ -20,7 +20,7 @@ class Helper(object):
             try:
                 battery = house.connected
                 house.distance_to_battery = abs(battery.y - house.y) + abs(battery.x - house.x)
-                house.costs = house.distance_to_battery * 9
+                house.cable_costs(house.distance_to_battery)
                 cable_costs += house.costs
             except:
                 print("Huis niet verbonden")
@@ -28,6 +28,7 @@ class Helper(object):
 
         # Total costs
         total_costs = battery_costs + cable_costs
+        return total_costs
 
         # TEST: costs
         print("COSTS")
@@ -94,8 +95,13 @@ class Helper(object):
             b_far = house.priority_list[4]
             upper += initial_solution.distance_calc(house, b_far)
 
-        lowerbound = lower * 9 + (batteries[0].cost * len(batteries))
-        upperbound = upper * 9 + (batteries[0].cost * len(batteries))
+        battery_costs = 0
+        for battery in batteries:
+            battery_costs += battery.cost
+
+
+        lowerbound = lower * 9 + battery_costs
+        upperbound = upper * 9 + battery_costs
 
         print("LOWERBOUND: " , lowerbound)
         print("UPPERBOUND: " , upperbound)

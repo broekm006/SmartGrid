@@ -1,18 +1,15 @@
-# cluster houses and place battery in the middle
-# in progress
-# caminess
+# Mag deze weg?
 
-import sys
+
+import sys, copy
 sys.path.append('Code/algoritmes')
+
 from sort import Sort
 from swap import Swap
 from helper import Helper
-import copy
 
 sys.path.append('Code/classes')
 from visualizer import Visualizer
-
-
 
 class K_means(object):
 
@@ -21,7 +18,9 @@ class K_means(object):
         self.batteries = batteries
         self.cluster()
 
+
     def cluster(self):
+        ''' Use K-means to cluster and assign houses to batteries '''
 
         # connect all houses to first battery
         for house in self.houses:
@@ -32,7 +31,6 @@ class K_means(object):
                     battery.add(house)
 
         while True:
-
             # make copy for  comparison
             current_houselist = copy.deepcopy(self.houses)
 
@@ -64,7 +62,6 @@ class K_means(object):
             batterynumber = 0
 
             for battery in self.batteries:
-
                 print("The battery is: "+ str(batterynumber))
                 print(*battery.connected)
 

@@ -1,3 +1,4 @@
+import math
 from house import House
 
 class Battery(object):
@@ -10,7 +11,8 @@ class Battery(object):
         self.connected = []
         self.current_usage = 0
         self.distance = 0
-        self.cost = 5000 # kan later worden meegegeven
+        self.variance = 0
+        self.cost = 5000
 
     def check_amp(self):
         ''' Check available space'''
@@ -28,6 +30,24 @@ class Battery(object):
         self.current_usage -= removed_house.amp
         self.connected.remove(removed_house)
 
+    def calculate_variance(self):
+
+        # calculate mean distance from battery to connected houses
+        # https://stackoverflow.com/questions/8102515/selecting-an-appropriate-similarity-metric-assessing-the-validity-of-a-k-means
+        # https://www.mathsisfun.com/data/standard-deviation.html
+        distances = []
+        for house in self.connected:
+            house.distance(self)
+            distances.append(house.distance_to_battery)
+        mean = sum(distances)/len(distances)
+
+        # calculate the Variance
+        differences = []
+        for distance in distances:
+            difference = math.pow((distance - mean), 2)
+            differences.append(difference)
+
+        self.variance = sum(differences)/len(differences)
 
     def __str__(self):
         return "id: " + str(self.id) + " X: " + str(self.x) + " Y: " + str(self.y) + " Max Amp: " + str(self.max_amp) + " List: " + str(self.connected)
