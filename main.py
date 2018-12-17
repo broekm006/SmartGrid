@@ -50,7 +50,6 @@ def what_to_run(self, wijk, algo, sec_algo, NoT, vis):
         k_means.results()
     elif algo == "HAC":
         splitter = Cluster_merge(load.houses)
-        #sec_algo = "escape"
 
 
     else:

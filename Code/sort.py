@@ -1,8 +1,6 @@
 import sys
 sys.path.append('Code/classes')
 
-# from house import House
-# from battery import Battery
 
 class Sort(object):
 
