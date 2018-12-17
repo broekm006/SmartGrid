@@ -25,7 +25,6 @@ Voor hulp bij het runnen van het algoritme kan het volgende command gegeven word
 
 ```
 python main.py -h
-
 ```
 
 Tijdens het runnen van het algoritme zal in de terminal aangegeven worden als een bepaald algoritme is gestart. Na het runnen van de algoritmes zullen ook de totale kosten verschijnen van de gevonden oplossing.
