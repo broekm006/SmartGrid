@@ -58,6 +58,8 @@ class Cluster_merge(object):
         distance_dict = {}
         distance_dict[0] = 0
 
+        print("START HIERARCHICAL AGLLOMERATIVE CLUSTERING (HAC)")
+        print()
         while len(distance_dict) > 0:
 
             # Continue while merges possible
@@ -73,11 +75,13 @@ class Cluster_merge(object):
             self.houses = copy.deepcopy(k_means.houses)
             self.batteries = copy.deepcopy(k_means.batteries)
 
-            # calculate costs
-            count += 1
+
             # print("Count: ", count)
             solution = Solution(self.houses, self.batteries)
+            solution.calculate_costs(count)
             solutions.append(solution)
+            # calculate costs
+            count += 1
 
             # total_cost = solution.calculate_costs()
             # print("Total costs: ", total_cost)
@@ -88,7 +92,7 @@ class Cluster_merge(object):
             for i, battery1 in enumerate(self.batteries):
                 for battery2 in self.batteries[i+1:]:
                     if battery1.current_usage + battery2.current_usage > 1800:
-                        print("Merge not possible")
+                        # print("Merge not possible")
                         break
                     else:
                         # DISTANCE
@@ -133,15 +137,15 @@ class Cluster_merge(object):
                 self.batteries.append(merged_battery)
                 break
 
-        greedy = Greedy(self.houses, self.batteries,"output")
+        greedy = Greedy(self.houses, self.batteries,"priority")
 
-        for battery in greedy.batteries:
-            print("ID: ", battery.id)
-            print("Capacity: ", battery.max_amp)
-            print("Current usage", battery.current_usage)
-            print("Cost: ", battery.cost)
-            print("Connected", *battery.connected)
-            print()
+        # for battery in greedy.batteries:
+        #     print("ID: ", battery.id)
+        #     print("Capacity: ", battery.max_amp)
+        #     print("Current usage", battery.current_usage)
+        #     print("Cost: ", battery.cost)
+        #     print("Connected", *battery.connected)
+        #     print()
 
         solution = Solution(greedy.houses, greedy.batteries)
         total_cost = solution.calculate_costs(count)
@@ -152,11 +156,11 @@ class Cluster_merge(object):
 
         cost = float('inf')
         for sol in solutions:
-            print("Cost solution " + str(i) + ": " + str(sol.calculate_costs2()))
-            print("Cheapest so far: " + str(cost))
+            # print("Cost solution " + str(i) + ": " + str(sol.calculate_costs2()))
+            # print("Cheapest so far: " + str(cost))
             if sol.calculate_costs2() < cost:
-                print("goedkoper")
-                print()
+                # print("goedkoper")
+                # print()
                 cost = sol.calculate_costs2()
                 best_solution = sol
 
@@ -168,14 +172,14 @@ class Cluster_merge(object):
                 connection_count += 1
 
 
-            print("ID: ", battery.id)
-            print("Max: ", battery.max_amp)
-            print("Cost: ", battery.cost)
-            print("Coordinates: (" + str(battery.x) + "," + str(battery.y) + ")")
-            print("Current usage: ", battery.current_usage)
-            print("Connected", connections)
-            print("Connection count: ", connection_count)
-            print()
+            # print("ID: ", battery.id)
+            # print("Max: ", battery.max_amp)
+            # print("Cost: ", battery.cost)
+            # print("Coordinates: (" + str(battery.x) + "," + str(battery.y) + ")")
+            # print("Current usage: ", battery.current_usage)
+            # print("Connected", connections)
+            # print("Connection count: ", connection_count)
+            # print()
 
         best_solution.calculate_costs2()
         helper = Helper()

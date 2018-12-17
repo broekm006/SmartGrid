@@ -98,7 +98,7 @@ class K_means2(object):
         for battery in batteries:
             battery_costs += battery.cost
         costs = cable_costs + battery_costs
-        print(costs)
+        # print(costs)
 
         # for each cluster, new centre = means of all points x
         for battery in batteries:

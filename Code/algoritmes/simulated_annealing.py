@@ -29,6 +29,8 @@ class Simulated_annealing(object):
         T_min = 0.0000000000000000000000000000000000000000000001 / (self.nt * 1000000)
         alpha = 0.9
 
+        print("START SIMULATED ANNEALING")
+        print()
         # while temp is higher than minimal temp.
         while T > T_min:
             i = 1
