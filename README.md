@@ -19,7 +19,7 @@ python main.py
 -v: True / False
 ```
 
-Na het command '-w' kan gekozen worden voor de getallen '1', '2' en '3'. Elk getal staat voor een wijk met een bepaalde startopstelling (zie de uitleg onder de kop "Probleem"). De startopstellingen zijn te vinden in de map SmartGrid/data/Huizen&Batterijen. Na het command '-a' kan gekozen worden voor de woorden 'greedy_output', 'greedy_distance', 'greedy_priority', 'k_means_output', 'k_means_distance', 'k_means_priority' en 'HAC. Ieder van deze woorden staat voor een bepaald primair algoritme. Na het command '-b' kan gekozen worden voor de woorden 'Hill_climber' en 'Simulated_annealing', welke staan voor een bepaald secundair algoritme. Een uitgebreidere omschrijving van de algoritmes is te vinden in SmartGrid/code/README.md. Na het command '-i' kan het aantal iteraties gekozen worden die het HillClimber algoritme moet gaan maken. Na het command '-v' kan gekozen worden voor 'True' of 'False'. Indien gekozen wordt voor 'True' zal na het draaien van de algoritmes een visualisatie verschijnen van de gekozen wijk, waarop zichtbaar is aan welke batterij de huizen zijn verbonden. Op de visualisatie staat een stip voor een huis en een kruis voor een batterij. Indien een stip een en kruis dezelfde kleur hebben, betekent dit dat beide aan elkaar verbonden zijn.
+Na het command '-w' kan gekozen worden voor de getallen '1', '2' en '3'. Elk getal staat voor een wijk met een bepaalde startopstelling (zie de uitleg onder de kop "Probleem"). De startopstellingen zijn te vinden in de map SmartGrid/data/Huizen&Batterijen. Na het command '-a' kan gekozen worden voor de woorden 'greedy_output', 'greedy_distance', 'greedy_priority', 'k_means_output', 'k_means_distance', 'k_means_priority' en 'HAC'. Ieder van deze woorden staat voor een bepaald primair algoritme. Na het command '-b' kan gekozen worden voor de woorden 'Hill_climber' en 'Simulated_annealing', welke staan voor een bepaald secundair algoritme. Een uitgebreidere omschrijving van de algoritmes is te vinden in SmartGrid/code/README.md. Na het command '-i' kan het aantal iteraties gekozen worden die het HillClimber algoritme moet gaan maken. Na het command '-v' kan gekozen worden voor 'True' of 'False'. Indien gekozen wordt voor 'True' zal na het draaien van de algoritmes een visualisatie verschijnen van de gekozen wijk, waarop zichtbaar is aan welke batterij de huizen zijn verbonden. Op de visualisatie staat een stip voor een huis en een kruis voor een batterij. Indien een stip een en kruis dezelfde kleur hebben, betekent dit dat beide aan elkaar verbonden zijn.
 
 Voor hulp bij het runnen van het algoritme kan het volgende command gegeven worden:
 
@@ -101,12 +101,12 @@ Alle python scripts staan in de folder Code. In de map Code is onderscheid gemaa
 * Thomas Franx
 
 ## Dankwoord (Acknowledgments)
-* Quinten Van der Post
+* Quinten van der Post
 * StackOverflow
 * Koffie
 
 ---
-### eventueel logboek
+### logboek
 **7-11-2018:**
 De huizen gesorteerd van groot naar klein, vervolgens over de huizen heen gelopen
 en steeds de batterij gekozen die het meest dichtbij is. Werkt voor wijk1 en wijk 3,
