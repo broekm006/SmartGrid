@@ -1,10 +1,6 @@
 import random, copy
 from solution import Solution
-<<<<<<< HEAD
-# from visualizer import Visualizer
-=======
 from frequency_visualizer import Frequency_visualizer
->>>>>>> 93b363af56e4b91f77635d7c8947de2681429cd3
 
 class Simulated_annealing(object):
 

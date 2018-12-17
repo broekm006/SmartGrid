@@ -11,12 +11,7 @@ class Battery(object):
         self.connected = []
         self.current_usage = 0
         self.distance = 0
-<<<<<<< HEAD
-        self.variance = 0
-        self.cost = 5000 # kan later worden meegegeven
-=======
         self.cost = 5000
->>>>>>> 93b363af56e4b91f77635d7c8947de2681429cd3
 
     def check_amp(self):
         ''' Check available space'''

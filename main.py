@@ -12,10 +12,7 @@ from hill_climber import Hill_climber
 from hill_climber_BC import Hill_climber_BC
 from k_means2 import K_means2
 from random_connect import Random_connect
-<<<<<<< HEAD
 from test_merge import Cluster_merge
-=======
->>>>>>> 93b363af56e4b91f77635d7c8947de2681429cd3
 from simulated_annealing import Simulated_annealing
 
 sys.path.append('Code/classes')
@@ -79,9 +76,6 @@ def what_to_run(self, wijk, algo, sec_algo, NoT, vis):
 # moet algoritme elke keer opnieuw runnen voor main of 1 maal runnen *n > anders worden algo keer op keer opnieuw geloopt
 
 if __name__ == "__main__":
-<<<<<<< HEAD
-    load = Load("wijk3", "wijk3")
-=======
     parser = argparse.ArgumentParser(prog='main.py', usage='%(prog)s [-h] [-a [greedy_output, greedy_distance, greedy_priority, k_means_output, k_means_distance, k_means_priority]] [-b [hill_climber, simulated_annealing, brute_force]] [-i [iterations]] [-v [Y]]')
     parser.add_argument('-w', '--wijk', type=str, choices=['1', '2', '3'], required=True)
     parser.add_argument('-a', '--algorithm', type=str, choices=['greedy_output', 'greedy_distance', 'greedy_priority','k_means_output', 'k_means_distance', 'k_means_priority'], required=True)
@@ -107,27 +101,18 @@ if __name__ == "__main__":
 # add default values for ^ to make it work
 
     #load = Load("wijk1", "wijk1")
->>>>>>> 93b363af56e4b91f77635d7c8947de2681429cd3
 
     # Default Bounds
     # Helper.bounds(Helper, load.batteries, load.houses)
 
     # Greedy
-<<<<<<< HEAD
     # greedy = Greedy(load.houses, load.batteries, "priority") # "output", "distance", "priority"
-=======
-    #greedy = Greedy(load.houses, load.batteries, "priority") # "output", "distance", "priority"
->>>>>>> 93b363af56e4b91f77635d7c8947de2681429cd3
 
     # random
     # random = Random_connect(load.houses, load.batteries)
 
     # Hill CLimber
-<<<<<<< HEAD
     # hill_climber = Hill_climber(greedy.houses, greedy.batteries, 1, 100)
-=======
-    #hill_climber = Hill_climber(greedy.houses, greedy.batteries, 10, 10)
->>>>>>> 93b363af56e4b91f77635d7c8947de2681429cd3
 
     # Hill Climber Best Choice
     # hill_climber_BC = Hill_climber_BC(greedy.houses, greedy.batteries, 100)
@@ -150,12 +135,7 @@ if __name__ == "__main__":
     # Grid visualisatie, specify houses, batteries and visual type
     # grid_visualisatie = Grid_visualizer(k_means.houses, k_means.batteries, "gridview")
 
-<<<<<<< HEAD
-    # frequency visualisatie, meegeven resultaten, type visualisatie en titel
-    # frequency_table = Frequency_visualizer(hill_climber.multi_results, "result_frequency_table", "100 iterations HC") # HillClimber_BC1 / HillClimber_random1
-=======
     # visualizer.csv_HillClimber(sim.multi_results, "MultiSA_PRIORITY_WIJK1") # HillClimber_BC1 / HillClimber_random1
 
     # frequency visualisatie, meegeven resultaten, type visualisatie en titel
     #frequency_table = Frequency_visualizer(hill_climber.multi_results, "result_frequency_table", "100 iterations HC") # HillClimber_BC1 / HillClimber_random1
->>>>>>> 93b363af56e4b91f77635d7c8947de2681429cd3
