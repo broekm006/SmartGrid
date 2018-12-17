@@ -28,6 +28,7 @@ python main.py -h
 
 ```
 
+Tijdens het runnen van het algoritme zal in de terminal aangegeven worden als een bepaald algoritme is gestart. Na het runnen van de algoritmes zullen ook de totale kosten verschijnen van de gevonden oplossing.
 
 ## Probleem
 Groene energie is de energie van de toekomst, en zelf produceren is de mode van nu. Veel huizen hebben tegenwoordig zonnepanelen, windmolens of andere installaties om zelfstandig energie mee te produceren. Vaak produceren die installaties zelfs meer energie dan voor eigen consumptie nodig is. Het overschot zou kunnen worden terugverkocht aan een energieleverancier, maar de benodigde infrastructuur is daarvoor veelal niet in woonwijken aanwezig. Om de pieken in consumptie en productie van energie te managen kan daarom het beste een netwerk aangelegd worden, een zogenaamd "SmartGrid". Het SmartGrid is een netwerk van batterijen waarop huizen in een woonwijk met kabels zijn aangesloten, zodat een eventuele overproductie aan energie kan worden opgeslagen. Deze case richt zich op de vraag hoe een dergelijk SmartGrid netwerk zo goedkoop mogelijk kan worden aangelegd.
