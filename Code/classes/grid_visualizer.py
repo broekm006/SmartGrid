@@ -3,9 +3,9 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
-from celluloid import Camera
-import matplotlib
-matplotlib.use('Agg')
+# from celluloid import Camera
+# import matplotlib
+# matplotlib.use('Agg')
 
 
 import sys
@@ -106,6 +106,7 @@ def create_visualization(self):
     sns.set_color_codes("dark")
 
     # plot = sns.scatterplot(x="x", y="y", hue="connected_bat", data=df, ci=None, style="type", palette=["C0", "C1", "C2", "C3", "C4"])
+    amount = len(self.batteries) + 1
     plot = sns.scatterplot(x="x", y="y", hue="connected_bat", data=df, ci=None, style="type", palette=sns.color_palette("Paired", n_colors = len(self.batteries)))
     plot.set_title(self.name)
     plot.legend_.remove()

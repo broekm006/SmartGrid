@@ -88,7 +88,7 @@ class Cluster_merge(object):
                         break
                     else:
                         # DISTANCE
-                        # distance = self.linkage(battery1, battery2)
+                        distance = self.linkage(battery1, battery2)
                         distance = abs(battery1.x - battery2.x) + abs(battery1.y - battery2.y)
                         distance_dict[(battery1, battery2)] = distance
 
@@ -182,4 +182,4 @@ class Cluster_merge(object):
         self.houses = copy.deepcopy(best_solution.houses)
         self.batteries = copy.deepcopy(best_solution.batteries)
 
-        # grid_visualisatie = Grid_visualizer(best_solution.houses, best_solution.batteries, "gridview")
+        grid_visualisatie = Grid_visualizer(best_solution.houses, best_solution.batteries, "gridview", "merge")

@@ -127,7 +127,7 @@ if __name__ == "__main__":
 
     #
     splitter = Cluster_merge(load.houses)
-    sim = Simulated_annealing(splitter.houses, splitter.batteries, 1)
+    # sim = Simulated_annealing(splitter.houses, splitter.batteries, 1)
 
     # Bounds + Costs
     # Helper.bounds(Helper, k_means.batteries, k_means.houses)
