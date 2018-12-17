@@ -20,7 +20,7 @@ class Helper(object):
             try:
                 battery = house.connected
                 house.distance_to_battery = abs(battery.y - house.y) + abs(battery.x - house.x)
-                house.costs = house.distance_to_battery * 9
+                house.cable_costs(house.distance_to_battery)
                 cable_costs += house.costs
             except:
                 print("Huis niet verbonden")
@@ -28,6 +28,7 @@ class Helper(object):
 
         # Total costs
         total_costs = battery_costs + cable_costs
+        return total_costs
 
         # TEST: costs
         print("COSTS")

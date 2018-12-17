@@ -27,6 +27,11 @@ class Cluster_merge(object):
             battery.costs = 900 # Later via Battery()?
             self.batteries.append(battery)
 
+    def linkage(self, battery1, battery2):
+
+        distance = abs(battery1.x - battery2.x) + abs(battery1.y - battery2.y)
+        return distance
+
     def merge(self):
         # single linkage: distance between the closest members of the two clusters
         # complete linkage: distance between the members farthest apart
@@ -39,6 +44,7 @@ class Cluster_merge(object):
         distance_dict = {}
         distance_dict[0] = 0
         count = 0
+
         while len(distance_dict) > 0:
 
             # k_means = K_means2(self.houses, self.batteries, "priority", "0")
@@ -65,7 +71,8 @@ class Cluster_merge(object):
                         print("Merge not possible")
                         break
                     else:
-                        distance = abs(battery1.x - battery2.x) + abs(battery1.y - battery2.y)
+                        # DISTANCE
+                        distance = self.linkage(battery1, battery2)
                         distance_dict[(battery1, battery2)] = distance
 
             for distance in distance_dict:
@@ -106,7 +113,7 @@ class Cluster_merge(object):
                 break
 
 
-        greedy = Greedy(self.houses, self.batteries, "priority")
+        greedy = Greedy(self.houses, self.batteries,"distance")
 
         for battery in greedy.batteries:
             print("ID: ", battery.id)
@@ -117,17 +124,21 @@ class Cluster_merge(object):
             print()
 
         solution = Solution(greedy.houses, greedy.batteries)
-        total_cost = solution.calculate_costs()
+        total_cost = solution.calculate_costs(count)
         # print("Total costs: ", total_cost)
 
         helper = Helper()
         helper.bounds(greedy.batteries, greedy.houses)
 
         cost = float('inf')
-        for solution in solutions:
-            if solution.calculate_costs() < cost:
-                cost = solution.calculate_costs()
-                best_solution = solution
+        for i, sol in enumerate(solutions):
+            print("Cost solution " + str(i) + ": " + str(sol.calculate_costs2()))
+            print("Cheapest so far: " + str(cost))
+            if sol.calculate_costs2() < cost:
+                print("goedkoper")
+                print()
+                cost = sol.calculate_costs2()
+                best_solution = sol
 
         for battery in best_solution.batteries:
             connections = []
@@ -136,16 +147,16 @@ class Cluster_merge(object):
                 connections.append(house.id)
                 connection_count += 1
 
-            print("ID: ", battery.id)
-            print("Max: ", battery.max_amp)
-            print("Cost: ", battery.cost)
-            print("Coordinates: (" + str(battery.x) + "," + str(battery.y) + ")")
-            print("Current usage: ", battery.current_usage)
-            print("Connected", connections)
-            print("Connection count: ", connection_count)
-            print()
+            # print("ID: ", battery.id)
+            # print("Max: ", battery.max_amp)
+            # print("Cost: ", battery.cost)
+            # print("Coordinates: (" + str(battery.x) + "," + str(battery.y) + ")")
+            # print("Current usage: ", battery.current_usage)
+            # print("Connected", connections)
+            # print("Connection count: ", connection_count)
+            # print()
 
-        best_solution.calculate_costs()
+        best_solution.calculate_costs2()
         helper = Helper()
         helper.bounds(best_solution.batteries, best_solution.houses)
 

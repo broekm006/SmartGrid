@@ -63,6 +63,32 @@ class Solution(object):
         print("ID (", id, ") total costs: (", total_costs, ")")
         return total_costs
 
+    # calcuate the costs of the house to battery
+    def calculate_costs2(self):
+        ''' Calculate total costs'''
+
+        battery_costs = 0
+        for battery in self.batteries:
+            battery_costs += battery.cost
+
+        cable_costs = 0
+        for house in self.houses:
+            try:
+                battery = house.connected
+                house.distance_to_battery = abs(battery.y - house.y) + abs(battery.x - house.x)
+                house.costs = house.distance_to_battery * 9
+                cable_costs += house.costs
+            except:
+                print("Huis niet verbonden")
+                pass
+
+        # Total costs
+        total_costs = battery_costs + cable_costs
+
+        # print("Total costs2: (", total_costs, ")")
+        return total_costs
+
+
     # calculate the total cable costs for all houses
     def houses_costs(self, batteries, houses):
         ''' Calculate to total costs for houses '''

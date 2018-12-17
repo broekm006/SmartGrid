@@ -76,22 +76,22 @@ def what_to_run(self, wijk, algo, sec_algo, NoT, vis):
 # moet algoritme elke keer opnieuw runnen voor main of 1 maal runnen *n > anders worden algo keer op keer opnieuw geloopt
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(prog='main.py', usage='%(prog)s [-h] [-a [greedy_output, greedy_distance, greedy_priority, k_means_output, k_means_distance, k_means_priority]] [-b [hill_climber, simulated_annealing, brute_force]] [-i [iterations]] [-v [Y]]')
-    parser.add_argument('-w', '--wijk', type=str, choices=['1', '2', '3'], required=True)
-    parser.add_argument('-a', '--algorithm', type=str, choices=['greedy_output', 'greedy_distance', 'greedy_priority','k_means_output', 'k_means_distance', 'k_means_priority'], required=True)
-    parser.add_argument('-b', '--secondary_algorithm', choices=['hill_climber','hill_climber_BC','simulated_annealing'], type=str, required=False, default="simulated_annealing")
-    parser.add_argument('-i','--iterations', type=int, help='Enter the number of times you wish to run the selected algorithm', required=False, default=1)
-    parser.add_argument('-v','--visualizer', choices=['True','False'], type=str, help='Enter True if you want to see a visual representation of the algorithm', required=False, default='False')
-
-    #parser.print_help()
-    args = parser.parse_args()
-
-    print(args.wijk)
-    print(args.algorithm)
-    print(args.secondary_algorithm)
-    print(args.iterations)
-    print(args.visualizer)
-    what_to_run(what_to_run, args.wijk, args.algorithm, args.secondary_algorithm, args.iterations, args.visualizer)
+    # parser = argparse.ArgumentParser(prog='main.py', usage='%(prog)s [-h] [-a [greedy_output, greedy_distance, greedy_priority, k_means_output, k_means_distance, k_means_priority]] [-b [hill_climber, simulated_annealing, brute_force]] [-i [iterations]] [-v [Y]]')
+    # parser.add_argument('-w', '--wijk', type=str, choices=['1', '2', '3'], required=True)
+    # parser.add_argument('-a', '--algorithm', type=str, choices=['greedy_output', 'greedy_distance', 'greedy_priority','k_means_output', 'k_means_distance', 'k_means_priority'], required=True)
+    # parser.add_argument('-b', '--secondary_algorithm', choices=['hill_climber','hill_climber_BC','simulated_annealing'], type=str, required=False, default="simulated_annealing")
+    # parser.add_argument('-i','--iterations', type=int, help='Enter the number of times you wish to run the selected algorithm', required=False, default=1)
+    # parser.add_argument('-v','--visualizer', choices=['True','False'], type=str, help='Enter True if you want to see a visual representation of the algorithm', required=False, default='False')
+    #
+    # #parser.print_help()
+    # args = parser.parse_args()
+    #
+    # print(args.wijk)
+    # print(args.algorithm)
+    # print(args.secondary_algorithm)
+    # print(args.iterations)
+    # print(args.visualizer)
+    # what_to_run(what_to_run, args.wijk, args.algorithm, args.secondary_algorithm, args.iterations, args.visualizer)
 
 # algo == type of algorithm
 # sec_algo == type of iterative algorithm to combine with initial algorithm
@@ -100,7 +100,7 @@ if __name__ == "__main__":
 
 # add default values for ^ to make it work
 
-    #load = Load("wijk1", "wijk1")
+    load = Load("wijk1", "wijk1")
 
     # Default Bounds
     # Helper.bounds(Helper, load.batteries, load.houses)
