@@ -146,6 +146,20 @@ class K_means2(object):
             # solution.km_solution()
             pass
 
+    def results(self):
+        ''' Print result and new upper- and lowerbound after K-means'''
+
+        print()
+        print("UPPER & LOWERBOUNDS AFTER K-MEANS:")
+        k_means_solution = Solution(self.houses, self.batteries)
+        costs = k_means_solution.calculate_costs2()
+        k_means_solution.bounds(self.batteries, self.houses)
+
+        # costs = k_means_solution.calculate_costs2()
+        print()
+        print("TOTAL COSTS AFTER K-MEANS: ", costs)
+
+
     def csv_output(self):
         ''' Create .CSV file for K Means '''
         with open("resultaten/K_means.csv", mode = 'w') as csv_file:

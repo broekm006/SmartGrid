@@ -17,11 +17,19 @@ from simulated_annealing import Simulated_annealing
 
 sys.path.append('Code/classes')
 from helper import Helper
+from solution import Solution
 
 def what_to_run(self, wijk, algo, sec_algo, NoT, vis):
     ''' Kijkt welke variant van greedy'''
     wijk = "wijk" + wijk
     load = Load(wijk, wijk)
+
+    print()
+    print("INNITIAL UPPER & LOWERBOUND (before k-means and/or HAC)")
+    print()
+    print(wijk)
+    Solution.bounds(Solution, load.batteries, load.houses)
+
 
     if algo == "random":
         random = Random_connect(load.houses, load.batteries)
@@ -33,10 +41,13 @@ def what_to_run(self, wijk, algo, sec_algo, NoT, vis):
         greedy = Greedy(load.houses, load.batteries, "priority")
     elif algo == "k_means_output":
         k_means = K_means2(load.houses, load.batteries, "output", "")
+        k_means.results()
     elif algo == "k_means_distance":
         k_means = K_means2(load.houses, load.batteries, "distance", "")
+        k_means.results()
     elif algo == "k_means_priority":
         k_means = K_means2(load.houses, load.batteries, "priority", "")
+        k_means.results()
     elif algo == "HAC":
         splitter = Cluster_merge(load.houses)
         #sec_algo = "escape"

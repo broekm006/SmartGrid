@@ -58,7 +58,8 @@ class Cluster_merge(object):
         distance_dict = {}
         distance_dict[0] = 0
 
-        print("START HIERARCHICAL AGLLOMERATIVE CLUSTERING (HAC)")
+        print()
+        print("START HIERARCHICAL AGLLOMERATIVE CLUSTERING (HAC) (with K-MEANS)")
         print()
         while len(distance_dict) > 0:
 
@@ -70,17 +71,14 @@ class Cluster_merge(object):
             for i, battery in enumerate(self.batteries):
                 battery.id = i
 
-            # k_means = K_means2(self.houses, self.batteries, "priority", "0")
             k_means = K_means2(self.houses, self.batteries, "output", "0")
             self.houses = copy.deepcopy(k_means.houses)
             self.batteries = copy.deepcopy(k_means.batteries)
 
 
-            # print("Count: ", count)
             solution = Solution(self.houses, self.batteries)
             solution.calculate_costs(count)
             solutions.append(solution)
-            # calculate costs
             count += 1
 
             # total_cost = solution.calculate_costs()
@@ -151,8 +149,8 @@ class Cluster_merge(object):
         total_cost = solution.calculate_costs(count)
         # print("Total costs: ", total_cost)
 
-        helper = Helper()
-        helper.bounds(greedy.batteries, greedy.houses)
+        # helper = Helper()
+        # helper.bounds(greedy.batteries, greedy.houses)
 
         cost = float('inf')
         for sol in solutions:
@@ -181,9 +179,14 @@ class Cluster_merge(object):
             # print("Connection count: ", connection_count)
             # print()
 
-        best_solution.calculate_costs2()
-        helper = Helper()
-        helper.bounds(best_solution.batteries, best_solution.houses)
+        print()
+        print("BOUNDS AFTER HAC (& K-MEANS):")
+        best_solution.bounds(best_solution.batteries, best_solution.houses)
+
+        print()
+        print("BEST SOLUTION AFTER HAC (& K-MEANS): ")
+        print("HAC ID (", best_solution.id, ") total costs: (", best_solution.costs, ")")
+        print()
 
         self.houses = copy.deepcopy(best_solution.houses)
         self.batteries = copy.deepcopy(best_solution.batteries)

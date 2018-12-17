@@ -14,6 +14,9 @@ class Hill_climber(object):
 
     def hill_climbers(self):
 
+        print("START HILL CLIMBER")
+        print()
+
         for count in range(self.n):
             temp_batteries = copy.deepcopy(self.batteries)
             temp_houses = copy.deepcopy(self.houses)
@@ -82,5 +85,9 @@ class Hill_climber(object):
                 counter += 1
 
             # End HILL CLIMBER
-            eind_oplossing = Solution(temp_houses, temp_batteries)
-            self.multi_results.append(eind_oplossing.calculate_costs(count))
+            # self.number_of_times is always 1, therefore solution == eindoplossing
+            # eind_oplossing = Solution(temp_houses, temp_batteries)
+            print()
+            print("BEST SOLUTION AFTER Hill Climber: ")
+            print("HILL CLIMBER ID (", solution.id, ") total costs: (", solution.costs, ")")
+            print()

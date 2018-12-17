@@ -113,4 +113,10 @@ class Simulated_annealing(object):
         # EINDE HILL CLIMBER
         eind_oplossing = Solution(temp_houses, temp_batteries)
         self.multi_results.append([counter, eind_oplossing.calculate_costs(counter)])
+        print()
+        print("BEST SOLUTION AFTER SIMULATED ANNEALING")
+        print("SIMULATED ANNEALING ID (", eind_oplossing.id, ") total costs: (", eind_oplossing.costs, ")")
+        print()
+
+        # Visualize
         Frequency_visualizer.write_csv(Frequency_visualizer, self.results2, "Simulated_annealing")
