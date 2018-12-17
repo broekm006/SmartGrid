@@ -90,11 +90,11 @@ def what_to_run(self, wijk, algo, sec_algo, NoT, vis):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog='main.py', usage='%(prog)s [-h] [-a [greedy_output, greedy_distance, greedy_priority, k_means_output, k_means_distance, k_means_priority, HAC]] [-b [hill_climber, simulated_annealing, brute_force]] [-i [iterations]] [-v [Y]]')
-    parser.add_argument('-w', '--wijk', type=str, choices=['1', '2', '3'], required=True)
-    parser.add_argument('-a', '--algorithm', type=str, choices=['greedy_output', 'greedy_distance', 'greedy_priority','k_means_output', 'k_means_distance', 'k_means_priority', 'HAC'], required=True)
-    parser.add_argument('-b', '--secondary_algorithm', choices=['hill_climber','hill_climber_BC','simulated_annealing'], type=str, required=False, default="simulated_annealing")
-    parser.add_argument('-i','--iterations', type=int, help='Enter the number of times you wish to run the selected algorithm', required=False, default=1)
-    parser.add_argument('-v','--visualizer', choices=['True','False'], type=str, help='Enter True if you want to see a visual representation of the algorithm', required=False, default='False')
+    parser.add_argument('-w', '--wijk', type=str, choices=['1', '2', '3'], required=True, help='Choose the grid you would like to run the algorithm(s) on.')
+    parser.add_argument('-a', '--algorithm', type=str, choices=['greedy_output', 'greedy_distance', 'greedy_priority','k_means_output', 'k_means_distance', 'k_means_priority', 'HAC'], required=True, help='Choose the primary algorithm you would like to run.')
+    parser.add_argument('-b', '--secondary_algorithm', choices=['hill_climber','hill_climber_BC','simulated_annealing'], type=str, required=False, default="simulated_annealing", help='Choose the secondary algorithm you would like to run. If not specified, Simulated Annealing is ran.')
+    parser.add_argument('-i','--iterations', type=int, help='Enter the number of times you wish to run the selected algorithmself.', required=False, default=1)
+    parser.add_argument('-v','--visualizer', choices=['True','False'], type=str, help='Enter True if you want to see a visual representation of the algorithm.', required=False, default='False')
 
     args = parser.parse_args()
     what_to_run(what_to_run, args.wijk, args.algorithm, args.secondary_algorithm, args.iterations, args.visualizer)
@@ -129,7 +129,7 @@ if __name__ == "__main__":
     # k_means = K_means2(load.houses, load.batteries, "output", "0") # "random" or "" for innitial battery location
 
     #
-    # splitter = Cluster_merge(load.houses)
+    #splitter = Cluster_merge(load.houses)
     # sim = Simulated_annealing(splitter.houses, splitter.batteries, 1)
 
     # Bounds + Costs
