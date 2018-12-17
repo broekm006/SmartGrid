@@ -181,5 +181,3 @@ class Cluster_merge(object):
 
         self.houses = copy.deepcopy(best_solution.houses)
         self.batteries = copy.deepcopy(best_solution.batteries)
-
-        grid_visualisatie = Grid_visualizer(best_solution.houses, best_solution.batteries, "gridview", "Hierarchical Agglomerative Clustering")

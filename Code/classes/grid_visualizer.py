@@ -3,7 +3,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
-from celluloid import Camera
+#from celluloid import Camera
 import matplotlib
 # matplotlib.use('Agg')
 

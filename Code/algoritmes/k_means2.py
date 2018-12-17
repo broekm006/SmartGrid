@@ -138,7 +138,6 @@ class K_means2(object):
             self.batteries = batteries
             self.houses = houses
 
-
             # try again
             self.clustering(houses, batteries, counter)
         else:

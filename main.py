@@ -46,32 +46,41 @@ def what_to_run(self, wijk, algo, sec_algo, NoT, vis):
         print("Error running algorithm")
 
     if sec_algo == "hill_climber" and algo == "greedy_output" or sec_algo == "hill_climber" and algo == "greedy_distance" or sec_algo == "hill_climber"  and algo == "greedy_priority":
-        hill_climber = Hill_climber(greedy.houses, greedy.batteries, 1000, NoT)
+        hill_climber = Hill_climber(greedy.houses, greedy.batteries, NoT, 1)
         if vis == 'True':
             grid_visualisatie = Grid_visualizer(hill_climber.houses, hill_climber.batteries, "gridview", "Greedy + Hill Climber")
     elif sec_algo == "hill_climber" and algo == "k_means_output" or sec_algo == "hill_climber" and algo == "k_means_distance" or sec_algo == "hill_climber" and algo == "k_means_priority":
-        hill_climber = Hill_climber(k_means.houses, k_means.batteries, 1000, NoT)
+        hill_climber = Hill_climber(k_means.houses, k_means.batteries, NoT, 1)
         if vis == 'True':
             grid_visualisatie = Grid_visualizer(hill_climber.houses, hill_climber.batteries, "gridview", "K-Means + Hill Climber")
     elif sec_algo == "hill_climber_BC" and algo == "greedy_output" or sec_algo == "hill_climber_BC" and algo == "greedy_distance" or sec_algo == "hill_climber_BC" and algo == "greedy_priority":
-        hill_climber_BC = Hill_climber_BC(greedy.houses, greedy.batteries, NoT)
+        hill_climber_BC = Hill_climber_BC(greedy.houses, greedy.batteries, NoT, 1)
         if vis == 'True':
             grid_visualisatie = Grid_visualizer(hill_climber_BC.houses, hill_climber_BC.batteries, "gridview", "Greedy + Hill Climber BC")
     elif sec_algo == "hill_climber_BC" and algo == "k_means_output" or sec_algo == "hill_climber_BC" and algo == "k_means_distance" or sec_algo == "hill_climber_BC" and algo == "k_means_priority":
-        hill_climber_BC = Hill_climber_BC(k_means.houses, k_means.batteries, NoT)
         if vis == 'True':
+            hill_climber_BC = Hill_climber_BC(k_means.houses, k_means.batteries, NoT, 1)
             grid_visualisatie = Grid_visualizer(hill_climber_BC.houses, hill_climber_BC.batteries, "gridview", "K-Means + Hill Climber BC")
     elif sec_algo == "simulated_annealing" and algo == "greedy_output" or sec_algo == "simulated_annealing" and algo == "greedy_distance" or sec_algo == "simulated_annealing" and algo == "greedy_priority":
-        sim = Simulated_annealing(greedy.houses, greedy.batteries, NoT)
+        sim = Simulated_annealing(greedy.houses, greedy.batteries, NoT, 1)
         if vis == 'True':
             grid_visualisatie = Grid_visualizer(sim.houses, sim.batteries, "gridview", "Greedy + Simulated Annealing")
     elif sec_algo == "simulated_annealing" and algo == "k_means_output" or sec_algo == "simulated_annealing" and algo == "k_means_distance" or sec_algo == "simulated_annealing" and algo == "k_means_priority":
-        sim = Simulated_annealing(k_means.houses, k_means.batteries, NoT)
+        sim = Simulated_annealing(k_means.houses, k_means.batteries, NoT, 1)
         if vis == 'True':
             grid_visualisatie = Grid_visualizer(sim.houses, sim.batteries, "gridview", "K-Means + Simulated Annealing")
     elif sec_algo == "simulated_annealing" and algo == "HAC":
-        print(splitter.batteries)
-        sim = Simulated_annealing(splitter.houses, splitter.batteries, NoT)
+        sim = Simulated_annealing(splitter.houses, splitter.batteries, NoT, 1)
+        if vis == 'True':
+            grid_visualisatie = Grid_visualizer(splitter.houses, splitter.batteries, "gridview", "Hierarchical Agglomerative Clustering")
+    elif sec_algo == "hill_climber" and algo == "HAC":
+        sim = Hill_climber(splitter.houses, splitter.batteries, NoT, 1)
+        if vis == 'True':
+            grid_visualisatie = Grid_visualizer(splitter.houses, splitter.batteries, "gridview", "Hierarchical Agglomerative Clustering")
+    elif sec_algo == "hill_climber_BC" and algo == "HAC":
+        sim = Hill_climber_BC(splitter.houses, splitter.batteries, NoT, 1)
+        if vis == 'True':
+            grid_visualisatie = Grid_visualizer(splitter.houses, splitter.batteries, "gridview", "Hierarchical Agglomerative Clustering")
     elif sec_algo == "escape":
         pass
 
@@ -79,7 +88,7 @@ def what_to_run(self, wijk, algo, sec_algo, NoT, vis):
         print("Error running secondary algorithm")
 
     #Frequency_visualizer.bar_sim()
-    Grid_visualizer.beweging()
+    #Grid_visualizer.beweging()
 
 # moet algoritme elke keer opnieuw runnen voor main of 1 maal runnen *n > anders worden algo keer op keer opnieuw geloopt
 
@@ -134,8 +143,8 @@ if __name__ == "__main__":
     # k_means = K_means2(load.houses, load.batteries, "output", "0") # "random" or "" for innitial battery location
 
     #
-    splitter = Cluster_merge(load.houses)
-    sim = Simulated_annealing(splitter.houses, splitter.batteries, 1)
+    # splitter = Cluster_merge(load.houses)
+    # sim = Simulated_annealing(splitter.houses, splitter.batteries, 1)
 
     # Bounds + Costs
     #Helper.bounds(Helper, k_means.batteries, k_means.houses)
