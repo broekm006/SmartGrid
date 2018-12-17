@@ -35,7 +35,7 @@ Groene energie is de energie van de toekomst, en zelf produceren is de mode van 
 
 Voor een feasibility study zijn drie woonwijken (Wijk 1, Wijk 2 en Wijk 3) opgesteld, met in elke wijk vijf batterijen.
 
-### Wat maakt het probleem moeilijk? (exploratie)
+### Wat maakt het probleem moeilijk? (Exploration)
 Algemeen:  
 Het lastige aan deze opdracht is niet zozeer gelegen in het feit dat alle huizen aan een batterij moeten worden verbonden, maar eerder in de optimalisatie van het Smartgrid. Eerder al werd duidelijk dat het Smartgrid zo goedkoop mogelijk moet worden aangelegd. Ieder huis verbinden met een eigen batterij (ter waarde van 5000 euro) is daarom geen realistische optie. In plaats daarvan zal het vanuit kostenoptimalisatie wenselijk zijn om meerdere huizen op een batterij aan te sluiten. Idealiter liggen de huizen die op een batterij zijn aangesloten daarnaast ook in de buurt van die batterij. Het aansluiten van een huis op een batterij gaat namelijk door middel van een kabel die 9 euro per gridsegment kost. Het aantal gridsegementen tussen twee punten dient te worden berekend via de Manhattan Distance.
 
