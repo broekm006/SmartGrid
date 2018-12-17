@@ -3,6 +3,10 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
+from celluloid import Camera
+import matplotlib
+matplotlib.use('Agg')
+
 
 import sys
 sys.path.append('../classes')
@@ -13,9 +17,10 @@ from battery import Battery
 
 class Grid_visualizer():
 
-    def __init__(self, houses, batteries, visualtype):
+    def __init__(self, houses, batteries, visualtype, name):
         self.batteries = batteries
         self.visualdata = self.write_csv(houses, batteries)
+        self.name = name
         self.check_visual_type(visualtype)
 
 
@@ -78,6 +83,20 @@ class Grid_visualizer():
 
         return "houses.csv"
 
+    def beweging():
+        fig = plt.figure()
+        camera = Camera(fig)
+        for i in range(100):
+            plt.plot([i] * 10)
+            camera.snap()
+        animation = camera.animate(interval=500, blit=True)
+        animation.save(
+            'simple.mp4',
+            dpi=100,
+            savefig_kwargs={
+                'frameon': False,
+                'pad_inches': 'tight'
+            })
 
 def create_visualization(self):
     df = pd.read_csv(self.visualdata)
@@ -87,9 +106,8 @@ def create_visualization(self):
     sns.set_color_codes("dark")
 
     # plot = sns.scatterplot(x="x", y="y", hue="connected_bat", data=df, ci=None, style="type", palette=["C0", "C1", "C2", "C3", "C4"])
-    amount = len(self.batteries)
-    plot = sns.scatterplot(x="x", y="y", hue="connected_bat", data=df, ci=None, style="type", palette=sns.color_palette("Paired", n_colors = amount))
-    plot.set_title("Wijk 1: K-Means with Simulated Annealing")
+    plot = sns.scatterplot(x="x", y="y", hue="connected_bat", data=df, ci=None, style="type", palette=sns.color_palette("Paired", n_colors = len(self.batteries)))
+    plot.set_title(self.name)
     plot.legend_.remove()
     plot.set(xlabel='X coordinates', ylabel='Y coordinates')
 
