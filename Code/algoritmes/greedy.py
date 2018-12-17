@@ -74,7 +74,7 @@ class Greedy(object):
                     house.cable_costs(distance)
 
         # HILL CLIMBER SWAP
-        # Swap.swap_hill_climber(Swap, self.houses, self.batteries)
+        Swap.swap_hill_climber(Swap, self.houses, self.batteries)
 
 
     def pv(self):

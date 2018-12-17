@@ -3,18 +3,19 @@ from solution import Solution
 
 class Hill_climber_BC(object):
 
-    def __init__(self, houses, batteries, number_of_runs):
+    def __init__(self, houses, batteries, number_of_runs, number_of_times):
         self.houses = copy.deepcopy(houses)
         self.batteries = copy.deepcopy(batteries)
         self.results = []
         self.multi_results = []
         self.n = number_of_runs
+        self.nt = number_of_times
         self.best_choice()
 
     def best_choice(self):
         ''' Run Best Choice Hill Climber '''
 
-        for count in range(self.n):
+        for count in range(self.number_of_times):
             temp_batteries = copy.deepcopy(self.batteries)
             temp_houses = copy.deepcopy(self.houses)
             print("COUNT: ", count)

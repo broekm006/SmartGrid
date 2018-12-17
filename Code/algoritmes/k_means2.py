@@ -7,8 +7,8 @@ from sort import Sort
 class K_means2(object):
 
     def __init__(self, houses, batteries, greedy, random):
-        self.houses = copy.deepcopy(houses)
-        self.batteries = copy.deepcopy(batteries)
+        self.houses = houses
+        self.batteries = batteries
         self.costs = float('Inf')
         self.counter = 0
         self.greedy = greedy
@@ -104,20 +104,21 @@ class K_means2(object):
         for battery in batteries:
             x = 0
             y = 0
-            count = 0
+            count  = 0
 
             for house in battery.connected:
                 x += house.x
                 y += house.y
                 count += 1
 
-            # average
-            mean_x = round(x / count)
-            mean_y = round(y / count)
+            if count != 0:
+                # average
+                mean_x = round(x / count)
+                mean_y = round(y / count)
 
-            # new centre
-            battery.x = mean_x
-            battery.y = mean_y
+                # new centre
+                battery.x = mean_x
+                battery.y = mean_y
 
         # Stops when costs haven't changed
         if costs < self.costs:
@@ -137,7 +138,6 @@ class K_means2(object):
             self.batteries = batteries
             self.houses = houses
 
-
             # try again
             self.clustering(houses, batteries, counter)
         else:
@@ -145,7 +145,6 @@ class K_means2(object):
 
             # solution.km_solution()
             pass
-
 
     def csv_output(self):
         ''' Create .CSV file for K Means '''
