@@ -32,6 +32,19 @@ class Cluster_merge(object):
         distance = abs(battery1.x - battery2.x) + abs(battery1.y - battery2.y)
         return distance
 
+    def single_linkage(self, battery1, battery2):
+        ''' Distance between the closest houses of the two batteries'''
+
+        shortest_distance = float('inf')
+        for house1 in battery1.connected:
+            for house2 in battery2.connected:
+                distance = Solution.distance_calc(Solution, house1, house2)
+
+                if distance < shortest_distance:
+                    shortest_distance = distance
+
+        return shortest_distance
+
     def merge(self):
         # single linkage: distance between the closest members of the two clusters
         # complete linkage: distance between the members farthest apart
@@ -48,7 +61,7 @@ class Cluster_merge(object):
         while len(distance_dict) > 0:
 
             # k_means = K_means2(self.houses, self.batteries, "priority", "0")
-            k_means = K_means2(self.houses, self.batteries, "output", "0")
+            k_means = K_means2(self.houses, self.batteries, "priority", "0")
             self.houses = copy.deepcopy(k_means.houses)
             self.batteries = copy.deepcopy(k_means.batteries)
 
@@ -72,7 +85,8 @@ class Cluster_merge(object):
                         break
                     else:
                         # DISTANCE
-                        distance = self.linkage(battery1, battery2)
+                        # distance = self.linkage(battery1, battery2)
+                        distance = abs(battery1.x - battery2.x) + abs(battery1.y - battery2.y)
                         distance_dict[(battery1, battery2)] = distance
 
             for distance in distance_dict:
