@@ -30,7 +30,7 @@ class Swap(object):
                 for battery in batteries:
                     if second == battery.current_usage:
                         battery_id2 = battery
-                        
+
                 # choose random id from battery-house list
                 random1 = random.choice(batteries[battery_id1.id].connected)
                 random2 = random.choice(batteries[battery_id2.id].connected)
@@ -74,12 +74,6 @@ class Swap(object):
                 #increase counter (times the swap ran)
                 counter += 1
 
-        current_usage = 0
-<<<<<<< HEAD
-        #print(counter)
-=======
-
->>>>>>> 93b363af56e4b91f77635d7c8947de2681429cd3
 
     def check(self, houses, batteries):
         ''' Checks whether all houses are connected '''

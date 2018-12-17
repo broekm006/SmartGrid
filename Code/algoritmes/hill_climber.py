@@ -45,10 +45,7 @@ class Hill_climber(object):
                 solution = Solution(temp_houses, temp_batteries)
                 solution.distance_calc(random_house_in_battery, random_battery)
 
-<<<<<<< HEAD
-=======
                 # calc old distance
->>>>>>> 93b363af56e4b91f77635d7c8947de2681429cd3
                 old_distance = solution.distance_calc(random_house_in_battery, random_battery)
                 old_distance2 = solution.distance_calc(random_house_in_battery2, random_battery2)
 

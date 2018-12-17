@@ -25,15 +25,7 @@ class K_means2(object):
             battery.y = random.randint(0, 50)
 
     def clustering(self, houses, batteries, counter):
-<<<<<<< HEAD
-        print(counter)
-
-        # capacitated clustering
-        greedy = Greedy(houses, batteries, self.greedy)
-        houses = greedy.houses
-        batteries = greedy.batteries
-=======
-        ''' Use K-means to cluster and assign houses to batteries '''
+        '''Use K-means to cluster and assign houses to batteries '''
         # count interations
         counter += 1
 
@@ -42,7 +34,6 @@ class K_means2(object):
             greedy = Greedy(houses, batteries, self.greedy)
             houses = copy.deepcopy(greedy.houses)
             batteries = copy.deepcopy(greedy.batteries)
->>>>>>> 93b363af56e4b91f77635d7c8947de2681429cd3
 
             for battery in batteries:
                 houses = Sort.distance(Sort, houses, battery)
@@ -74,7 +65,7 @@ class K_means2(object):
             # Stops when costs haven't changed
             if costs > self.costs:
                 break
-                
+
             self.costs = costs
 
             # disconnect
@@ -90,17 +81,6 @@ class K_means2(object):
             # --> Solution
             self.batteries = batteries
             self.houses = houses
-
-<<<<<<< HEAD
-            # try again
-            self.clustering(houses, batteries, counter)
-        else:
-            # Save solution & append to Greedy-solution(list)
-
-            # solution.km_solution()
-            pass
-=======
->>>>>>> 93b363af56e4b91f77635d7c8947de2681429cd3
 
     def csv_output(self):
         ''' Create .CSV file for K Means '''

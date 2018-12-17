@@ -75,13 +75,9 @@ def create_visualization(self):
     df = pd.read_csv(self.visualdata)
 
     sns.set_color_codes("dark")
-<<<<<<< HEAD
-    #sns.palplot(sns.color_palette())
-    plot = sns.scatterplot(x="x", y="y", hue="connected_bat", data=df, ci=None, style="type", palette=sns.color_palette("Paired", n_colors = len(self.batteries)))
-=======
-    plot = sns.scatterplot(x="x", y="y", hue="connected_bat", data=df, ci=None, style="type", palette=["C0", "C1", "C2", "C3", "C4"])
->>>>>>> 93b363af56e4b91f77635d7c8947de2681429cd3
 
+    # plot = sns.scatterplot(x="x", y="y", hue="connected_bat", data=df, ci=None, style="type", palette=["C0", "C1", "C2", "C3", "C4"])
+    plot = sns.scatterplot(x="x", y="y", hue="connected_bat", data=df, ci=None, style="type", palette=sns.color_palette("Paired", n_colors = len(self.batteries)))
     plot.set_title("Wijk 1: K-Means with Simulated Annealing")
     plot.legend_.remove()
     plot.set(xlabel='X coordinates', ylabel='Y coordinates')
