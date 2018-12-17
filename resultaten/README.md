@@ -11,6 +11,7 @@ In deze map zijn de resultaten te vinden.
 <img src="https://github.com/broekm006/SmartGrid/blob/master/resultaten/visualisaties/simulated_10times.PNG"/>
 
 ## Resultaten K_means
+<img src="https://github.com/broekm006/SmartGrid/blob/master/resultaten/visualisaties/K-means/kmeansAndSimulated.png"/>
 
 ## Score algoritmes
 <img src="https://github.com/broekm006/SmartGrid/blob/master/resultaten/visualisaties/all_algorithms.png"/>
