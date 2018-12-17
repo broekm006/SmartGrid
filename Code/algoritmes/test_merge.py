@@ -64,6 +64,10 @@ class Cluster_merge(object):
             distance_dict = {}
             distance_dict[0] = 0
 
+
+            for i, battery in enumerate(self.batteries):
+                battery.id = i
+
             # k_means = K_means2(self.houses, self.batteries, "priority", "0")
             k_means = K_means2(self.houses, self.batteries, "output", "0")
             self.houses = copy.deepcopy(k_means.houses)
@@ -129,7 +133,6 @@ class Cluster_merge(object):
                 self.batteries.append(merged_battery)
                 break
 
-
         greedy = Greedy(self.houses, self.batteries,"output")
 
         for battery in greedy.batteries:
@@ -148,7 +151,7 @@ class Cluster_merge(object):
         helper.bounds(greedy.batteries, greedy.houses)
 
         cost = float('inf')
-        for i, sol in enumerate(solutions):
+        for sol in solutions:
             print("Cost solution " + str(i) + ": " + str(sol.calculate_costs2()))
             print("Cheapest so far: " + str(cost))
             if sol.calculate_costs2() < cost:
@@ -157,10 +160,9 @@ class Cluster_merge(object):
                 cost = sol.calculate_costs2()
                 best_solution = sol
 
-        for i, battery in enumerate(best_solution.batteries):
+        for battery in best_solution.batteries:
             connections = []
             connection_count = 0
-            battery.id = i
             for house in battery.connected:
                 connections.append(house.id)
                 connection_count += 1

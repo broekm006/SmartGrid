@@ -24,7 +24,6 @@ class Grid_visualizer():
         self.check_visual_type(visualtype)
 
 
-
     def check_visual_type(self, visualtype):
         if visualtype == "gridview":
             create_visualization(self)
@@ -47,15 +46,6 @@ class Grid_visualizer():
                     house_list.append(house.connected.id)
                 else:
                     house_list.append("not connected")
-                # for battery in batteries:
-                #
-                #     try:
-                #         if house.connected.id == battery.id:
-                #             house_list.append(battery.x)
-                #             house_list.append(battery.y)
-                #     except:
-                #         house_list.append("not connected")
-                #         house_list.append("not connected")
 
                 csv_writer.writerow(house_list)
 
@@ -99,10 +89,8 @@ class Grid_visualizer():
             })
 
 def create_visualization(self):
-    df = pd.read_csv(self.visualdata)
 
-    #sns.set()
-    #sns.set_context("notebook", font_scale=0.6)
+    df = pd.read_csv(self.visualdata)
     sns.set_color_codes("dark")
 
     # plot = sns.scatterplot(x="x", y="y", hue="connected_bat", data=df, ci=None, style="type", palette=["C0", "C1", "C2", "C3", "C4"])
@@ -112,6 +100,6 @@ def create_visualization(self):
     plot.legend_.remove()
     plot.set(xlabel='X coordinates', ylabel='Y coordinates')
 
-    #plot.set_xticks(list(range(51)))
-    #plot.set_yticks(list(range(51)))
+    # plot.set_xticks(list(range(51)))
+    # plot.set_yticks(list(range(51)))
     plt.show()
