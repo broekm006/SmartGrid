@@ -25,7 +25,7 @@ class K_means2(object):
             battery.y = random.randint(0, 50)
 
     def clustering(self, houses, batteries, counter):
-        '''Use K-means to cluster and assign houses to batteries '''
+        ''' Use K-means to cluster and assign houses to batteries '''
         # count interations
         counter += 1
 
@@ -39,8 +39,7 @@ class K_means2(object):
                 houses = Sort.distance(Sort, houses, battery)
 
             # calculate  cable costs
-            costs = Helper.houses_costs(Helper, batteries, houses)
-            costs += 5 * 5000   #NOG VERANDEREN
+            costs = Helper.costs(Helper, batteries, houses)
             print(costs)
 
             # for each cluster, new centre = means of all points x
@@ -63,10 +62,9 @@ class K_means2(object):
                 battery.y = mean_y
 
             # Stops when costs haven't changed
-            if costs > self.costs:
+            if costs < self.costs:
+                self.costs = costs
                 break
-
-            self.costs = costs
 
             # disconnect
             for battery in batteries:
