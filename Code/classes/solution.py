@@ -98,7 +98,6 @@ class Solution(object):
 
         return cable_costs
 
-    # calculate the lower & upperbound based on used algorithm
     def bounds(self, batteries, houses):
         ''' Upper- and lowerbounds for costs for given houses & batteries'''
 
