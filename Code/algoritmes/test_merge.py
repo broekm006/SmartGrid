@@ -67,15 +67,16 @@ class Cluster_merge(object):
             distance_dict = {}
             distance_dict[0] = 0
 
-
+            # Overwrite battery id for hill_climber to avoid index out of bounds (self.batteries[battery.id])
             for i, battery in enumerate(self.batteries):
                 battery.id = i
 
+            # Run k-means with greedy output to connect houses to new self.batteries
             k_means = K_means2(self.houses, self.batteries, "output", "0")
             self.houses = copy.deepcopy(k_means.houses)
             self.batteries = copy.deepcopy(k_means.batteries)
 
-
+            # Save solution and append to array of all HAC-solutions
             solution = Solution(self.houses, self.batteries)
             solution.calculate_costs(count)
             solutions.append(solution)
@@ -131,9 +132,6 @@ class Cluster_merge(object):
                 self.batteries.append(merged_battery)
                 break
 
-        # greedy = Greedy(self.houses, self.batteries,"priority")
-        # solution = Solution(greedy.houses, greedy.batteries)
-        # total_cost = solution.calculate_costs(count)
 
         # Get best solution (lowest costs)
         cost = float('inf')
@@ -142,22 +140,6 @@ class Cluster_merge(object):
                 cost = sol.calculate_costs2()
                 best_solution = sol
 
-        # for battery in best_solution.batteries:
-        #     connections = []
-        #     connection_count = 0
-        #     for house in battery.connected:
-        #         connections.append(house.id)
-        #         connection_count += 1
-        #
-        #
-        #     # print("ID: ", battery.id)
-            # print("Max: ", battery.max_amp)
-            # print("Cost: ", battery.cost)
-            # print("Coordinates: (" + str(battery.x) + "," + str(battery.y) + ")")
-            # print("Current usage: ", battery.current_usage)
-            # print("Connected", connections)
-            # print("Connection count: ", connection_count)
-            # print()
 
         # Print statements for check
         print()
