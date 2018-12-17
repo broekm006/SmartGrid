@@ -46,12 +46,9 @@ class Cluster_merge(object):
         return shortest_distance
 
     def merge(self):
-        # single linkage: distance between the closest members of the two clusters
-        # complete linkage: distance between the members farthest apart
-        # average linkage: distances between all pairs and averages of all of these distances
-        # minmax: ?
+        ''' Merge the batteries that are closest to eachother and won't exceed max battery capacity (1800)'''
 
-        # Make distance dictionary where key is (b1, b2) and value is distance
+        # Make distance dictionary where key is (battery1, battery2) and  value is distance
         solutions = []
         count = 0
         # Continue while merges possible
