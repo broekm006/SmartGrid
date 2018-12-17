@@ -36,14 +36,15 @@ Dit algoritme maakt voor ieder huis in de wijk een batterij aan met de kleinste 
 ### Algoritme score
 <img src="https://github.com/broekm006/SmartGrid/blob/master/resultaten/visualisaties/all_algorithms.png"/>
 
-## Verschillende classes
-
+## classes
 
 ### House
+Voor alle huizen in de 'WijkN_huizen.csv' bestanden worden een House-Object aangemaakt. De huizen hebben een ID, X-coordinaat, Y-coordinaat en output('amp'), welke data afkomstig is uit het csv bestand voor de betreffende wijk. Ook hebben de huizen  een 'distance_to_battery' variabele om de afstand tot de aangesloten batterij in op te slaan, en een 'costs' variabele om de kabelkosten voor de aansluiting op die batterij in op te slaan. Daarnaast beschikken de House-Oject's in over een 'priority_list' om de prioriteitsscores van de Greedy met Priority-Sort in op te slaan. Tot slot hebben House-Object's nog een "connected" variabele om de aangesloten batterij in op te slaan en een "connection" variabele om de aanssluitingsstatus ('True'/'False') in op te slaan.
 
+House-Objecten hebben een 'connect' methode om verbinding te maken met een batterij, een 'cable_costs' methode om de kabelkosten voor de aansluiting op een batterij te berekenen en een 'distance' methode om de afstand tot een batterij te berekenen.
 
 ### Battery
-
+Voor alle batterijen in de 'WijkN_batterijen.txt' bestanden worden een Battery-Object aangemaakt. De batterijen hebben een ID, X-coordinaat, Y-coordinaat en maximale capaciteit('max_amp'), welke data afkomstig is uit het csv bestand voor de betreffende wijk.
 
 ### Helper
 
