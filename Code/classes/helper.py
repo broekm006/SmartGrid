@@ -48,19 +48,7 @@ class Helper(object):
 
     def sort_houses(self, houses):
         sorted_houses = sorted(houses, key=lambda house: house.costs)
-        '''
-        ALLE HUIZEN
-        for house in sorted_houses:
-            battery = house.connected
-            print("House ID: ", house.id)
-            print("Costs:    ", house.costs)
-            print("Output:   ", house.amp)
-            try:
-                print("Battery:  ", battery.id)
-            except:
-                print("NIET VERBONDEN")
-            print()
-        '''
+
         print("CHEAPEST & MOST EXPENSIVE HOUSE")
         print()
         battery = sorted_houses[0].connected
@@ -86,6 +74,7 @@ class Helper(object):
         initial_solution = Solution(houses, batteries)
         Sort.priority_value(Sort, houses, batteries)
 
+        # get furthest and closest battery for each house
         lower = 0
         upper = 0
         for house in houses:
@@ -99,7 +88,7 @@ class Helper(object):
         for battery in batteries:
             battery_costs += battery.cost
 
-
+        # calculate upper and lowerbound for total costs
         lowerbound = lower * 9 + battery_costs
         upperbound = upper * 9 + battery_costs
 

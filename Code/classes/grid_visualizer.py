@@ -22,7 +22,9 @@ class Grid_visualizer():
         self.batteries = batteries
         self.visualdata = self.write_csv(houses, batteries)
         self.name = name
+        self.printcheck()
         self.check_visual_type(visualtype)
+
 
 
     def check_visual_type(self, visualtype):
@@ -96,6 +98,23 @@ class Grid_visualizer():
     #             'pad_inches': 'tight'
     #         })
 
+    def printcheck(self):
+        for battery in self.batteries:
+            connections = []
+            connection_count = 0
+            for house in battery.connected:
+                connections.append(house.id)
+                connection_count += 1
+
+
+            print("ID: ", battery.id)
+            print("Max capacity: ", battery.max_amp)
+            print("Cost: ", battery.cost)
+            print("Coordinates: (" + str(battery.x) + "," + str(battery.y) + ")")
+            print("Current usage: ", battery.current_usage)
+            print("Connected", connections)
+            print("Connection count: ", connection_count)
+            print()
 
 def create_visualization(self):
 

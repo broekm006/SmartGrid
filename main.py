@@ -91,7 +91,7 @@ if __name__ == "__main__":
     parser.add_argument('-a', '--algorithm', type=str, choices=['greedy_output', 'greedy_distance', 'greedy_priority','k_means_output', 'k_means_distance', 'k_means_priority', 'HAC'], required=True, help='Choose the primary algorithm you would like to run.')
     parser.add_argument('-b', '--secondary_algorithm', choices=['hill_climber','simulated_annealing'], type=str, required=False, default="simulated_annealing", help='Choose the secondary algorithm you would like to run. If not specified, Simulated Annealing is ran.')
     parser.add_argument('-i','--iterations', type=int, help='Enter the number of times you wish to run the selected algorithmself.', required=False, default=1)
-    parser.add_argument('-v','--visualizer', choices=['True','False'], type=str, help='Enter True if you want to see a visual representation of the algorithm.', required=False, default='False')
+    parser.add_argument('-v','--visualizer', choices=['True','False'], type=str, help='Enter True if you want to see a visual representation of the algorithm and a print of the battery info.', required=False, default='False')
 
     args = parser.parse_args()
     what_to_run(what_to_run, args.wijk, args.algorithm, args.secondary_algorithm, args.iterations, args.visualizer)
