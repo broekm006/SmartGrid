@@ -95,8 +95,13 @@ class Helper(object):
             b_far = house.priority_list[4]
             upper += initial_solution.distance_calc(house, b_far)
 
-        lowerbound = lower * 9 + (batteries[0].cost * len(batteries))
-        upperbound = upper * 9 + (batteries[0].cost * len(batteries))
+        battery_costs = 0
+        for battery in batteries:
+            battery_costs += battery.cost
+
+
+        lowerbound = lower * 9 + battery_costs
+        upperbound = upper * 9 + battery_costs
 
         print("LOWERBOUND: " , lowerbound)
         print("UPPERBOUND: " , upperbound)

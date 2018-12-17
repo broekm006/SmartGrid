@@ -122,10 +122,11 @@ if __name__ == "__main__":
     # sim = Simulated_annealing(greedy.houses, greedy.batteries, 1)
 
     # K Means
-    # k_means = K_means2(sim.houses, sim.batteries, "output", "0") # "random" or "" for innitial battery location
+    # k_means = K_means2(load.houses, load.batteries, "priority", "") # "random" or "" for innitial battery location
 
     #
     splitter = Cluster_merge(load.houses)
+    sim = Simulated_annealing(splitter.houses, splitter.batteries, 1)
 
     # Bounds + Costs
     # Helper.bounds(Helper, k_means.batteries, k_means.houses)

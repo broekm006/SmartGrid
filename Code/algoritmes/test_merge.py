@@ -12,7 +12,7 @@ from sort import Sort
 class Cluster_merge(object):
 
     def __init__(self, houses):
-        self.houses = copy.deepcopy(houses)
+        self.houses = houses
         self.costs = float('Inf')
         self.counter = 0
         self.innitialize()
@@ -53,15 +53,19 @@ class Cluster_merge(object):
 
         # Make distance dictionary where key is (b1, b2) and value is distance
         solutions = []
+        count = 0
         # Continue while merges possible
         distance_dict = {}
         distance_dict[0] = 0
-        count = 0
 
         while len(distance_dict) > 0:
 
+            # Continue while merges possible
+            distance_dict = {}
+            distance_dict[0] = 0
+
             # k_means = K_means2(self.houses, self.batteries, "priority", "0")
-            k_means = K_means2(self.houses, self.batteries, "priority", "0")
+            k_means = K_means2(self.houses, self.batteries, "output", "0")
             self.houses = copy.deepcopy(k_means.houses)
             self.batteries = copy.deepcopy(k_means.batteries)
 
@@ -74,7 +78,6 @@ class Cluster_merge(object):
             # total_cost = solution.calculate_costs()
             # print("Total costs: ", total_cost)
             # print()
-
 
             # Make distance dictionary where key is (b1, b2) and value is distance
             distance_dict = {}
@@ -127,7 +130,7 @@ class Cluster_merge(object):
                 break
 
 
-        greedy = Greedy(self.houses, self.batteries,"distance")
+        greedy = Greedy(self.houses, self.batteries,"output")
 
         for battery in greedy.batteries:
             print("ID: ", battery.id)
@@ -154,24 +157,29 @@ class Cluster_merge(object):
                 cost = sol.calculate_costs2()
                 best_solution = sol
 
-        for battery in best_solution.batteries:
+        for i, battery in enumerate(best_solution.batteries):
             connections = []
             connection_count = 0
+            battery.id = i
             for house in battery.connected:
                 connections.append(house.id)
                 connection_count += 1
 
-            # print("ID: ", battery.id)
-            # print("Max: ", battery.max_amp)
-            # print("Cost: ", battery.cost)
-            # print("Coordinates: (" + str(battery.x) + "," + str(battery.y) + ")")
-            # print("Current usage: ", battery.current_usage)
-            # print("Connected", connections)
-            # print("Connection count: ", connection_count)
-            # print()
+
+            print("ID: ", battery.id)
+            print("Max: ", battery.max_amp)
+            print("Cost: ", battery.cost)
+            print("Coordinates: (" + str(battery.x) + "," + str(battery.y) + ")")
+            print("Current usage: ", battery.current_usage)
+            print("Connected", connections)
+            print("Connection count: ", connection_count)
+            print()
 
         best_solution.calculate_costs2()
         helper = Helper()
         helper.bounds(best_solution.batteries, best_solution.houses)
 
-        grid_visualisatie = Grid_visualizer(best_solution.houses, best_solution.batteries, "gridview")
+        self.houses = copy.deepcopy(best_solution.houses)
+        self.batteries = copy.deepcopy(best_solution.batteries)
+
+        # grid_visualisatie = Grid_visualizer(best_solution.houses, best_solution.batteries, "gridview")

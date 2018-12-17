@@ -1,4 +1,4 @@
-import csv
+import csv, copy
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -87,7 +87,8 @@ def create_visualization(self):
     sns.set_color_codes("dark")
 
     # plot = sns.scatterplot(x="x", y="y", hue="connected_bat", data=df, ci=None, style="type", palette=["C0", "C1", "C2", "C3", "C4"])
-    plot = sns.scatterplot(x="x", y="y", hue="connected_bat", data=df, ci=None, style="type", palette=sns.color_palette("Paired", n_colors = len(self.batteries)))
+    amount = len(self.batteries)
+    plot = sns.scatterplot(x="x", y="y", hue="connected_bat", data=df, ci=None, style="type", palette=sns.color_palette("Paired", n_colors = amount))
     plot.set_title("Wijk 1: K-Means with Simulated Annealing")
     plot.legend_.remove()
     plot.set(xlabel='X coordinates', ylabel='Y coordinates')
