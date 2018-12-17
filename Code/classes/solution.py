@@ -5,12 +5,9 @@ class Solution(object):
     def __init__(self, houses, batteries):
         self.houses = houses
         self.batteries = copy.deepcopy(batteries)
-        self.house_connected = {} #{battery.id : [house.id]}
+        #self.batteries = batteries
 
-    #def add_to_connected(self, list):
-    #    self.house_connected[self.batteries.id] = list
 
-    # calculate distance between battery / house
     def distance_calc(self, house, battery):
         ''' Calculate distanct house to battery '''
         return abs(battery.y - house.y) + abs(battery.x - house.x)

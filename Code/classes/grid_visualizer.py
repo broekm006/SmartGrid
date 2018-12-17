@@ -85,13 +85,10 @@ def create_visualization(self):
     #sns.set()
     #sns.set_context("notebook", font_scale=0.6)
     sns.set_color_codes("dark")
-    #sns.palplot(sns.color_palette())
+
+    # plot = sns.scatterplot(x="x", y="y", hue="connected_bat", data=df, ci=None, style="type", palette=["C0", "C1", "C2", "C3", "C4"])
     plot = sns.scatterplot(x="x", y="y", hue="connected_bat", data=df, ci=None, style="type", palette=sns.color_palette("Paired", n_colors = len(self.batteries)))
-
-    plot.set_title("Wijk 1: after K-Means")
-
-    #plot.set_title("Wijk 1: after K-Means")
-    plot.set_title("Wijk 1: houses connected to nearest battery without restrictions.")
+    plot.set_title("Wijk 1: K-Means with Simulated Annealing")
     plot.legend_.remove()
     plot.set(xlabel='X coordinates', ylabel='Y coordinates')
 

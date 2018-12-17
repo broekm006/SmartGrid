@@ -11,6 +11,7 @@ class Battery(object):
         self.connected = []
         self.current_usage = 0
         self.distance = 0
+        self.variance = 0
         self.cost = 5000
 
     def check_amp(self):

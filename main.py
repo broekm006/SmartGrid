@@ -112,10 +112,11 @@ if __name__ == "__main__":
     # random = Random_connect(load.houses, load.batteries)
 
     # Hill CLimber
-    # hill_climber = Hill_climber(greedy.houses, greedy.batteries, 1, 100)
+    # hill_climber = Hill_climber(greedy.houses, greedy.batteries, 1, 10)
+
 
     # Hill Climber Best Choice
-    # hill_climber_BC = Hill_climber_BC(greedy.houses, greedy.batteries, 100)
+    # hill_climber_BC = Hill_climber_BC(greedy.houses, greedy.batteries, 10)
 
     # Simulated Annealing
     # sim = Simulated_annealing(greedy.houses, greedy.batteries, 1)

@@ -74,8 +74,6 @@ class Swap(object):
                 #increase counter (times the swap ran)
                 counter += 1
 
-        current_usage = 0
-
 
     def check(self, houses, batteries):
         ''' Checks whether all houses are connected '''

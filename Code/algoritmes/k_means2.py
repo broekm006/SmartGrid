@@ -82,7 +82,6 @@ class K_means2(object):
             self.batteries = batteries
             self.houses = houses
 
-
     def csv_output(self):
         ''' Create .CSV file for K Means '''
         with open("resultaten/K_means.csv", mode = 'w') as csv_file:
