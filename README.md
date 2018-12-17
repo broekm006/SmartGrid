@@ -119,4 +119,4 @@ wijk1 en wijk3 blijft een huis over. Opgeslagen als branch test.
 Huizen gesorteerd op basis van prioriteit. Bij alle wijken blijft één huis over maar de kabel kosten zijn lager dan bij de andere twee. Daarnaast zijn de 3 sorteer methodes in één class gezet (sort.py), en is het greedy algoritme, dat gebruikt wordt om een eerste oplossing te formuleren, in een aparte class gezet (greedy.py). In de helper class staat voor nu alleen de kosten-functie.
 
 **21-11-2018**
-Gredy uitgebreid met een swap (hill cliber) functie waardoor deze altijd een valide oplossing kan vinden. Daarnaast
+Gredy uitgebreid met een swap (hill cliber) functie waardoor deze altijd een valide oplossing kan vinden.
