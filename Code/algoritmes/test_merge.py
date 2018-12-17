@@ -61,7 +61,7 @@ class Cluster_merge(object):
         while len(distance_dict) > 0:
 
             # k_means = K_means2(self.houses, self.batteries, "priority", "0")
-            k_means = K_means2(self.houses, self.batteries, "priority", "0")
+            k_means = K_means2(self.houses, self.batteries, "output", "0")
             self.houses = copy.deepcopy(k_means.houses)
             self.batteries = copy.deepcopy(k_means.batteries)
 
@@ -174,4 +174,7 @@ class Cluster_merge(object):
         helper = Helper()
         helper.bounds(best_solution.batteries, best_solution.houses)
 
-        grid_visualisatie = Grid_visualizer(best_solution.houses, best_solution.batteries, "gridview")
+        self.houses = copy.deepcopy(best_solution.houses)
+        self.batteries = copy.deepcopy(best_solution.batteries)
+
+        grid_visualisatie = Grid_visualizer(best_solution.houses, best_solution.batteries, "gridview", "Hierarchical Agglomerative Clustering")
