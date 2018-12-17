@@ -92,7 +92,6 @@ class Cluster_merge(object):
                     else:
                         # DISTANCE
                         distance = self.linkage(battery1, battery2)
-                        distance = abs(battery1.x - battery2.x) + abs(battery1.y - battery2.y)
                         distance_dict[(battery1, battery2)] = distance
 
             for distance in distance_dict:
