@@ -80,11 +80,11 @@ class Cluster_merge(object):
             count += 1
 
             # Make distance dictionary where key is (b1, b2) and value is distance
+            # Avoid merges that'll exceed max capacity (1800)
             distance_dict = {}
             for i, battery1 in enumerate(self.batteries):
                 for battery2 in self.batteries[i+1:]:
                     if battery1.current_usage + battery2.current_usage > 1800:
-                        # print("Merge not possible")
                         break
                     else:
                         # DISTANCE
