@@ -6,11 +6,13 @@ In deze map is de code te vinden waarmee ons probleem oplossen. In de map alogri
 ### Greedy
 Dit algoritme pakt de op het moment beste keuze en koppelt zo alle huizen aan een batterij. Dit algoritme zoals wij deze gebruiken kent 3 varianten "output", "distance" & "priority".
 
-- In output wordt het greedy algoritme gebruikt op basis van de opgeslagen ampere van elk huis. De huizen worden op grootte gesoorteerd en daarna aan de dichtsbijzijnde batterij gekoppeld.
+- In output wordt het greedy algoritme gebruikt op basis van de opgeslagen ampere van elk huis. De huizen worden op grootte gesorteerd en daarna aan de dichtsbijzijnde batterij gekoppeld.
 
-- In distance wordt het greedy algoritme gebruikt op basis van de afstand tussen elk huis en de dichtsbijzijnde batterij. Deze worden ingedeel op de korste afstand en daarna aan de batterij verbonden.
+- In distance wordt het greedy algoritme gebruikt op basis van de afstand tussen elk huis en de dichtsbijzijnde batterij. Deze worden ingedeeld op de korste afstand en daarna aan de batterij verbonden.
 
-- In priority wordt het greedy algoritme gebruikt op basis van een prioriteits waarde. Deze waarde wordt bepaald op basis van de afstand tot een batterij en de hoeveelheid opgeslagen ampere.
+- In priority wordt het greedy algoritme gebruikt op basis van een prioriteitsscore. Voor elk huis wordt gekeken wat de dichtsbijzijnde batterij is (eerste keus) en welke batterij daarna de dichtsbezijnde is (tweede keus). Hoe groter het verschil in afstand tussen huis en eerste keus, en huis en tweede keus, hoe hoger de prioriteit is om dat huis bij de dichtsbijzijnde batterij in te delen. Huizen met een hogere prioriteitsscore worden als eerste verbonden.
+
+
 
 ### Swap
 Dit algoritme is een uitbreiding op de greedy oplossing. Deze kijkt naar de oplossing zoals deze is gegenereerd in greedy en zoekt naar overgebleven huizen. Wanneer één of meerdere huizen niet zijn ingedeeld wordt een van onze swap functies aangeroepen: Brute Force of Hill Climber
@@ -48,7 +50,7 @@ Voor alle batterijen in de 'WijkN_batterijen.txt' bestanden worden een Battery-O
 
 
 ### Solution
-De solution class wordt in verschillende algoritmes gebruikt om tussentijdse oplossingen en de eindoplossing op te slaan door de configuratie van huizen en batterijen mee te geven. De solution class bevat een aantal methodes. 'distance_calc()' om de afstand tussen huizen en batterijen op te meten. 'sort_houses()' om in te zien wat het duurste en wat het goedkoopste huis is voor de huidige oplossing. Het gaat daarbij om de aan het huis gelinkte kabelkosten. 'calculate_costs()' en 'calculate_costs2()' om de totale kosten uit te rekenen. 'Calculate_costs()' wordt gebruikt in de iteratieve algoritmes. Hierbij wordt er een 'id' mee gegegeven om bij te houden bij welke iteratie de desbetreffende solution hoort. Bij 'calculate_costs2()' hoeft er geen 'id' te worden meegegeven. Deze wordt gebruikt bij de andere algoritmes. In 'houses_costs()' worden de totale kabelkosten berekend. In 'bounds()' worden de upper- en lowerbound berekend. Het is noodzakelijk om deze voor verschillende oplossing opnieuw te bereken omdat er na k-means en HAC geen gebruik meer kan worden gemaakt van de innitiële upper- en lowerbound. Bij deze algoritmes worden de batterijen immers verplaatst. Bij HAC gaat het bovendien om een varierend aantal batterijen waar verschillende batterijkosten aan vast zitten. De maximale en minimale kosten zijn daardoor veranderd.
+De solution class wordt in verschillende algoritmes gebruikt om tussentijdse oplossingen en de eindoplossing op te slaan. De solution class bevat een aantal methodes. 'distance_calc()' om de afstand tussen huizen en batterijen op te meten. 'Sort_houses()' om in te zien wat het duurste en wat het goedkoopste huis is voor de huidige oplossing. 'Calculate_costs()' en 'calculate_costs2()' om de totale kosten uit te rekenen. 'Calculate_costs()' wordt gebruikt in de iteratieve algoritmes. Hierbij wordt er een 'id' mee gegegeven om bij te houden bij welke iteratie de desbetreffende solution hoort. Bij 'calculate_costs2()' hoeft er geen 'id' te worden meegegeven. Deze wordt gebruikt bij de andere algoritmes. In 'houses_costs()' worden de totale kabelkosten berekend. In 'bounds()' worden de upper- en lowerbound berekend. Het is noodzakelijk om deze voor verschillende oplossing opnieuw te bereken omdat er na k-means en HAC geen gebruik meer kan worden gemaakt van de innitiële upper- en lowerbound. Bij deze algoritmes worden de batterijen immers verplaatst. Bij HAC gaat het bovendien om een variërend aantal batterijen waar verschillende batterijkosten aan vast kunnen zitten. De maximale en minimale kosten zijn daardoor veranderd.
 
 ### Helper
 Een helper class die een aantal functies bevat om inzicht te geven in de werking van de algoritmes. Zoals 'battery_info()'' om informatie te printen over alle meegegven batterijen.
