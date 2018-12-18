@@ -22,7 +22,7 @@ Swap is eigenlijk onderdeel van greedy. Afhankelijk van de manier van sorteren e
 - In Hill Climber worden twee batterijen gekozen. De batterij met de hoogste 'current usage' (gebruikte capaciteit) en  de batterij laagste 'current usage'. Vervolgens worden steeds willekeurig twee van de aan deze batterijen verbonden huizen verwisseld.  Dit proces herhaalt zich totdat er ruimte is voor het laatste huis.
 
 ### Hill Climber
-Dit algoritme kijkt naar een bestaande oplossing en zoekt steeds twee willekeurige batterijen met daarin twee willekeurige huizen en probeert deze vervolgens met elkaar te wisselen. Als de afstand tussen de huizen en batterijen hier beter op wordt en de totale kosten dus dalen, wordt de wissel doorgezet. Anders wordt de wissel geannuleerd.
+Dit algoritme kijkt naar een bestaande oplossing en zoekt steeds twee willekeurige batterijen met daarin twee willekeurige huizen en probeert deze vervolgens met elkaar te wisselen. Als de totale afstand tussen de huizen en de verbonden batterijen hierdoor vermindert (en de totale kosten dus dalen) wordt de wissel doorgezet. Anders wordt de wissel geannuleerd.
 <img src="https://github.com/broekm006/SmartGrid/blob/master/resultaten/RandomHillClimber_Wijk1/Cost%20frequencies%20after%20Greedy%20priority%20sort%20and%201000%20runs%20of%20HillClimber%20afterwards.png"/>
 
 ### Simulated Annealing
