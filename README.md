@@ -13,19 +13,18 @@ Om de code te draaien volgens de standaardconfiguratie kunnen de volgende instru
 python main.py
 
 -w: 1,2,3
--a: Greedy, K_means
+-a: greedy_output, greedy_distance, greedy_priority, k_means_output, k_means_distance, k_means_priority, HAC
 -b: Hill_climber, Simulated_annealing
 -i: Iterations (int)
 -v: True / False
 ```
 
-Na het command '-w' kan gekozen worden voor de getallen '1', '2' en '3'. Elk getal staat voor een wijk met een bepaalde startopstelling (zie de uitleg onder de kop "Probleem"). De startopstellingen zijn te vinden in de map SmartGrid/data/Huizen&Batterijen. Na het command '-a' kan gekozen worden voor de woorden 'greedy_output', 'greedy_distance', 'greedy_priority', 'k_means_output', 'k_means_distance', 'k_means_priority' en HAC. Ieder van deze woorden staat voor een bepaald primair algoritme. Na het command '-b' kan gekozen worden voor de woorden 'Hill_climber' en 'Simulated_annealing', welke staan voor een bepaald secundair algoritme. Een uitgebreidere omschrijving van de algoritmes is te vinden in SmartGrid/code/README.md. Na het command '-i' kan het aantal iteraties gekozen worden die het HillClimber algoritme moet gaan maken. Na het command '-v' kan gekozen worden voor 'True' of 'False'. Indien gekozen wordt voor 'True' zal na het draaien van de algoritmes een visualisatie verschijnen van de gekozen wijk, waarop zichtbaar is aan welke batterij de huizen zijn verbonden. Op de visualisatie staat een stip voor een huis en een kruis voor een batterij. Indien een stip een en kruis dezelfde kleur hebben, betekent dit dat beide aan elkaar verbonden zijn.
+Na het command '-w' kan gekozen worden voor de getallen '1', '2' en '3'. Elk getal staat voor een wijk met een bepaalde startopstelling (zie de uitleg onder de kop "Probleem"). De startopstellingen zijn te vinden in de map SmartGrid/data/Huizen&Batterijen. Na het command '-a' kan gekozen worden voor de woorden 'greedy_output', 'greedy_distance', 'greedy_priority', 'k_means_output', 'k_means_distance', 'k_means_priority' en 'HAC'. Ieder van deze woorden staat voor een bepaald primair algoritme. Na het command '-b' kan gekozen worden voor de woorden 'Hill_climber' en 'Simulated_annealing', welke staan voor een bepaald secundair algoritme. Een uitgebreidere omschrijving van de algoritmes is te vinden in SmartGrid/code/README.md. Na het command '-i' kan het aantal iteraties gekozen worden die het HillClimber algoritme moet gaan maken. Na het command '-v' kan gekozen worden voor 'True' of 'False'. Indien gekozen wordt voor 'True' zal na het draaien van de algoritmes een visualisatie verschijnen van de gekozen wijk, waarop zichtbaar is aan welke batterij de huizen zijn verbonden. Op de visualisatie staat een stip voor een huis en een kruis voor een batterij. Indien een stip een en kruis dezelfde kleur hebben, betekent dit dat beide aan elkaar verbonden zijn. Indien gekozen wordt voor een visualisatie zal in de terminal ook een lijst met baterijen en aangesloten huizen verschijnen.
 
 Voor hulp bij het runnen van het algoritme kan het volgende command gegeven worden:
 
 ```
 python main.py -h
-
 ```
 
 Tijdens het runnen van het algoritme zal in de terminal aangegeven worden als een bepaald algoritme is gestart. Na het runnen van de algoritmes zullen ook de totale kosten verschijnen van de gevonden oplossing.
@@ -35,7 +34,7 @@ Groene energie is de energie van de toekomst, en zelf produceren is de mode van 
 
 Voor een feasibility study zijn drie woonwijken (Wijk 1, Wijk 2 en Wijk 3) opgesteld, met in elke wijk vijf batterijen.
 
-### Wat maakt het probleem moeilijk? (exploratie)
+### Wat maakt het probleem moeilijk? (Exploration)
 Algemeen:  
 Het lastige aan deze opdracht is niet zozeer gelegen in het feit dat alle huizen aan een batterij moeten worden verbonden, maar eerder in de optimalisatie van het Smartgrid. Eerder al werd duidelijk dat het Smartgrid zo goedkoop mogelijk moet worden aangelegd. Ieder huis verbinden met een eigen batterij (ter waarde van 5000 euro) is daarom geen realistische optie. In plaats daarvan zal het vanuit kostenoptimalisatie wenselijk zijn om meerdere huizen op een batterij aan te sluiten. Idealiter liggen de huizen die op een batterij zijn aangesloten daarnaast ook in de buurt van die batterij. Het aansluiten van een huis op een batterij gaat namelijk door middel van een kabel die 9 euro per gridsegment kost. Het aantal gridsegementen tussen twee punten dient te worden berekend via de Manhattan Distance.
 
@@ -101,12 +100,12 @@ Alle python scripts staan in de folder Code. In de map Code is onderscheid gemaa
 * Thomas Franx
 
 ## Dankwoord (Acknowledgments)
-* Quinten Van der Post
+* Quinten van der Post
 * StackOverflow
 * Koffie
 
 ---
-### eventueel logboek
+### logboek
 **7-11-2018:**
 De huizen gesorteerd van groot naar klein, vervolgens over de huizen heen gelopen
 en steeds de batterij gekozen die het meest dichtbij is. Werkt voor wijk1 en wijk 3,
@@ -120,4 +119,4 @@ wijk1 en wijk3 blijft een huis over. Opgeslagen als branch test.
 Huizen gesorteerd op basis van prioriteit. Bij alle wijken blijft één huis over maar de kabel kosten zijn lager dan bij de andere twee. Daarnaast zijn de 3 sorteer methodes in één class gezet (sort.py), en is het greedy algoritme, dat gebruikt wordt om een eerste oplossing te formuleren, in een aparte class gezet (greedy.py). In de helper class staat voor nu alleen de kosten-functie.
 
 **21-11-2018**
-Gredy uitgebreid met een swap (hill cliber) functie waardoor deze altijd een valide oplossing kan vinden. Daarnaast
+Gredy uitgebreid met een swap (hill cliber) functie waardoor deze altijd een valide oplossing kan vinden.
