@@ -15,6 +15,12 @@ class Simulated_annealing(object):
         self.multi_results = []
         self.simulatie_V2()
 
+        self.houses = sorted(self.houses, key=lambda house: house.amp, reverse=True)
+        house = self.houses[0]
+        print("ID: ", house.id)
+        print("Amp:", house.amp)
+
+
     def simulatie_V2(self):
         ''' Use Simulated Annealing to make changes to the existing solution '''
         temp_batteries = copy.deepcopy(self.batteries)

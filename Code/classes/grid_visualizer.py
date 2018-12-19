@@ -9,9 +9,6 @@ import matplotlib
 # matplotlib.use('Agg')
 
 
-import sys
-sys.path.append('../classes')
-
 from house import House
 from battery import Battery
 
@@ -114,7 +111,7 @@ class Grid_visualizer():
             print("Cost: ", battery.cost)
             print("Coordinates: (" + str(battery.x) + "," + str(battery.y) + ")")
             print("Current usage: ", battery.current_usage)
-            print("Connected", connections)
+            # print("Connected", connections)
             print("Connection count: ", connection_count)
             print()
 
@@ -141,3 +138,23 @@ def create_visualization(self):
 
     # show plot
     plt.show()
+
+def boxplot(self):
+
+    sns.set(style="whitegrid")
+    dataset = sns.load_dataset("tips")
+
+    ax = sns.boxplot(x="algoritmes", y="costs", data=dataset)
+
+
+def write_csv(self, results, titel):
+    '''Create a new .CSV file based on the results + name of the algorithm'''
+
+    with open("resultaten/" + titel + ".csv", mode = 'w') as csv_file:
+        csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        csv_writer.writerow(["algortimes", "costs"])
+
+        for index, result in enumerate(results):
+            csv_writer.writerow([index, result])
+
+    return ("resultaten/" + titel + ".csv")

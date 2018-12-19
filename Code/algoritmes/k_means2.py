@@ -13,6 +13,7 @@ class K_means2(object):
         self.counter = 0
         self.greedy = greedy
         self.random_batteries = random
+        self.solutions = []
         if self.random_batteries == "random":
             self.random(self.batteries)
         self.clustering(self.houses, self.batteries, self.counter)
@@ -34,6 +35,10 @@ class K_means2(object):
         greedy = Greedy(houses, batteries, self.greedy)
         houses = copy.deepcopy(greedy.houses)
         batteries = copy.deepcopy(greedy.batteries)
+
+        # Save solution
+        solution = Solution(copy.deepcopy(houses), copy.deepcopy(batteries))
+        self.solutions.append(solution)
 
         for battery in batteries:
             houses = Sort.distance(Sort, houses, battery)
