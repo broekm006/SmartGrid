@@ -4,8 +4,8 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 #import numpy as np
-# from celluloid import Camera
-# import matplotlib
+from celluloid import Camera
+import matplotlib
 # matplotlib.use('Agg')
 
 
@@ -83,20 +83,22 @@ class Grid_visualizer():
         return "houses.csv"
 
     ''' Animation will possibly be used during presentation '''
-    # def beweging():
-    #     fig = plt.figure()
-    #     camera = Camera(fig)
-    #     for i in range(100):
-    #         plt.plot([i] * 10)
-    #         camera.snap()
-    #     animation = camera.animate(interval=500, blit=True)
-    #     animation.save(
-    #         'simple.mp4',
-    #         dpi=100,
-    #         savefig_kwargs={
-    #             'frameon': False,
-    #             'pad_inches': 'tight'
-    #         })
+    def beweging():
+
+        fig = plt.figure()
+        camera = Camera(fig)
+        for i in range(100):
+            plt.plot([i] * 10)
+            camera.snap()
+        animation = camera.animate()
+        # animation = camera.animate(interval=500, blit=True)
+        # animation.save(
+        #     'simple.mp4',
+        #     dpi=100,
+        #     savefig_kwargs={
+        #         'frameon': False,
+        #         'pad_inches': 'tight'
+        #     })
 
     def printcheck(self):
         for battery in self.batteries:
@@ -115,6 +117,7 @@ class Grid_visualizer():
             print("Connected", connections)
             print("Connection count: ", connection_count)
             print()
+
 
 def create_visualization(self):
 
