@@ -14,6 +14,7 @@ class Cluster_merge(object):
     def __init__(self, houses):
         self.houses = houses
         self.costs = float('Inf')
+        self.solutions = []
         self.counter = 0
         self.innitialize()
         self.merge()
@@ -49,7 +50,6 @@ class Cluster_merge(object):
         ''' Merge the batteries that are closest to eachother and won't exceed max battery capacity (1800)'''
 
         # Make distance dictionary where key is (battery1, battery2) and  value is distance
-        solutions = []
         count = 0
         # Continue while merges possible
         distance_dict = {}
@@ -76,7 +76,7 @@ class Cluster_merge(object):
             # Save solution and append to array of all HAC-solutions
             solution = Solution(self.houses, self.batteries)
             solution.calculate_costs(count)
-            solutions.append(solution)
+            self.solutions.append(solution)
             count += 1
 
             # Make distance dictionary where key is (b1, b2) and value is distance
@@ -131,7 +131,7 @@ class Cluster_merge(object):
 
         # Get best solution (lowest costs)
         cost = float('inf')
-        for sol in solutions:
+        for sol in self.solutions:
             if sol.calculate_costs2() < cost:
                 cost = sol.calculate_costs2()
                 best_solution = sol
@@ -150,3 +150,5 @@ class Cluster_merge(object):
         # Overwrite self.houses and self.batteries with best solution
         self.houses = copy.deepcopy(best_solution.houses)
         self.batteries = copy.deepcopy(best_solution.batteries)
+
+        self.best_solution = Solution(self.houses, self.batteries)

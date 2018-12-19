@@ -100,3 +100,6 @@ if __name__ == "__main__":
 # sec_algo == type of iterative algorithm to combine with initial algorithm
 # NoT == Number of Times to run the algorithm(s)
 # vis == Whether we run a visual or not
+
+    # visualisatie = Grid_visualizer()
+    # Grid_visualizer.beweging()
