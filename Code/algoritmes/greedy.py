@@ -4,6 +4,9 @@ sys.path.append('Code/algoritmes')
 from sort import Sort
 from swap import Swap
 from helper import Helper
+from solution import Solution
+
+from frequency_visualizer import Frequency_visualizer
 
 class Greedy(object):
 
@@ -28,80 +31,126 @@ class Greedy(object):
     def output(self):
         ''' Connect house to nearest battery with available capacity'''
 
-        self.houses = Sort.max_output(Sort, self.houses)
+        self.results = []
+        for i in range(1000):
 
-        for house in self.houses:
-            for battery in self.batteries:
-                battery.distance = abs(battery.y - house.y) + abs(battery.x - house.x)
+            temp_houses = copy.deepcopy(self.houses)
+            temp_batteries = copy.deepcopy(self.batteries)
+            temp_houses= Sort.max_output(Sort, temp_houses)
 
-            self.batteries = sorted(self.batteries, key=lambda battery: battery.distance)
-
-            for battery in self.batteries:
-                if battery.check_amp() > house.amp:
-                    house.connect(battery)
-
-                    # update battery usage and connected list
-                    battery.add(house)
-
-                    # cable costs
+            for house in temp_houses:
+                for battery in temp_batteries:
                     battery.distance = abs(battery.y - house.y) + abs(battery.x - house.x)
-                    house.cable_costs(battery.distance)
 
-                    break;
+                temp_batteries = sorted(temp_batteries, key=lambda battery: battery.distance)
 
-        # HILL CLIMBER SWAP
-        Swap.swap_hill_climber(Swap, self.houses, self.batteries)
+                for battery in temp_batteries:
+                    if battery.check_amp() > house.amp:
+                        house.connect(battery)
+
+                        # update battery usage and connected list
+                        battery.add(house)
+
+                        # cable costs
+                        battery.distance = abs(battery.y - house.y) + abs(battery.x - house.x)
+                        house.cable_costs(battery.distance)
+
+                        break;
+
+            # HILL CLIMBER SWAP
+            Swap.swap_hill_climber(Swap, temp_houses, temp_batteries)
+
+            # Save solution
+            solution = Solution(temp_houses, temp_batteries)
+            solution.calculate_costs(i)
+            self.results.append([solution.id, solution.costs])
+            print("ID: " + str(solution.id) + ", COST: " + str(solution.costs))
+
+        self.houses = copy.deepcopy(temp_houses)
+        self.batteries = copy.deepcopy(temp_batteries)
+        Frequency_visualizer.write_csv(Frequency_visualizer, self.results, "Greedy_output1000")
+
 
 
     def distance(self):
         ''' Connect house to nearest battery with available capacity'''
 
-        for battery in self.batteries:
+        self.results = []
+        for i in range(1000):
 
-            # sorts houses based on distance to current battery
-            self.houses = Sort.distance(Sort, self.houses, battery)
+            temp_houses = copy.deepcopy(self.houses)
+            temp_batteries = copy.deepcopy(self.batteries)
+            temp_houses= Sort.max_output(Sort, temp_houses)
 
-            # connect battery to nearest house that isn't connected
-            for house in self.houses:
-                if battery.check_amp() > house.amp and not house.connection:
+            for battery in temp_batteries:
 
-                    # distance
-                    distance = abs(battery.y - house.y) + abs(battery.x - house.x)
+                # sorts houses based on distance to current battery
+                temp_houses = Sort.distance(Sort, temp_houses, battery)
 
-                    # Update battery usage & cable costs
-                    battery.add(house)
-                    house.connect(battery)
-                    house.cable_costs(distance)
+                # connect battery to nearest house that isn't connected
+                for house in temp_houses:
+                    if battery.check_amp() > house.amp and not house.connection:
 
-        # HILL CLIMBER SWAP
-        Swap.swap_hill_climber(Swap, self.houses, self.batteries)
+                        # distance
+                        distance = abs(battery.y - house.y) + abs(battery.x - house.x)
 
+                        # Update battery usage & cable costs
+                        battery.add(house)
+                        house.connect(battery)
+                        house.cable_costs(distance)
+
+            # HILL CLIMBER SWAP
+            Swap.swap_hill_climber(Swap, temp_houses, temp_batteries)
+
+            # Save solution
+            solution = Solution(temp_houses, temp_batteries)
+            solution.calculate_costs(i)
+            self.results.append([solution.id, solution.costs])
+            print("ID: " + str(solution.id) + ", COST: " + str(solution.costs))
+
+        self.houses = copy.deepcopy(temp_houses)
+        self.batteries = copy.deepcopy(temp_batteries)
+        Frequency_visualizer.write_csv(Frequency_visualizer, self.results, "Greedy_distance1000")
 
     def pv(self):
         ''' Connect house to nearest battery with available capacity'''
 
-        # sorts houses based on priority value
-        self.houses = Sort.priority_value(Sort, self.houses, self.batteries)
-        for house in self.houses:
+        self.results = []
+        for i in range(1):
 
-            # sorts batteries based on distance from current house --> kan nog apart
-            for battery in self.batteries:
+            # sorts houses based on priority value
+            temp_houses = copy.deepcopy(self.houses)
+            temp_batteries = copy.deepcopy(self.batteries)
+            temp_houses = Sort.priority_value(Sort, temp_houses, temp_batteries)
 
-                battery.distance = abs(battery.y - house.y) + abs(battery.x - house.x)
+            for house in temp_houses:
 
-            self.batteries = sorted(self.batteries, key=lambda battery: battery.distance)
+                # sorts batteries based on distance from current house --> kan nog apart
+                for battery in temp_batteries:
 
-            # connect house to nearest available battery
-            for battery in self.batteries:
-                if battery.check_amp() > house.amp:
+                    battery.distance = abs(battery.y - house.y) + abs(battery.x - house.x)
 
-                    # Update connections, current usage & cable costs
-                    house.connect(battery)
-                    battery.add(house)
-                    house.cable_costs(battery.distance)
-                    break;
+                temp_batteries = sorted(temp_batteries, key=lambda battery: battery.distance)
 
-        # HILL CLIMBER SWAP
-        Swap.swap_hill_climber(Swap, self.houses, self.batteries)
+                # connect house to nearest available battery
+                for battery in temp_batteries:
+                    if battery.check_amp() > house.amp:
 
-        # Swap.check(Swap, self.houses, self.batteries)
+                        # Update connections, current usage & cable costs
+                        house.connect(battery)
+                        battery.add(house)
+                        house.cable_costs(battery.distance)
+                        break;
+
+            # HILL CLIMBER SWAP
+            Swap.swap_hill_climber(Swap, temp_houses, temp_batteries)
+
+            # Swap.check(Swap, self.houses, self.batteries)
+            solution = Solution(temp_houses, temp_batteries)
+            solution.calculate_costs(i)
+            self.results.append([solution.id, solution.costs])
+            print("ID: " + str(solution.id) + ", COST: " + str(solution.costs))
+
+        self.houses = copy.deepcopy(temp_houses)
+        self.batteries = copy.deepcopy(temp_batteries)
+        # Frequency_visualizer.write_csv(Frequency_visualizer, self.results, "Greedy_priority1000")
