@@ -23,8 +23,8 @@ class Cluster_merge(object):
 
         # innitialize batteries
         for i, house in enumerate(self.houses):
-            battery = Battery(i, house.x, house.y, 450)
-            battery.costs = 900 # Later via Battery()?
+            battery = Battery(i, house.x, house.y, 1508)
+            battery.costs = 5000 # Later via Battery()?
             self.batteries.append(battery)
 
     def linkage(self, battery1, battery2):
@@ -83,7 +83,7 @@ class Cluster_merge(object):
             distance_dict = {}
             for i, battery1 in enumerate(self.batteries):
                 for battery2 in self.batteries[i+1:]:
-                    if battery1.current_usage + battery2.current_usage > 1800:
+                    if battery1.current_usage + battery2.current_usage > 1500:
                         break
                     else:
                         # DISTANCE
@@ -113,8 +113,8 @@ class Cluster_merge(object):
                     cost = 1800
 
                 # Create new battery (merged)
-                merged_battery = Battery(battery_1.id, mean_x, mean_y, capacity)
-                merged_battery.cost = cost
+                merged_battery = Battery(battery_1.id, mean_x, mean_y, 1500)
+                merged_battery.cost = 5000
 
                 # Disconnect houses from batteries
                 for battery in self.batteries:
