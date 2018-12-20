@@ -1,11 +1,10 @@
 import csv
-import copy
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 #import numpy as np
-from celluloid import Camera
-import matplotlib
+# from celluloid import Camera
+# import matplotlib
 # matplotlib.use('Agg')
 
 
@@ -14,16 +13,32 @@ sys.path.append('../classes')
 
 from house import House
 from battery import Battery
+from solution import Solution
+
+sys.path.append('Code/algoritmes')
+from test_merge import Cluster_merge
 
 
 class Grid_visualizer():
 
-    def __init__(self, houses, batteries, visualtype, name):
-        self.batteries = batteries
-        self.visualdata = self.write_csv(houses, batteries)
+    def __init__(self, houses, batteries, visualtype, name, solutions, best_solution):
+        # self.batteries = batteries
         self.name = name
-        self.printcheck()
-        self.check_visual_type(visualtype)
+
+        # print(len(solutions))
+        # self.batteries = best_solution.batteries
+        # self.solution_number = 0
+        # self.visualdata = self.write_csv(best_solution.houses, best_solution.batteries)
+        # self.check_visual_type(visualtype)
+
+        for index, solution in enumerate(solutions):
+            self.batteries = solution.batteries
+            self.solution_number = index
+            self.visualdata = self.write_csv(solution.houses, solution.batteries)
+            print(self.visualdata)
+            self.check_visual_type(visualtype)
+
+        # self.printcheck()
 
 
 
@@ -40,7 +55,7 @@ class Grid_visualizer():
     def write_csv(self, houses, batteries):
 
         # create house list and...
-        with open("houses.csv", "w") as csv_file:
+        with open("houses" + str(self.solution_number) + ".csv", "w") as csv_file:
             csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             csv_writer.writerow(["type", "id", "x", "y", "connected_bat"])
             for house in houses:
@@ -80,7 +95,7 @@ class Grid_visualizer():
 
                 csv_writer.writerow(battery_list)
 
-        return "houses.csv"
+        return "houses" + str(self.solution_number) + ".csv"
 
     ''' Animation will possibly be used during presentation '''
     def beweging():
@@ -123,6 +138,7 @@ def create_visualization(self):
 
     # create dataframe
     df = pd.read_csv(self.visualdata)
+    print(df)
 
     # set surroundings
     sns.set_color_codes("dark")
@@ -139,5 +155,10 @@ def create_visualization(self):
     # remove plot legend
     plot.legend_.remove()
 
+    filename='step'+str(self.solution_number)+'.png'
+    plt.savefig(filename)
+    plt.gca()
+
+
     # show plot
-    plt.show()
+    #plt.show()
