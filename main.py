@@ -49,6 +49,9 @@ def what_to_run(self, wijk, algo, sec_algo, NoT, vis):
         k_means.results()
     elif algo == "HAC":
         splitter = Cluster_merge(load.houses)
+        sec_algo = "escape"
+        grid_visualisatie = Grid_visualizer(splitter.houses, splitter.batteries, "gridview", "Hierarchical Agglomerative Clustering", splitter.solutions, splitter.best_solution)
+
 
 
     else:
@@ -73,11 +76,11 @@ def what_to_run(self, wijk, algo, sec_algo, NoT, vis):
     elif sec_algo == "simulated_annealing" and algo == "HAC":
         sim = Simulated_annealing(splitter.houses, splitter.batteries, NoT, 1)
         if vis == 'True':
-            grid_visualisatie = Grid_visualizer(splitter.houses, splitter.batteries, "gridview", "Hierarchical Agglomerative Clustering")
+            grid_visualisatie = Grid_visualizer(splitter.houses, splitter.batteries, "gridview", "Hierarchical Agglomerative Clustering", splitter.solutions, splitter.best_solution)
     elif sec_algo == "hill_climber" and algo == "HAC":
         sim = Hill_climber(splitter.houses, splitter.batteries, NoT, 1)
         if vis == 'True':
-            grid_visualisatie = Grid_visualizer(splitter.houses, splitter.batteries, "gridview", "Hierarchical Agglomerative Clustering")
+            grid_visualisatie = Grid_visualizer(splitter.houses, splitter.batteries, "gridview", "Hierarchical Agglomerative Clustering", splitter.solutions, splitter.best_solution)
     elif sec_algo == "escape":
         pass
 
@@ -100,6 +103,3 @@ if __name__ == "__main__":
 # sec_algo == type of iterative algorithm to combine with initial algorithm
 # NoT == Number of Times to run the algorithm(s)
 # vis == Whether we run a visual or not
-
-    # visualisatie = Grid_visualizer()
-    # Grid_visualizer.beweging()

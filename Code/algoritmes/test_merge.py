@@ -3,7 +3,6 @@ import copy, math, random
 import numpy as np
 from battery import Battery
 from greedy import Greedy
-from grid_visualizer import Grid_visualizer
 from k_means2 import K_means2
 from helper import Helper
 from solution import Solution
@@ -65,8 +64,8 @@ class Cluster_merge(object):
             distance_dict[0] = 0
 
             # Overwrite battery id for hill_climber to avoid index out of bounds (self.batteries[battery.id])
-            for i, battery in enumerate(self.batteries):
-                battery.id = i
+            # for i, battery in enumerate(self.batteries):
+            #     battery.id = i
 
             # Run k-means with greedy output to connect houses to new self.batteries
             k_means = K_means2(self.houses, self.batteries, "output", "0")
